@@ -1,15 +1,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 sidebar">
-      <tabset [vertical]="true" type="pills">
-        <tab heading="Vertical 1">Vertical content 1</tab>
-        <tab heading="Vertical 2">Vertical content 2</tab>
-      </tabset>
-    </div>
-    <div class="col-sm-9">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+    <a class="navbar-brand m-b-0" routerLink="/" routerLinkActive="active">哟哟哟！</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item" *ngFor="let item of nav">
+            <a class="nav-link" [routerLink]="item.link">
+                {{item.title}}
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="container content">
+    <router-outlet></router-outlet>
 </div>

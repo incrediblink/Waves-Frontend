@@ -20,15 +20,11 @@ import '../style/app.scss';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public tabs:Array<any> = [
-    {title: 'Home', content: ''},
-    {title: 'Event', content: 'event', disabled: true},
-    {title: 'About', content: 'about', disabled: true}
+  public nav:Array<any> = [
+    {title: 'Home', link: '/'},
+    {title: 'Event', link: '/event'},
+    {title: 'About', link: '/about'}
   ];
-
-  public setActiveTab(index:number):void {
-    this.tabs[index].active = true;
-  };
 
   constructor(private api: ApiService) {
   }
