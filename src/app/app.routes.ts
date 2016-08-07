@@ -6,7 +6,7 @@ import { EventComponent } from './event';
 
 export const routes: RouterConfig = [
   { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent},
+  { path: 'about', component: AboutComponent },
   { path: 'event', component: EventComponent }
 ];
 

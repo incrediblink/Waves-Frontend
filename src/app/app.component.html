@@ -1,15 +1,19 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous" (load)="finishLoading()">
 
-<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
-    <a class="navbar-brand m-b-0" routerLink="/" routerLinkActive="active">哟哟哟！</a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item" *ngFor="let item of nav">
-            <a class="nav-link" [routerLink]="item.link">
-                {{item.title}}
-            </a>
-        </li>
-    </ul>
-</nav>
-<div class="container content">
-    <router-outlet></router-outlet>
+<canvas [hidden]="!isHidden" width=100 height=100 class="loading loading-full" id="loading"></canvas>
+<a>{{isHidden}}</a>
+<div [hidden]="isHidden" class="content">
+    <nav class="navbar navbar-full navbar-dark bg-primary">
+        <a class="navbar-brand m-b-0" routerLink="/" routerLinkActive="active">哟哟哟！</a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item" *ngFor="let item of nav">
+                <a class="nav-link" [routerLink]="item.link">
+                    {{item.title}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </div>
