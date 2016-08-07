@@ -1,8 +1,7 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { TAB_DIRECTIVES } from 'ng2-bootstrap';
-
 import { ApiService } from './shared';
 import { LoadingService } from './service/loading';
 
@@ -27,7 +26,7 @@ export class AppComponent implements OnInit {
         {title: 'About', link: '/about'}
     ];
     public isHidden: Boolean = true;
-    constructor(private api: ApiService, private loading: LoadingService, private router: Router) {}
+    constructor(private api: ApiService, private loading: LoadingService, private router: Router, private ref: ChangeDetectorRef) {}
 
     ngOnInit(){
         this.loading.draw(document.getElementById('loading'));
@@ -37,5 +36,6 @@ export class AppComponent implements OnInit {
         console.log('loaded!');
         this.isHidden = false;
         console.log(this.isHidden);
+        this.ref.detectChanges();
     }
 }
