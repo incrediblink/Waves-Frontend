@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous" (load)="finishLoading()">
 
-<canvas [hidden]="!isHidden" width=100 height=100 class="loading loading-full" id="loading"></canvas>
-<a>{{isHidden}}</a>
+<div [hidden]="!isHidden" class="full-screen flex-column">
+    <canvas width=100 height=100 class="loading" id="loading"></canvas>
+    <a>Processing...</a>
+    <a>{{isHidden}}</a>
+</div>
 <div [hidden]="isHidden" class="content">
     <nav class="navbar navbar-full navbar-dark bg-primary">
         <a class="navbar-brand m-b-0" routerLink="/" routerLinkActive="active">哟哟哟！</a>

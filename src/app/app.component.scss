@@ -35,16 +35,15 @@ $loading-side: 100px;
     to {transform: rotate(360deg);}
 }
 
-@mixin center($width, $height) {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    height: $height;
-    width: $width;
-    margin-left: - $width / 2;
-    margin-top: - $height / 2;
+.full-screen {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
-.loading-full {
-    @include center($loading-side, $loading-side)
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }
