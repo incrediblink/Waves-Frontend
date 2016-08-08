@@ -1,1 +1,16 @@
-<h5>迟迟买 U 盘被宰事件</h5>
+<div class="container flex flex-row">
+    <div class="timeline"></div>
+    <div class="container-fluid">
+        <div class="card news" *ngFor="let news of collections">
+            <div class="timeline-ball"></div>
+            <div class="card-block">
+                <h4 class="card-title">{{news.title}}</h4>
+                <p *ngIf="news.abstract" class="card-text">{{news.abstract}}</p>
+            </div>
+            <div class="card-footer text-muted flex flex-row flex-justify-content flex-align-center">
+                <p>{{news.time}}</p>
+                <a href="{{news.link}}" class="card-link">{{news.source}}</a>
+            </div>
+        </div>
+    </div>
+</div>

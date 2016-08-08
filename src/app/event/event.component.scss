@@ -1,0 +1,24 @@
+.timeline {
+    display: block;
+    width: 10px;
+    min-height: 100px;
+    background-color: rgb(91, 192, 222);
+    position: relative;
+    left: 5px;
+}
+
+.timeline-ball {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    border: 2px solid #66ccff;
+    position: relative;
+    left: -48px;
+    top: 20px;
+}
+
+.news {
+    margin-top: .75rem;
+}

@@ -1,1 +1,62 @@
-// styles in src/style directory are applied to the whole page
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-justify-content {
+    justify-content: space-between;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+$loading-side: 100px;
+
+.loading {
+    // width: $loading-side;
+    // height: $loading-side;
+    animation: loading 2s infinite linear;
+    -moz-animation: loading 2s infinite linear; /* Firefox */
+    -webkit-animation: loading 2s infinite linear; /* Safari and Chrome */
+    -o-animation: loading 2s infinite linear; /* Opera */
+}
+
+.full-screen {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes loading
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@-moz-keyframes loading /* Firefox */
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes loading /* Safari and Chrome */
+{
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-o-keyframes loading /* Opera */
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
