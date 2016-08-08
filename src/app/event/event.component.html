@@ -1,16 +1,23 @@
+<div class="header-image-wrapper">
+    <div class="header-image"></div>
+</div>
 <div class="container flex flex-row">
     <div class="timeline"></div>
-    <div class="container-fluid">
-        <div class="card news" *ngFor="let news of collections">
+    <div class="container-fluid no-margin-left no-padding-left">
+        <div class="flex flex-row" *ngFor="let news of collections">
             <div class="timeline-ball"></div>
-            <div class="card-block">
-                <h4 class="card-title">{{news.title}}</h4>
-                <p *ngIf="news.abstract" class="card-text">{{news.abstract}}</p>
-            </div>
-            <div class="card-footer text-muted flex flex-row flex-justify-content flex-align-center">
-                <p>{{news.time}}</p>
-                <a href="{{news.link}}" class="card-link">{{news.source}}</a>
+            <div class="container-fluid no-margin-left fluid-width">
+                <div class="card news">
+                    <div class="card-block">
+                        <h4 class="card-title">{{news.title}}</h4>
+                        <p *ngIf="news.abstract" class="card-text">{{news.abstract}}</p>
+                    </div>
+                    <div class="card-footer text-muted flex flex-row flex-justify-content flex-align-center">
+                        <a>{{news.time}}</a>
+                        <a href="{{news.link}}" class="card-link">{{news.source}}</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    <div>
 </div>

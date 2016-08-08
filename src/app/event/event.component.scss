@@ -7,18 +7,48 @@
     left: 5px;
 }
 
+$ball-side: 30px;
+
 .timeline-ball {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: $ball-side;
+    height: $ball-side;
     background-color: cornflowerblue;
-    border-radius: 10px;
-    border: 2px solid #66ccff;
+    border-radius: $ball-side / 2;
+    border: 3px solid #66ccff;
     position: relative;
-    left: -48px;
-    top: 20px;
+    left: -($ball-side / 2);
+    top: 40px;
+}
+
+.header-image-wrapper {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+.header-image {
+    height: 100%;
+    background: 50% 50% no-repeat;
+    background-image: url('http://static.tumblr.com/58e23ecddecb8df39456633c55468fd0/yiqodgn/LPLoanhny/tumblr_static_tumblr_static_3m0z9w0ljrcww88ws040o8skk_focused_v3.jpg');
 }
 
 .news {
     margin-top: .75rem;
+}
+
+.card-footer::after {
+    content: none;
+}
+
+.no-margin-left {
+    margin-left: 0px;
+}
+
+.no-padding-left {
+    padding-left: 0px;
+}
+
+.fluid-width {
+    width: 100%;
 }
