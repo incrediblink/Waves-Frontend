@@ -10,19 +10,28 @@
     flex-direction: column;
 }
 
-.flex-justify-content {
+.flex-justify-content-space-between {
     justify-content: space-between;
+}
+
+.flex-justify-content-center {
+    justify-content: center;
 }
 
 .flex-align-center {
     align-items: center;
 }
 
-$loading-side: 100px;
+.flex-align-self-center {
+    align-self: center;
+}
+
+.blue-shadow {
+    color: white !important;
+    text-shadow: 2px 1px 0px #5bc0de;
+}
 
 .loading {
-    // width: $loading-side;
-    // height: $loading-side;
     animation: loading 2s infinite linear;
     -moz-animation: loading 2s infinite linear; /* Firefox */
     -webkit-animation: loading 2s infinite linear; /* Safari and Chrome */

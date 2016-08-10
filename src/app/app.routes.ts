@@ -5,9 +5,9 @@ import { AboutComponent } from './about';
 import { EventComponent } from './event';
 
 export const routes: RouterConfig = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'event', component: EventComponent }
+  { path: '', component: EventComponent }
 ];
 
 export const APP_ROUTER_PROVIDERS = [

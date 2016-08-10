@@ -25,12 +25,33 @@ $ball-side: 30px;
     position: relative;
     height: 350px;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header-image {
-    height: 100%;
     background: 50% 50% no-repeat;
-    background-image: url('http://static.tumblr.com/58e23ecddecb8df39456633c55468fd0/yiqodgn/LPLoanhny/tumblr_static_tumblr_static_3m0z9w0ljrcww88ws040o8skk_focused_v3.jpg');
+    background-image: url('/img/thumbdisk.jpg');
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 1rem .5rem 3rem;
+    background-color: rgba(2, 117, 216, 0.7);
+    max-width: 65vw;
+}
+
+.follow {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 3rem;
+    bottom: 1rem;
+}
+
+.follow-count {
+    padding-right: .5rem;
 }
 
 .news {
@@ -45,10 +66,22 @@ $ball-side: 30px;
     margin-left: 0px;
 }
 
+.no-margin-right {
+    margin-right: 0px;
+}
+
 .no-padding-left {
     padding-left: 0px;
 }
 
+.no-padding-right {
+    padding-right: 0px;
+}
+
 .fluid-width {
     width: 100%;
+}
+
+.white-shadow {
+    text-shadow: .1px .1px .1px #fff;
 }

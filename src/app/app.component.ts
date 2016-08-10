@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { TAB_DIRECTIVES } from 'ng2-bootstrap';
 import { ApiService } from './shared';
@@ -20,13 +20,14 @@ import '../style/app.scss';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    public nav: Array<any> = [
-        {title: 'Home', link: '/'},
-        {title: 'Event', link: '/event'},
-        {title: 'About', link: '/about'}
+    public tabs: Array<any> = [
+        {title: '事件', link: '/'},
+        {title: '主页', link: '/home'},
+        {title: '关于', link: '/about'}
     ];
     public isHidden: Boolean = true;
-    constructor(private api: ApiService, private loading: LoadingService, private router: Router, private ref: ChangeDetectorRef) {}
+
+    constructor(private api: ApiService, private loading: LoadingService, private router: Router, private activatedRoute: ActivatedRoute, private ref: ChangeDetectorRef) {}
 
     ngOnInit(){
         this.loading.draw(document.getElementById('loading'));
