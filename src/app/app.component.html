@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous" (load)="finishLoading()">
+<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous" (load)="finishLoading()">
 
 <div [hidden]="!isHidden" style="display: flex; width: 100%; height: 100vh; justify-content: center; align-items: center; flex-direction: column">
     <canvas width=100 height=100 class="loading" id="loading"></canvas>
@@ -13,7 +13,7 @@
                     <h6>渴</h6><h6>望</h6><h6>重</h6><h6>回</h6><h6>土</h6><h6>地</h6>
                 </div>
             </div>
-            <div style="width:90%">
+            <div class="fluid-width">
                 <a *ngFor="let tab of tabs" 
                     [routerLink]="tab.link" 
                     class="tab"
@@ -22,10 +22,13 @@
                     <a class="tab-link">{{tab.title}}</a>
                 </a>
             </div>
-            <div class="btn-group" role="group">
+            <!--<div class="btn-group" role="group">
                 <button type="button" class="btn btn-secondary">限定日期</button>
                 <button type="button" class="btn btn-secondary">限定信息源</button>
-            </div>
+            </div>-->
+            <a class="guide-footer">
+                求你别用手机打开
+            </a>
         </div>
         <div class="col-sm-9 content">
             <router-outlet></router-outlet>

@@ -21,8 +21,8 @@ import '../style/app.scss';
 })
 export class AppComponent implements OnInit {
     public tabs: Array<any> = [
-        {title: '事件', link: '/'},
         {title: '主页', link: '/home'},
+        {title: '事件', link: '/'},
         {title: '关于', link: '/about'}
     ];
     public isHidden: Boolean = true;

@@ -38,6 +38,10 @@
     -o-animation: loading 2s infinite linear; /* Opera */
 }
 
+.fluid-width {
+    width: 100%;
+}
+
 .full-screen {
     display: flex;
     width: 100%;
