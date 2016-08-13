@@ -23,31 +23,32 @@ $ball-side: 30px;
 
 .header-image-wrapper {
     position: relative;
-    height: 350px;
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
 .header-image {
     background: 50% 50% no-repeat;
-    background-size: 100%;
+    background-size: cover;
 }
 
 .header-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: .5rem 1rem .5rem 3rem;
+    position: relative;
+    margin-top: 2rem;
+    padding: .5rem 3rem .5rem 3rem;
     background-color: rgba(2, 117, 216, 0.7);
-    max-width: 65vw;
+    color: white !important;
 }
 
 .follow {
     display: flex;
     flex-direction: row;
-    position: absolute;
-    right: 3rem;
-    bottom: 1rem;
+    align-self: flex-end;
+    padding: 1rem;
 }
 
 .follow-count {
@@ -80,8 +81,4 @@ $ball-side: 30px;
 
 .fluid-width {
     width: 100%;
-}
-
-.white-shadow {
-    text-shadow: .1px .1px .1px #fff;
 }

@@ -21,7 +21,7 @@ export class TimelineService {
     get(eventID: number): any {
         let collection = this.getCollection(eventID);
         for (let news of collection) {
-            let info = this.newsService.get(collection[counter]);
+            let info = this.newsService.get(news);
             collection[counter++] = info;
         }
         return collection;

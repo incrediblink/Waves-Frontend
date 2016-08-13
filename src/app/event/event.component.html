@@ -1,13 +1,13 @@
 <div class="event-content">
     <div class="header-image-wrapper header-image" [ngStyle]="{'background-image': 'url(' + event.image + ')'}">
         <div class="header-info">
-            <h1 class="blue-shadow">{{event.title}}</h1>
-            <h5 class="blue-shadow">{{event.detail}}</h5>
-            <h5 class="blue-shadow">{{event.time}}</h5>
+            <h1 class="font-title"><b>{{event.title}}</b></h1>
+            <h5 class="font-content">{{event.detail}}</h5>
+            <h5 class="font-content">{{event.time}}</h5>
         </div>
         <div class="follow flex-align-center">
-            <b class="follow-count blue-shadow">该事件已有 {{event.follower}} 人关注</b>
-            <button type="button" class="btn btn-primary">关注</button>
+            <b class="follow-count blue-shadow font-content">该事件已有 {{event.follower}} 人关注</b>
+            <button type="button" class="btn btn-primary font-content">关注</button>
         </div>
     </div>
     <div class="container flex flex-justify-content-center">
@@ -16,14 +16,15 @@
             <div class="container-fluid no-margin-left no-padding-left no-margin-right no-padding-right">
                 <div class="flex flex-row" *ngFor="let news of collections">
                     <div class="timeline-ball"></div>
+                    <div class="container-fluid no-margin-left fluid-width" style="max-width: 50vw">
                         <div class="card news">
                             <div class="card-block">
-                                <h4 class="card-title">{{news.title}}</h4>
-                                <p *ngIf="news.abstract" class="card-text">{{news.abstract}}</p>
+                                <h4 class="card-title font-title">{{news.title}}</h4>
+                                <p *ngIf="news.abstract" class="card-text font-content">{{news.abstract}}</p>
                             </div>
                             <div class="card-footer text-muted flex flex-row flex-justify-content-space-between flex-align-center">
                                 <a>{{news.time}}</a>
-                                <a href="{{news.link}}" class="card-link">{{news.source}}</a>
+                                <a href="{{news.link}}" class="card-link font-content">{{news.source}}</a>
                             </div>
                         </div>
                     </div>

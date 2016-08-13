@@ -28,7 +28,17 @@
 
 .blue-shadow {
     color: white !important;
-    text-shadow: 2px 1px 0px #5bc0de;
+    text-shadow: 1px 1px 1px rgb(2, 90, 165), -1px 1px 1px rgb(2, 90, 165), 1px -1px 1px rgb(2, 90, 165), -1px -1px 1px rgb(2, 90, 165);
+}
+
+.font-title {
+    font-family: Arial, "Lucida Sans", "Lucida Sans Regular", "SimHei", "黑体", "STHeiti", "华文黑体", serif;
+    line-height: 125%;
+}
+
+.font-content {
+    font-family: Georgia, 'Times New Roman', Times, "Microsoft YaHei", "微软雅黑", "SimHei", "黑体", "STXihei", "华文细黑", serif;
+    line-height: 125%;
 }
 
 .loading {

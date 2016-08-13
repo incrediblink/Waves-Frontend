@@ -12,7 +12,7 @@ import '../style/app.scss';
  * Top Level Component
  */
 @Component({
-    selector: 'my-app', // <my-app></my-app>
+    selector: 'waves', // <my-app></my-app>
     providers: [ApiService, LoadingService],
     directives: [...ROUTER_DIRECTIVES, TAB_DIRECTIVES, CORE_DIRECTIVES],
     changeDetection: ChangeDetectionStrategy.OnPush,
