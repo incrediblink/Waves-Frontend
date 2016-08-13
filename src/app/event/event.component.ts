@@ -14,9 +14,10 @@ export class EventComponent implements OnInit {
     constructor(private eventService: EventService, private timeline: TimelineService) { }
     public event: any = this.eventService.getDetail(0);
 
+    public collections: any = this.timeline.get(0);
+
     ngOnInit() {
         console.log('Event Component');
+        console.log(this.collections);
     }
-
-    public collections: any = this.timeline.get(0);
 }
