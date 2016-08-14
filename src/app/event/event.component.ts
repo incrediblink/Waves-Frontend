@@ -18,6 +18,5 @@ export class EventComponent implements OnInit {
 
     ngOnInit() {
         console.log('Event Component');
-        console.log(this.collections);
     }
 }

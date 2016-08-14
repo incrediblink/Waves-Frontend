@@ -26,6 +26,13 @@
     align-self: center;
 }
 
+.page-container {
+    padding: 1rem 10% 0rem 10%;
+    background-color: rgba(0,0,0,.02);
+    width: 100%;
+    min-height: 100vh;
+}
+
 .blue-shadow {
     color: white !important;
     text-shadow: 1px 1px 1px rgb(2, 90, 165), -1px 1px 1px rgb(2, 90, 165), 1px -1px 1px rgb(2, 90, 165), -1px -1px 1px rgb(2, 90, 165);
