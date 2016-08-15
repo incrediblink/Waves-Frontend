@@ -14,28 +14,30 @@
 }
 
 .header-title {
-    display: flex;
-    flex-direction: column;
     position: relative;
-    padding: 2.5rem 3rem .5rem 3rem;
-    color: #00549e;
-    text-shadow: 1px 1px 1px whitesmoke, -1px 1px 1px whitesmoke, 1px -1px 1px whitesmoke, -1px -1px 1px whitesmoke;
+    margin: 2.5rem 3rem .5rem 3rem;
+    padding: 1rem;
+    color: white;
+    background-color: rgba(0, 80, 180, .7);
 }
 
 .header-bottom {
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 7rem;
     align-items: center;
     justify-content: space-between;
 }
 
 .tag-set {
-    margin: 1rem 1rem 1rem 2rem;
+    margin: .75rem 1rem 1rem 2rem;
+    flex-wrap: wrap;
+    max-width: 50%;
 }
 
 .tag {
     padding: .5rem;
     margin-left: .25rem;
+    margin-top: .25rem;
     border: 1px solid #bcdff1;
     background-color: #d9edf7;
     color: #31708f !important;
@@ -55,7 +57,7 @@
 
 .timeline {
     max-width: 100rem;
-    margin: 1rem 10% 0rem 10%;
+    margin: 1rem 10% 1rem 10%;
 }
 
 .news {

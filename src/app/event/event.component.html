@@ -1,6 +1,6 @@
 <div class="event-container">
     <div class="header-image-wrapper" [style.background-image]="'url(' + event.image + ')'">
-        <h1 class="font-title header-title"><b>{{event.title}}</b></h1>
+        <h1><b><span class="font-title header-title">{{event.title}}</span></b></h1>
         <div class="header-bottom flex flex-row">
             <div class="flex flex-row tag-set">
                 <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
@@ -15,7 +15,7 @@
     <div class="flex flex-justify-content-center">
         <div class="card timeline fluid-width">
             <div class="card-block news" *ngFor="let news of collections">
-                <a href="{{news.link}}" class="news-title"><h4 class="card-title font-title">{{news.title}}</h4></a>
+                <a href="{{news.link}}" class="news-title" target="_blank"><h4 class="card-title font-title">{{news.title}}</h4></a>
                 <p *ngIf="news.abstract" class="card-text font-content">{{news.abstract}}</p>
                 <div class="flex flex-row flex-justify-content-space-between flex-align-center fluid-width">
                     <a class="text-muted font-content">{{news.time}}</a>
