@@ -14,11 +14,14 @@
 }
 
 .header-title {
-    position: relative;
-    margin: 2.5rem 3rem .5rem 3rem;
     padding: 1rem;
     color: white;
     background-color: rgba(0, 80, 180, .7);
+}
+
+.title-margin {
+    position: relative;
+    margin: 2.5rem 3rem .5rem 3rem;
 }
 
 .header-bottom {
