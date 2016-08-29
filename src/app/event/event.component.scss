@@ -63,24 +63,12 @@
     margin: 1rem 10% 1rem 10%;
 }
 
-.news {
-    border-bottom: 1px solid rgba(0,0,0,.125);
-}
-
 .news:hover {
     background-color: rgba(0,0,0,.04);
 }
 
-.news:last-child {
-    border-bottom: 0px;
-}
-
 .news-title {
     text-decoration: none;
-}
-
-.card-footer::after {
-    content: none;
 }
 
 .fluid-width {
