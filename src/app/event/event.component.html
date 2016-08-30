@@ -1,4 +1,27 @@
-<div class="event-container">
+<div class="full-container">
+    <div class="content-left event-header" [style.background-image]="'url(' + event.image + ')'">
+        <h1 class="font-title header-title">{{event.title}}</h1>
+        <div class="tag-set">
+            <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
+        </div>
+    </div>
+    <div class="content-right">
+        <div class="timeline">
+            <div class="card card-block news" *ngFor="let news of collections">
+                <a href="{{news.link}}" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.title}}</h4></a>
+                <p *ngIf="news.abstract" class="card-text font-content">{{news.abstract}}</p>
+                <div class="news-bottom">
+                    <a class="text-muted font-content">{{news.time}}</a>
+                    <a href="{{news.link}}" title="跳转至{{news.source}}原文" class="fa fa-external-link no-decoration" aria-hidden="true" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info btn-sm follow">关注该事件</button>
+        <a class="button-setting"><i class="fa fa-cog" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+<!--<div class="event-container">
     <div class="header-image-wrapper" [style.background-image]="'url(' + event.image + ')'">
         <h1 class="title-margin"><b><span class="font-title header-title">{{event.title}}</span></b></h1>
         <div class="header-bottom flex flex-row">
@@ -29,4 +52,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

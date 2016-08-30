@@ -18,6 +18,15 @@
     background-color: #555555;
 }
 
+.navbar-bottom {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    width: 8rem;
+    padding-bottom: 1rem;
+}
+
 .content {
     width: 100%;
 }
@@ -28,6 +37,10 @@
     padding: .4rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.75rem;
+    text-decoration: none;
 }
 
 .tab:hover {
@@ -38,92 +51,21 @@
     background-color: rgba(0, 180, 250, .5)
 }
 
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+.tab-bottom {
+    width: 4rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999999;
+    font-size: 1.25rem !important;
+    text-decoration: none;
 }
 
-// .left {
-//     height: auto;
-//     min-height: 100vh;
-// }
+.tab-bottom:hover {
+    color: white;
+}
 
-// .guide {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     position: fixed;
-//     top: 0px;
-//     left: 0px;
-//     width: inherit;
-//     height: 100vh;
-//     background-color: #00549e;
-//     padding: 1rem;
-// }
-
-// .site {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     color: white;
-//     padding: 3rem 1rem 2rem 1rem;
-//     width: 100%;
-// }
-
-// .site-icon {
-//     width: 80%;
-// }
-
-// .site-slogan {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     padding-top: 1rem;
-//     width: 100%;
-// }
-
-// .tab {
-//     display: flex;
-//     width: 100%;
-//     padding: 0rem 1rem 0rem 1rem;
-//     border-top: .1rem solid rgba(2, 117, 216, .5);
-//     text-decoration: none;
-// }
-
-// .tab:last-child {
-//     border-bottom: .1rem solid rgba(2, 117, 216, .5);
-//     margin-bottom: 2rem;
-// }
-
-// .tab:hover {
-//     background-color: rgba(2, 117, 216, .5);
-// }
-
-// .tab-active {
-//     background-color: rgba(2, 117, 216, .5);
-// }
-
-// .tab-link {
-//     color: white !important;
-//     padding: .8rem .5rem .8rem 0rem;
-// }
-
-// .tab-link:link {
-//     text-decoration: none;
-// }
-
-// .guide-footer {
-//     position: absolute;
-//     bottom: 1rem;
-//     color: white !important;
-// }
-
-// .content {
-//     padding: 0rem;
-// }
+.tab-bottom-active {
+    color: white;
+}
