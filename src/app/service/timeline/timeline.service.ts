@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NewsService } from '../news';
 
 let newsCollect: number[][] = [
-    [0, 1]
+    [0, 1, 2, 3, 4, 5]
 ];
 
 let counter = 0;

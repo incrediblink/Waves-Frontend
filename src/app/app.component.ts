@@ -18,6 +18,7 @@ import '../style/app.scss';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
+export class AppComponent implements OnInit {
     public tabs: Array<any> = [
         { title: '事件', link: '/', icon: 'fa-newspaper-o' },
         { title: '标签', link: '/tag', icon: 'fa-tags' },
@@ -25,6 +26,8 @@ import '../style/app.scss';
     ];
 
     public tabsBottom: [any] = [
+        { title: '后台', link: '/admin', icon: 'fa-lock' },
+        { title: '关于', link: '/about', icon: 'fa-book' },
         { title: '登入', link: '/login', icon: 'fa-sign-in' }
     ];
 

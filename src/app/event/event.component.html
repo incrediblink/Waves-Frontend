@@ -1,8 +1,13 @@
 <div class="full-container">
-    <div class="content-left event-header" [style.background-image]="'url(' + event.image + ')'">
-        <h1 class="font-title header-title">{{event.title}}</h1>
-        <div class="tag-set">
-            <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
+    <div class="content-left event-header" [style.background-image]="'url(' + event.image.url + ')'">
+        <a class="header-image-source" [href]="event.image.news" target="_blank"
+            [tooltip]="'图片来自' + event.image.source">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+        </a>
+            <h1 class="font-title header-title">{{event.title}}</h1>
+            <div class="tag-set">
+                <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
+            </div>
         </div>
     </div>
     <div class="content-right">
@@ -16,40 +21,10 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-info btn-sm follow">关注该事件</button>
-        <a class="button-setting"><i class="fa fa-cog" aria-hidden="true"></i></a>
+        <div class="follow">
+            <button type="button" class="btn btn-info btn-sm button-follow">已有{{event.follower.length}}人关注该事件</button>
+            <button type="button" class="btn btn-primary btn-sm button-follow">关注</button>
+        </div>
+        <a class="button-setting"><i class="fa fa-cog"></i></a>
     </div>
 </div>
-
-<!--<div class="event-container">
-    <div class="header-image-wrapper" [style.background-image]="'url(' + event.image + ')'">
-        <h1 class="title-margin"><b><span class="font-title header-title">{{event.title}}</span></b></h1>
-        <div class="header-bottom flex flex-row">
-            <div class="flex flex-row tag-set">
-                <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
-            </div>
-            <div class="follow">
-                <b class="follow-count blue-shadow font-content">该事件已有 {{event.follower}} 人关注</b>
-                <button type="button" class="btn btn-primary font-content">关注</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-justify-content-center">
-        <div class="card timeline fluid-width">
-            <div class="card-block news" *ngFor="let news of collections">
-                <a href="{{news.link}}" class="news-title" target="_blank"><h4 class="card-title font-title">{{news.title}}</h4></a>
-                <p *ngIf="news.abstract" class="card-text font-content">{{news.abstract}}</p>
-                <div class="flex flex-row flex-justify-content-space-between flex-align-center fluid-width">
-                    <a class="text-muted font-content">{{news.time}}</a>
-                    <a href="{{news.link}}" title="跳转至{{news.source}}原文" target="_blank">
-                        <svg class="icon icon-link" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
-                            <path d="M13.757 19.868c-0.416 0-0.832-0.159-1.149-0.476-2.973-2.973-2.973-7.81 0-10.783l6-6c1.44-1.44 3.355-2.233 5.392-2.233s3.951 0.793 5.392 2.233c2.973 2.973 2.973 7.81 0 10.783l-2.743 2.743c-0.635 0.635-1.663 0.635-2.298 0s-0.635-1.663 0-2.298l2.743-2.743c1.706-1.706 1.706-4.481 0-6.187-0.826-0.826-1.925-1.281-3.094-1.281s-2.267 0.455-3.094 1.281l-6 6c-1.706 1.706-1.706 4.481 0 6.187 0.635 0.635 0.635 1.663 0 2.298-0.317 0.317-0.733 0.476-1.149 0.476z"></path>
-                            <path d="M8 31.625c-2.037 0-3.952-0.793-5.392-2.233-2.973-2.973-2.973-7.81 0-10.783l2.743-2.743c0.635-0.635 1.664-0.635 2.298 0s0.635 1.663 0 2.298l-2.743 2.743c-1.706 1.706-1.706 4.481 0 6.187 0.826 0.826 1.925 1.281 3.094 1.281s2.267-0.455 3.094-1.281l6-6c1.706-1.706 1.706-4.481 0-6.187-0.635-0.635-0.635-1.663 0-2.298s1.663-0.635 2.298 0c2.973 2.973 2.973 7.81 0 10.783l-6 6c-1.44 1.44-3.355 2.233-5.392 2.233z"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->

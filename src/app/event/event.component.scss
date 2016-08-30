@@ -1,6 +1,10 @@
 .event-header {
-    padding: 1rem 1rem 4rem 1rem;
-    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.header-info {
+    position: absolute;
+    bottom: 4rem;
 }
 
 .header-title {
@@ -23,6 +27,14 @@
     background-color: #d9edf7;
     color: #31708f !important;
     border-radius: .25rem;
+}
+
+.header-image-source {
+    position: absolute;
+    right: 1rem;
+    color: black !important;
+    text-decoration: none !important;
+    width: 1rem;
 }
 
 .timeline {
@@ -48,20 +60,27 @@
 }
 
 .follow {
-    position: absolute;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
     top: 1rem;
     right: 1rem;
 }
 
+.button-follow {
+    margin-left: .25rem;
+    font-size: 1rem;
+}
+
 .button-setting {
-    position:absolute;
+    position: fixed;
     bottom: 1rem;
     right: 1rem;
     font-size: 1.5rem;
     color: #666666 !important;
 }
 
-.button-filter:hover {
+.button-setting:hover {
     color: #111111 !important;
 }
 
