@@ -1,9 +1,11 @@
 <div class="full-container">
     <div class="content-left event-header" [style.background-image]="'url(' + event.image.url + ')'">
         <a class="header-image-source" [href]="event.image.news" target="_blank"
+            tooltipPlacement="left"
             [tooltip]="'图片来自' + event.image.source">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
         </a>
+        <div class="header-info">
             <h1 class="font-title header-title">{{event.title}}</h1>
             <div class="tag-set">
                 <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
@@ -22,7 +24,7 @@
             </div>
         </div>
         <div class="follow">
-            <button type="button" class="btn btn-info btn-sm button-follow">已有{{event.follower.length}}人关注该事件</button>
+            <button *ngIf="event.follower.length > 0" type="button" class="btn btn-info btn-sm button-follow">已有{{event.follower.length}}人关注该事件</button>
             <button type="button" class="btn btn-primary btn-sm button-follow">关注</button>
         </div>
         <a class="button-setting"><i class="fa fa-cog"></i></a>

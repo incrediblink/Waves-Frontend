@@ -13,6 +13,10 @@
     line-height: 125%;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+}
 
 // Two-block display
 .full-container {
@@ -42,6 +46,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.single-page {
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    width: 100%;
+    min-height: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    color: white;
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,.125);
 }
 
 .no-decoration {

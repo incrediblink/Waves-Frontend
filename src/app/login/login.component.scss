@@ -1,0 +1,29 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 28rem;
+}
+
+.icon {
+    width: 50%;
+    align-self: center;
+    margin-bottom: 1.5rem;
+}
+
+.icon-image {
+    background-color: rgb(0, 180, 250);
+    margin-bottom: .75rem;
+    padding: .5rem;
+}
+
+.icon-slogan {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
