@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventService } from '../service/event';
 import { NewsService } from '../service/news';
 import { TimelineService } from '../service/timeline';
-import { TOOLTIP_DIRECTIVES, MODAL_DIRECTIVES, BS_VIEW_PROVIDERS } from 'ng2-bootstrap';
+import { ModalModule } from 'ng2-bootstrap';
 
 @Component({
   selector: 'my-event',
   styleUrls: ['./event.component.scss'],
   templateUrl: './event.component.html',
-  providers: [EventService, NewsService, TimelineService],
-  viewProviders: [BS_VIEW_PROVIDERS],
-  directives: [TOOLTIP_DIRECTIVES, MODAL_DIRECTIVES]
+  providers: [EventService, NewsService, TimelineService]
 })
 export class EventComponent implements OnInit {
 
