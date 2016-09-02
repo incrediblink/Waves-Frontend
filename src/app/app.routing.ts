@@ -1,17 +1,13 @@
-import { provideRouter, RouterConfig } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { EventComponent } from './event';
 import { LoginComponent } from './login';
 
-export const routes: RouterConfig = [
-  { path: 'home', component: HomeComponent },
+const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: '', component: EventComponent },
   { path: 'login', component: LoginComponent }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes)
-];
+export const routing = RouterModule.forRoot(routes);

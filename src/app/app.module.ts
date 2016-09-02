@@ -1,16 +1,50 @@
+import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { NgModule } from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+// import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
-import { APP_ROUTER_PROVIDERS } from './app.routes';
+import { AboutComponent } from './about/about.component';
+import { EventComponent } from './event/event.component';
+import { LoginComponent } from './login/login.component';
+import { routing } from './app.routing';
 
-import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
+import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports:      [BrowserModule, HTTP_PROVIDERS, APP_ROUTER_PROVIDERS],
-    bootstrap:    [AppComponent],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    FormsModule,
+    routing,
+    // TooltipModule
+  ],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    EventComponent,
+    LoginComponent
+  ],
+  providers: [
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public appRef: ApplicationRef) {}
+  hmrOnInit(store) {
+    console.log('HMR store', store);
+  }
+  hmrOnDestroy(store) {
+    let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    // recreate elements
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    // remove styles
+    removeNgStyles();
+  }
+  hmrAfterDestroy(store) {
+    // display new elements
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
+}

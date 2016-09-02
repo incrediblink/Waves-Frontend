@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, ViewContainerRef } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
-import { CORE_DIRECTIVES } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TooltipModule } from 'ng2-bootstrap';
 
 import './rxjs-operators';
@@ -13,7 +12,6 @@ import '../style/app.scss';
  */
 @Component({
     selector: 'waves',
-    directives: [...ROUTER_DIRECTIVES, CORE_DIRECTIVES],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

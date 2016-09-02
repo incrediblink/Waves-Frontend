@@ -15,18 +15,21 @@ export class TimelineService {
     }
 
     get(eventID: number): any {
-        let collection = this.getCollection(eventID);
-        for (let i = 0; i < collection.length; i++) {
-            this.newsService
-                .get(collection[i])
-                .subscribe(
-                    news => { 
-                        collection[i] = news;
-                        if (i === collection.length - 1)
-                            return collection;
-                    },
-                    error => this.errorMessage = <any>error
-                );
-        }
+        return new Promise((resolve, reject) => {
+            let collection = this.getCollection(eventID);
+            for (let i = 0; i < collection.length; i++) {
+                this.newsService
+                    .get(collection[i])
+                    .subscribe(
+                        news => { 
+                            console.log(news)
+                            collection[i] = news;
+                            if (i === collection.length - 1)
+                                resolve(collection);
+                        },
+                        error => this.errorMessage = <any>error
+                    );
+            }
+        });
     }
 }
