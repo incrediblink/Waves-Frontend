@@ -4,11 +4,11 @@ import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
-export class TimelineService {
+export class LoginService {
     constructor (private http: Http) {}
 
-    get (id: string): Observable<{}> {
-        return this.http.get('http://localhost:3080/event/' + id + '/timeline')
+    login (id: string): Observable<{}> {
+        return this.http.get('http://localhost:3080/user/login')
                         .map(this.extractData)
                         .catch(this.handleError);
     }

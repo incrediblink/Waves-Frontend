@@ -72,6 +72,17 @@
     font-size: 1rem;
 }
 
+.button-bottom {
+    position: relative;
+    left: 3rem;
+}
+
+.button-share {
+    position: relative;
+    right: 3rem;
+    color: #666666 !important;
+}
+
 .button-setting {
     position: fixed;
     bottom: 1rem;
@@ -82,6 +93,18 @@
 
 .button-setting:hover {
     color: #111111 !important;
+}
+
+.icon-weibo:hover {
+    color: red !important;
+}
+
+.icon-twitter:hover {
+    color: #4099ff !important;
+}
+
+.icon-source:hover {
+    color: #014c8c !important;
 }
 
 // .event-container {

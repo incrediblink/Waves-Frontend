@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
-let event: Array<any> = [
-    {
-        title: '百度魏泽西事件',
-        detail: '魏则西，男，二十一岁，生前就读于西安电子科技大学，计算机专业学生，因身患滑膜肉瘤去世。',
-        time: '2016年8月10日23:41:28',
-        image: {
-            url: 'img/8421ac1d5a4e964973f6e0e80d2de277.jpg',
-            news: 'http://www.bjnews.com.cn/finance/2016/08/11/413062.html',
-            source: '新京报'
-        },
-        follower: 15,
-        tag: ['百度', '网络广告', '医疗', '莆田系']
-    }
-];
+import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class EventService {
-    getDetail(number: number): any {
-        return event[number];
+    constructor (private http: Http) {}
+
+    get (id: string): Observable<{}> {
+        return this.http.get('http://localhost:3080/event/' + id)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body.data || { };
+    }
+
+    private handleError (error: any) {
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
     }
 }

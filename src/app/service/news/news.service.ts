@@ -8,7 +8,7 @@ export class NewsService {
     constructor (private http: Http) {}
 
     get (id: Number): Observable<{}> {
-        return this.http.get('http://localhost:3000/news/' + id)
+        return this.http.get('http://localhost:3080/news/' + id)
                         .map(this.extractData)
                         .catch(this.handleError);
     }

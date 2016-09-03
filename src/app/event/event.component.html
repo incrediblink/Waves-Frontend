@@ -1,15 +1,15 @@
 <div class="full-container">
-    <div class="content-left event-header" [style.background-image]="'url(' + event.image.url + ')'">
-        <a class="header-image-source" [href]="event.image.news" target="_blank"
+    <div class="content-left event-header" [style.background-image]="'url(' + image.url + ')'">
+        <a class="header-image-source" [href]="image.news" target="_blank"
             tooltipPlacement="left"
-            tooltip="imageSource">
+            [tooltip]="'图片来自' + image.source">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
         </a>
         <div class="header-info">
-            <h1 class="font-title header-title">{{event.title}}</h1>
-            <div class="tag-set">
+            <h1 class="font-title header-title">{{event.Title}}</h1>
+            <!--<div class="tag-set" *ngIf="event.tag">
                 <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="content-right">
@@ -18,13 +18,17 @@
                 <a href="{{news.Url}}" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>
                 <div class="news-bottom">
-                    <a class="text-muted font-content">{{news.Time}}</a>
-                    <a href="{{news.Url}}" title="跳转至原文" class="fa fa-external-link no-decoration" aria-hidden="true" target="_blank"></a>
+                    <a class="text-muted font-content">{{(news.Time).toLocaleString()}}</a>
+                    <div class="button-bottom">
+                        <a href="#" (click)="twitterHref(news.Title, event.Title)" tooltipPlacement="bottom" tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
+                        <a href="#" (click)="weiboHref(news.Title, event.Title)" tooltipPlacement="bottom" tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
+                        <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="follow">
-            <button *ngIf="event.follower.length > 0" type="button" class="btn btn-info btn-sm button-follow">已有{{event.follower.length}}人关注该事件</button>
+            <!--<button *ngIf="event.Subcriber.length > 0" type="button" class="btn btn-info btn-sm button-follow">已有{{event.Subcriber.length}}人关注该事件</button>-->
             <button type="button" class="btn btn-primary btn-sm button-follow">关注</button>
         </div>
         <a class="button-setting"><i class="fa fa-cog"></i></a>
