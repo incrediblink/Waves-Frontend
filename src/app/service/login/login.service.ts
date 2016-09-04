@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 
@@ -7,9 +7,18 @@ import { Observable }     from 'rxjs/Observable';
 export class LoginService {
     constructor (private http: Http) {}
 
-    login (id: string): Observable<{}> {
-        return this.http.get('http://localhost:3080/user/login')
-                        .map(this.extractData)
+    login (username, password): Observable<{}> {
+        let userInfo = JSON.stringify({
+            "username": username,
+            "password": password
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.post('http://localhost:3080/user/login', userInfo, options)
+                        .map((res: Response) => {
+                            return { data: this.extractData(res), status: res.status }
+                        })
                         .catch(this.handleError);
     }
 
@@ -19,8 +28,7 @@ export class LoginService {
     }
 
     private handleError (error: any) {
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        let errMsg = error.json().data;
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }
