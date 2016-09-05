@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -28,6 +29,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     LoginComponent
   ],
   providers: [
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

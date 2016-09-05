@@ -40,7 +40,7 @@ export class EventComponent implements OnInit {
         this.eventService.get('57c9835db6fd249422831b3d')
             .subscribe(result => { this.event = result; this.ref.detectChanges(); }, err => console.log(err));
         this.timelineService.get('57c9835db6fd249422831b3d')
-            .subscribe(result => { this.collections = result; console.log(this.collections[0].Time.toLocaleString()); this.ref.detectChanges(); }, err => console.log(err));
+            .subscribe(result => { this.collections = result; this.ref.detectChanges(); }, err => console.log(err));
     }
 
     ngOnInit() {
