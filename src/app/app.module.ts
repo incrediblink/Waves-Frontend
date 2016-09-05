@@ -6,9 +6,10 @@ import { TooltipModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
-import { EventComponent } from './event/event.component';
-import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about';
+import { EventComponent } from './event';
+import { LoginComponent } from './login';
+import { LogoutComponent } from './logout';
 import { routing } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -26,7 +27,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppComponent,
     AboutComponent,
     EventComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   providers: [
     CookieService

@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, DoCheck {
         { title:  '登录', link: '/login', icon: 'fa-sign-in' }
     ];
 
-    // private loginOrig: Object = this.tabsBottom[2];
+    private cookie;
 
     public isHidden: Boolean = true;
 
@@ -43,9 +43,17 @@ export class AppComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck() {
+        if (this.cookie !== this.cookieService.get('authorization')) {
+            this.tabsBottom[2] = this.cookieService.get('authorization')
+                ? { title:  '登出', link: '/logout', icon: 'fa-sign-out' }
+                : { title:  '登录', link: '/login', icon: 'fa-sign-in' }
+            this.ref.detectChanges();
+            this.cookie = this.cookieService.get('authorization');
+        }
     }
 
     ngOnInit() {
+        this.cookie = this.cookieService.get('authorization');
         this.tabsBottom[2] = this.cookieService.get('authorization')
             ? { title:  '登出', link: '/logout', icon: 'fa-sign-out' }
             : { title:  '登录', link: '/login', icon: 'fa-sign-in' }
