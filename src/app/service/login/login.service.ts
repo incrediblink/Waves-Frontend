@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { Observable }     from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LoginService {
@@ -9,8 +9,8 @@ export class LoginService {
 
     login (username, password): Observable<{}> {
         let userInfo = JSON.stringify({
-            "username": username,
-            "password": password
+            'username': username,
+            'password': password
         });
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });

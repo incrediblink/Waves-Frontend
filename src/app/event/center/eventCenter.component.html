@@ -1,0 +1,22 @@
+<div class="full-container">
+    <div class="content-left header">
+        <div class="icon font-content">
+            <img class="icon-image" src="img/siteicon.svg" width="100%"/>
+            <div class="icon-slogan">
+                <h6>渴</h6><h6>望</h6><h6>重</h6><h6>回</h6><h6>土</h6><h6>地</h6>
+            </div>
+        </div>
+    </div>
+    <div class="content-right">
+        <div class="events-container font-content">
+            <div class="event card" *ngFor="let event of eventCollection">
+                <a class="no-decoration" [routerLink]="event._id">
+                    <img class="card-img-top event-image" [src]="event.HeaderImage || ''" >
+                    <div class="card-block event-title-block">
+                        <h4 class="card-title event-title">{{event.Title}}</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

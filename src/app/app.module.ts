@@ -8,9 +8,10 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
 import { EventComponent } from './event';
+import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
-import { routing } from './app.routing';
+import { routing, appRoutingProviders } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -27,11 +28,13 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AppComponent,
     AboutComponent,
     EventComponent,
+    EventCenterComponent,
     LoginComponent,
     LogoutComponent
   ],
   providers: [
-    CookieService
+    CookieService,
+    appRoutingProviders
   ],
   bootstrap: [AppComponent]
 })
