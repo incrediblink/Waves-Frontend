@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, DoCheck {
     public tabsBottom: [any] = [
         { title: '后台', link: '/admin', icon: 'fa-lock' },
         { title: '关于', link: '/about', icon: 'fa-book' },
-        { title:  '登录', link: '/login', icon: 'fa-sign-in' }
+        { title: '登录', link: '/login', icon: 'fa-sign-in' }
     ];
 
     private cookie;
