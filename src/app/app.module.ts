@@ -2,7 +2,7 @@ import { NgModule, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { TooltipModule, AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { TooltipModule, AlertModule, TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,10 @@ import { EventComponent } from './event';
 import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
+import { AdminComponent } from './admin';
+import { TagAdminComponent } from './admin/tag';
+import { NewsAdminComponent } from './admin/news';
+import { EventAdminComponent } from './admin/event';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -22,7 +26,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     FormsModule,
     routing,
     TooltipModule,
-    AlertModule
+    AlertModule,
+    TabsModule
   ],
   declarations: [
     AppComponent,
@@ -30,7 +35,11 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     EventComponent,
     EventCenterComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    AdminComponent,
+    TagAdminComponent,
+    NewsAdminComponent,
+    EventAdminComponent
   ],
   providers: [
     CookieService,

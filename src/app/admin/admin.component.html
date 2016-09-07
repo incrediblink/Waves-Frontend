@@ -1,0 +1,19 @@
+<div class="full-container">
+    <div class="content-left admin-left">
+        <div class="admin-navbar">
+            <a *ngFor="let tab of tabs" 
+                (click)="switchTab(tab.title)" 
+                href="javascript:void(0)" 
+                [class]="'admin-tab font-content no-decoration ' + (tab.hidden ? '' : 'admin-tab-active')"
+                tooltipPlacement="right"
+                [tooltip]="tab.title">
+                <i [class]="'fa ' + tab.icon"></i>
+            </a>
+        </div>
+    </div>
+    <div class="content-right admin-right">
+        <my-tag-admin [hidden]="tabs[0].hidden"></my-tag-admin>
+        <my-news-admin [hidden]="tabs[1].hidden"></my-news-admin>
+        <my-event-admin [hidden]="tabs[2].hidden"></my-event-admin>
+    </div>
+</div>

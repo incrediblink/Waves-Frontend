@@ -5,12 +5,14 @@ import { EventComponent } from './event';
 import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
+import { AdminComponent } from './admin';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: '', component: EventCenterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'admin', component: AdminComponent },
   { path: ':id', component: EventComponent }
 ];
 
