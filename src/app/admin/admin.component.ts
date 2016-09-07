@@ -9,16 +9,16 @@ import { TagAdminComponent } from './tag';
 export class AdminComponent implements OnInit {
     public tabs = [
         {
-            title: '标签',
-            icon: 'fa-tags',
-            hidden: false
-        }, {
             title: '新闻',
             icon: 'fa-file-text-o',
-            hidden: true
+            hidden: false
         }, {
             title: '事件',
             icon: 'fa-newspaper-o',
+            hidden: true
+        }, {
+            title: '标签',
+            icon: 'fa-tags',
             hidden: true
         }
     ];
