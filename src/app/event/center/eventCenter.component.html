@@ -11,9 +11,13 @@
         <div class="events-container font-content">
             <div class="event card" *ngFor="let event of eventCollection">
                 <a class="no-decoration" [routerLink]="event._id">
-                    <img class="card-img-top event-image" [src]="event.HeaderImage || ''" >
+                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.HeaderImage || 'img/blue-309761_1280.png') + ')'" ></div>
                     <div class="card-block event-title-block">
                         <h4 class="card-title event-title">{{event.Title}}</h4>
+                        <div class="event-static">
+                            <span class="tag tag-pill tag-primary tag-margin">{{event.News.length}} 条新闻</span>
+                            <span class="tag tag-pill tag-success">{{event.Subcriber.length}} 人关注</span>
+                        </div>
                     </div>
                 </a>
             </div>

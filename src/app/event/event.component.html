@@ -1,5 +1,5 @@
 <div class="full-container">
-    <div class="content-left event-header" [style.background-image]="'url(' + image.url + ')'">
+    <div class="content-left event-header" [style.background-image]="'url(' + event.HeaderImage + ')'">
         <a class="header-image-source" [href]="image.news" target="_blank"
             tooltipPlacement="left"
             [tooltip]="'图片来自' + image.source">
@@ -15,13 +15,13 @@
     <div class="content-right">
         <div class="timeline">
             <div class="card card-block news" *ngFor="let news of collections">
-                <a href="{{news.Url}}" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
+                <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>
                 <div class="news-bottom">
                     <a class="text-muted font-content">{{(news.Time).toLocaleString()}}</a>
                     <div class="button-bottom">
-                        <a href="#" (click)="twitterHref(news.Title, event.Title)" tooltipPlacement="bottom" tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
-                        <a href="#" (click)="weiboHref(news.Title, event.Title)" tooltipPlacement="bottom" tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
+                        <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
+                        <a href="javascript:void(0);" (click)="weiboHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
                         <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
                     </div>
                 </div>
