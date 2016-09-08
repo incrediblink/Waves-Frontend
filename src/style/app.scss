@@ -56,11 +56,35 @@
     min-height: 30rem;
     margin: 1rem;
     padding: 1rem;
-    color: white;
+    background-color: white;
     border-radius: .25rem;
     border: 1px solid rgba(0,0,0,.125);
 }
 
+.page-container {
+    width: 100%;
+    max-width: 30rem;
+}
+
 .no-decoration {
     text-decoration: none !important;
+}
+
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-container {
+    background-color: transparent;
+}
+
+.admin-pages-container {
+    max-width: 40rem;
+}
+
+.admin-pages {
+    max-width: 40rem;
+    min-height: 0;
+    margin: 1rem 0;
 }

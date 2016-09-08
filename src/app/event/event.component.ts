@@ -29,11 +29,10 @@ export class EventComponent implements OnInit, OnDestroy {
         'News': []
     };
 
-    public image: any = {
-        url: 'img/8421ac1d5a4e964973f6e0e80d2de277.jpg',
-        news: 'http://www.bjnews.com.cn/finance/2016/08/11/413062.html',
-        source: '新京报'
-    };
+    public image = {
+        source: null,
+        news: null
+    }
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' http://localhost:8080/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
