@@ -106,3 +106,17 @@
 .icon-source:hover {
     color: #014c8c !important;
 }
+
+.event-container {
+    background-color: transparent;
+}
+
+.event-page-container {
+    max-width: 40rem;
+}
+
+.event-page {
+    max-width: 40rem;
+    min-height: 0;
+    margin: 1rem 0;
+}

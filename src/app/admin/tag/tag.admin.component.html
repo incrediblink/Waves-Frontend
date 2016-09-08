@@ -1,1 +1,52 @@
-0.0
+<div class="full-container admin-container center">
+    <div class="page-container admin-pages-container font-content">
+        <tabset>
+            <tab heading="新建标签"
+                [active]="tab.createTag.active"
+                (select)="tab.createTag.active = true"
+                (deselect)="tab.createTag.active = false">
+                <div class="single-page admin-pages">
+                    <h2 class="font-title">新建标签</h2>
+                    <div class="form-group row">
+                        <label for="tagTitle" class="col-xs-2 col-form-label">标签名称</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="createTag.title" class="form-control" type="text" placeholder="标签名称">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tagEvent" class="col-xs-2 col-form-label">所含事件</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="createTag.event" class="form-control" type="text" placeholder="具有该标签的事件">
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button (click)="createTag(createTag.title, createTag.event)" type="button" class="btn btn-primary">新建</button>
+                    </div>
+                </div>
+            </tab>
+            <tab heading="增加事件"
+                [active]="tab.addEvent.active"
+                (select)="tab.addEvent.active = true"
+                (deselect)="tab.addEvent.active = false">
+                <div class="single-page admin-pages font-content">
+                    <h2 class="font-title">增加事件至标签</h2>
+                    <div class="form-group row">
+                        <label for="tagId" class="col-xs-2 col-form-label">标签序号</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="addEvent.id" class="form-control" type="text" placeholder="标签序号">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tagEvent" class="col-xs-2 col-form-label">所含事件</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="addEvent.event" class="form-control" type="text" placeholder="具有该标签的事件序号">
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button (click)="addEvent(addEvent.id, addEvent.event)" type="button" class="btn btn-primary">添加</button>
+                    </div>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>

@@ -1,1 +1,31 @@
-News
+<div class="full-container admin-container center">
+    <div class="page-container admin-pages-container font-content">
+        <tabset>
+            <tab heading="添加事件"
+                [active]="tab.addNews.active"
+                (select)="tab.addNews.active = true"
+                (deselect)="tab.addNews.active = false">
+                <div class="single-page admin-pages">
+                    <h2 class="font-title">添加事件</h2>
+                    <div class="form-group row">
+                        <label for="newsUrl" class="col-xs-2 col-form-label">新闻链接</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="url" class="form-control" type="text" placeholder="新闻链接">
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button (click)="addNews(url)" type="button" class="btn btn-primary">添加</button>
+                    </div>
+                </div>
+            </tab>
+            <tab heading="队列内新闻"
+                [active]="tab.newsCue.active"
+                (select)="tab.newsCue.active = true"
+                (deselect)="tab.newsCue.active = false">
+                <div class="single-page admin-pages font-content">
+                    <h2 class="font-title">队列内新闻</h2>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
