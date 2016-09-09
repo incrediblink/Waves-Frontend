@@ -24,8 +24,7 @@
 
 .events-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     max-width: 45rem;
@@ -33,9 +32,9 @@
 }
 
 .event {
-    width: 48%;
+    width: 100%;
     min-width: 10rem;
-    height: 100%;
+    max-width: 30rem;
 }
 
 .event-image {
