@@ -5,6 +5,7 @@ import { EventComponent } from './event';
 import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
+import { RegisterComponent } from './register';
 import { AdminComponent } from './admin';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '', component: EventCenterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: ':id', component: EventComponent }
 ];

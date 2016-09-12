@@ -9,9 +9,10 @@
     </div>
     <div class="content-right">
         <div class="events-container font-content">
+            <h4 style="margin-bottom: 1rem">最新事件</h4>
             <div class="event card" *ngFor="let event of eventCollection">
                 <a class="no-decoration" [routerLink]="event._id">
-                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.HeaderImage || 'img/blue-309761_1280.png') + ')'" ></div>
+                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.HeaderImage || 'img/waves.jpg') + ')'" ></div>
                     <div class="card-block event-title-block">
                         <h4 class="card-title event-title">{{event.Title}}</h4>
                         <div class="event-static">

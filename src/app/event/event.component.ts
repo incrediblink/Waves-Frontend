@@ -12,8 +12,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EventComponent implements OnInit, OnDestroy {
 
-    public collections: any = [
-    {
+    public collections: any = [{
       '_id': '',
       'Url': '',
       'Source': '',

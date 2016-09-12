@@ -48,7 +48,7 @@ export class TagAdminComponent implements OnInit {
                     console.log(data);
                     this.addEvent.event = null;
                 },
-                err => console.log(err);
+                err => console.log(err)
             )
     }
 

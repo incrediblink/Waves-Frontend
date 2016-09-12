@@ -10,13 +10,13 @@
                     <div class="form-group row">
                         <label for="tagTitle" class="col-xs-2 col-form-label">标签名称</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="createTag.title" class="form-control" type="text" placeholder="标签名称">
+                            <input [(ngModel)]="createTag.title" class="form-control" type="text" placeholder="标签名称" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="tagEvent" class="col-xs-2 col-form-label">所含事件</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="createTag.event" class="form-control" type="text" placeholder="具有该标签的事件">
+                            <input [(ngModel)]="createTag.event" class="form-control" type="text" placeholder="具有该标签的事件" required>
                         </div>
                     </div>
                     <div class="submit">
@@ -33,13 +33,13 @@
                     <div class="form-group row">
                         <label for="tagId" class="col-xs-2 col-form-label">标签序号</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="addEvent.id" class="form-control" type="text" placeholder="标签序号">
+                            <input [(ngModel)]="addEvent.id" class="form-control" type="text" placeholder="标签序号" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="tagEvent" class="col-xs-2 col-form-label">所含事件</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="addEvent.event" class="form-control" type="text" placeholder="具有该标签的事件序号">
+                            <input [(ngModel)]="addEvent.event" class="form-control" type="text" placeholder="具有该标签的事件序号" required>
                         </div>
                     </div>
                     <div class="submit">

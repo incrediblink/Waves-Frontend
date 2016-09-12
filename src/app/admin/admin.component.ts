@@ -20,6 +20,10 @@ export class AdminComponent implements OnInit {
             title: '标签',
             icon: 'fa-tags',
             hidden: true
+        }, {
+            title: '用户',
+            icon: 'fa-user',
+            hidden: true
         }
     ];
 

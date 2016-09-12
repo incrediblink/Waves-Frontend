@@ -11,10 +11,12 @@ import { EventComponent } from './event';
 import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
+import { RegisterComponent } from './register';
 import { AdminComponent } from './admin';
 import { TagAdminComponent } from './admin/tag';
 import { NewsAdminComponent } from './admin/news';
 import { EventAdminComponent } from './admin/event';
+import { UserAdminComponent } from './admin/user';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -36,10 +38,12 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     EventCenterComponent,
     LoginComponent,
     LogoutComponent,
+    RegisterComponent,
     AdminComponent,
     TagAdminComponent,
     NewsAdminComponent,
-    EventAdminComponent
+    EventAdminComponent,
+    UserAdminComponent
   ],
   providers: [
     CookieService,
