@@ -25,13 +25,13 @@ export class EventComponent implements OnInit, OnDestroy {
     public event: any = {
         'Title': '',
         'Subcriber': [],
-        'News': []
+        'News': [],
+        'HeaderImage': {
+            'ImageUrl': null,
+            'ImageSource': null,
+            'SourceUrl': null
+        }
     };
-
-    public image = {
-        source: null,
-        news: null
-    }
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' http://localhost:8080/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
