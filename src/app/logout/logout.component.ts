@@ -10,8 +10,8 @@ export class LogoutComponent {
 
     constructor(private router: Router, 
         private cookieService: CookieService) { 
-            this.cookieService.remove('authorization');
-            this.router.navigate(['/']);
+            this.cookieService.removeAll();
+            this.router.navigate(['/login']);
     }
 
 }

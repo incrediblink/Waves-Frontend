@@ -27,7 +27,8 @@
                 routerLinkActive="tab-bottom-active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 tooltipPlacement="right"
-                [tooltip]="tab.title">
+                [tooltip]="tab.title"
+                [hidden]="!tab.visible">
                 <i [class]="'fa ' + tab.icon"></i>
             </a>
         </div>
