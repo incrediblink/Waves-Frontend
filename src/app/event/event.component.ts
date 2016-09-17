@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { EventService } from '../service/event';
 import { TimelineService } from '../service/timeline';
+import { GlobalService } from '../global';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -43,7 +44,8 @@ export class EventComponent implements OnInit, OnDestroy {
     
     constructor(
         private eventService: EventService, 
-        private timelineService: TimelineService, 
+        private timelineService: TimelineService,
+        private Global: GlobalService,
         private ref: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router
@@ -57,7 +59,7 @@ export class EventComponent implements OnInit, OnDestroy {
             this.eventService.get(id)
                 .subscribe(result => { 
                     this.event = result; 
-                    this.event.HeaderImage.ImageUrl = 'https://s3-ap-northeast-1.amazonaws.com/wavesstatic/' + this.event.HeaderImage.ImageUrl
+                    this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
                     this.ref.detectChanges();
                  }, err => console.log(err));
             this.timelineService.get(id)

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { GlobalService } from '../../global';
 
 @Injectable()
 export class UploadService {
-    constructor() { }
+    constructor(private Global: GlobalService) { }
 
     upload = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -13,7 +14,7 @@ export class UploadService {
                     resolve(JSON.parse(xmlHttp.responseText));
             }
             form.append('file', file);
-            xmlHttp.open('POST', 'http://localhost:3080/upload', true);
+            xmlHttp.open('POST', this.Global.api + 'upload', true);
             xmlHttp.send(form);
         });
     }

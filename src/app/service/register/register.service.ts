@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { GlobalService } from '../../global';
 
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class RegisterService {
-    constructor (private http: Http) {}
+    constructor (private http: Http, private Global: GlobalService) {}
 
     register (username, password, email): Observable<{}> {
         let userInfo = JSON.stringify({
@@ -16,7 +17,7 @@ export class RegisterService {
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:3080/user/register', userInfo, options)
+        return this.http.post(this.Global.api + 'user/register', userInfo, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })

@@ -34,7 +34,11 @@
 .event {
     width: 100%;
     min-width: 10rem;
-    max-width: 30rem;
+    max-width: 40rem;
+}
+
+.event:hover {
+    background-color: rgba(0,0,0,.04);
 }
 
 .event-image {
@@ -43,10 +47,6 @@
     background-color: aliceblue;
     width: 100%;
     height: 10rem;
-}
-
-.event-title-block:hover {
-    background-color: rgba(0,0,0,.04);
 }
 
 .event-title {

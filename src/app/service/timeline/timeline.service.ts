@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { GlobalService } from '../../global';
 
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class TimelineService {
-    constructor (private http: Http) {}
+    constructor (private http: Http, private Global: GlobalService) {}
 
     get (id: string): Observable<{}> {
-        return this.http.get('http://localhost:3080/event/' + id + '/timeline')
+        return this.http.get(this.Global.api + 'event/' + id + '/timeline')
                         .map(this.extractData)
                         .catch(this.handleError);
     }

@@ -19,6 +19,8 @@ import { EventAdminComponent } from './admin/event';
 import { UserAdminComponent } from './admin/user';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { GlobalService } from './service/global';
+
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 @NgModule({
@@ -47,6 +49,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   ],
   providers: [
     CookieService,
+    GlobalService,
     appRoutingProviders
   ],
   bootstrap: [AppComponent]

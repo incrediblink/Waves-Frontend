@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { GlobalService } from '../../global';
 
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class EventService {
-    constructor (private http: Http) {}
+    constructor (private http: Http, private Global: GlobalService) {}
 
     get (id: string): Observable<{}> {
-        return this.http.get('http://localhost:3080/event/' + id)
+        return this.http.get(this.Global.api + 'event/' + id)
                         .map(this.extractData)
                         .catch(this.handleError);
     }
@@ -23,7 +24,7 @@ export class EventService {
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:3080/event/new', eventInfo, options)
+        return this.http.post(this.Global.api + 'event/new', eventInfo, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })
@@ -37,7 +38,7 @@ export class EventService {
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:3080/event/' + id + '/news', info, options)
+        return this.http.post(this.Global.api + 'event/' + id + '/news', info, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })
@@ -53,7 +54,7 @@ export class EventService {
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post('http://localhost:3080/event/' + id + '/image', info, options)
+        return this.http.post(this.Global.api + 'event/' + id + '/image', info, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })
