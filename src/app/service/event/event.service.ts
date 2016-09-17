@@ -42,6 +42,22 @@ export class EventService {
                             return { data: this.extractData(res), status: res.status }
                         })
                         .catch(this.handleError);
+    }
+
+    uploadHeaderImage (id: string, imageUrl: string, imageSource: string, sourceUrl: string): Observable<{}> {
+        let info = JSON.stringify({
+            imageUrl: imageUrl,
+            imageSource: imageSource,
+            sourceUrl: sourceUrl
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.post('http://localhost:3080/event/' + id + '/image', info, options)
+                        .map((res: Response) => {
+                            return { data: this.extractData(res), status: res.status }
+                        })
+                        .catch(this.handleError);
     } 
 
     private extractData(res: Response) {

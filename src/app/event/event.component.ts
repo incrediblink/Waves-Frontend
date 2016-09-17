@@ -55,7 +55,11 @@ export class EventComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             let id = params['id'];
             this.eventService.get(id)
-                .subscribe(result => { this.event = result; this.ref.detectChanges(); }, err => console.log(err));
+                .subscribe(result => { 
+                    this.event = result; 
+                    this.event.HeaderImage.ImageUrl = 'https://s3-ap-northeast-1.amazonaws.com/wavesstatic/' + this.event.HeaderImage.ImageUrl
+                    this.ref.detectChanges();
+                 }, err => console.log(err));
             this.timelineService.get(id)
                 .subscribe(result => { this.collections = result; this.ref.detectChanges(); }, err => console.log(err));
         });
