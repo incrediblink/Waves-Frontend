@@ -85,3 +85,10 @@
 .tab-bottom-active {
     color: white;
 }
+
+.alert {
+    position: fixed;
+    bottom: 0rem;
+    width: calc(100% - 16rem);
+    margin: 0 8rem;
+}

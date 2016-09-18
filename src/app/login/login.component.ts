@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LoginService } from '../service/login';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
+import { AlertService } from '../service/alert';
 import { ValidationService } from '../const/validation.service';
 
 @Component({
@@ -14,13 +15,16 @@ export class LoginComponent implements OnInit {
 
     public username; public password; public helpText;
 
-    constructor(private loginService: LoginService, 
+    constructor(
+        private loginService: LoginService, 
         private router: Router, 
         private ref: ChangeDetectorRef,
         private cookieService: CookieService,
-        private Validation: ValidationService) { 
-            if (this.cookieService.get('authorization'))
-                this.router.navigate(['/']);
+        private Validation: ValidationService,
+        private alertService: AlertService
+    ) { 
+        if (this.cookieService.get('authorization'))
+            this.router.navigate(['/']);
     }
 
     login: any = function(username, password) {
@@ -30,9 +34,10 @@ export class LoginComponent implements OnInit {
                 result => {
                     if (result.status == 200)
                         this.router.navigate(['/']);
+                    this.alertService.push('您已成功登录。', 'success');
                 },
                 error => {
-                    this.helpText = error;
+                    this.alertService.push(error, 'danger');
                     this.ref.detectChanges();
                 }
             );

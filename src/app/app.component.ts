@@ -1,9 +1,11 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TooltipModule } from 'ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/core';
+import { AlertService } from './service/alert';
+import { Observable }     from 'rxjs/Observable';
 
-import './rxjs-operators';
+// import './rxjs-operators';
 
 import '../style/app.scss';
 
@@ -45,7 +47,9 @@ export class AppComponent implements OnInit, DoCheck {
         private activatedRoute: ActivatedRoute,
         private ref: ChangeDetectorRef, 
         private viewContainerRef: ViewContainerRef,
-        private cookieService: CookieService) {
+        private cookieService: CookieService,
+        private alertService: AlertService,
+        private ngZone: NgZone) {
             this.viewContainerRef = viewContainerRef;
     }
 
@@ -75,5 +79,12 @@ export class AppComponent implements OnInit, DoCheck {
             ? { title:  '登出', link: '/logout', icon: 'fa-sign-out', visible: 1 }
             : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 };
         this.ref.detectChanges();
+        setInterval(this.ngZone.run(() => {
+            if (this.alerts != this.alertService.get()) {
+                this.alerts = this.alertService.get();
+                console.log(this.alerts);
+                this.ref.detectChanges();
+            }
+        }), 50);
     }
 }

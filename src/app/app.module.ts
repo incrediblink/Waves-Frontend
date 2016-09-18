@@ -22,6 +22,7 @@ import { UserAdminComponent } from './admin/user';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { GlobalService } from './global';
+import { AlertService } from './service/alert';
 import { ValidationService } from './const/validation.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -57,6 +58,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   providers: [
     CookieService,
     GlobalService,
+    AlertService,
     ValidationService,
     appRoutingProviders
   ],

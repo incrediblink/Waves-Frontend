@@ -132,7 +132,6 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.tagCollection = result;
-                        console.log(this.tagCollection);
                         this.ref.detectChanges();
                     }
                 );

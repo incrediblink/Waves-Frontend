@@ -15,7 +15,8 @@ export class GlobalService {
             Options: [
                 { Title: '每天', Mode: 'Daily' },
                 { Title: '每周', Mode: 'Weekly' },
-                { Title: '每个月', Mode: 'Monthly' }
+                { Title: '每个月', Mode: 'Monthly' },
+                { Title: '每当有新的新闻', Mode: 'EveryNewNews' }
             ]
         }, {
             Title: '每当事件有 …… 日没有新闻更新',
