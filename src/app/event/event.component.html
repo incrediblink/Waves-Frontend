@@ -28,8 +28,59 @@
             </div>
         </div>
         <div class="follow">
-            <!--<button *ngIf="event.Subcriber.length > 0" type="button" class="btn btn-info btn-sm button-follow">已有{{event.Subcriber.length}}人关注该事件</button>-->
-            <button type="button" class="btn btn-primary btn-sm button-follow">关注</button>
+            <button [hidden]="event.Subscriber.length == 0" type="button" class="btn btn-info btn-sm button-follow">已有 {{event.Subscriber.length}} 人关注该事件</button>
+            <button type="button" (click)="subscribeModal.show()" class="btn btn-primary btn-sm button-follow">关注</button>
+        </div>
+        <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="subscribeModal.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">关注事件</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="subscribe-option-set">
+                            <div class="btn-group subscribe-option" dropdown keyboardNav="true">
+                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+                                    {{subscribe.situation}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                    <li role="menuitem" *ngFor="let option of Global.subscribeMode"><a class="dropdown-item" (click)="subscribe.select.situation(option)" href="javascript:void(0);">{{option.Title}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group subscribe-option" dropdown keyboardNav="true">
+                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle [disabled]="subscribe.situation == '在 …… 的情况下'">
+                                    {{subscribe.time}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                    <li role="menuitem" *ngFor="let option of subscribeMode"><a class="dropdown-item" (click)="subscribe.select.time(option)" href="javascript:void(0);">{{option.Title}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group subscribe-option" dropdown keyboardNav="true">
+                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+                                    {{subscribe.method}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                    <li role="menuitem" *ngFor="let option of Global.notificationType"><a class="dropdown-item" (click)="subscribe.select.notificationType(option)" href="javascript:void(0);">{{option.Title}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div [hidden]="subscribe.notificationType != 'Email'" class="subscribe-option">
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-2 col-form-label">邮箱</label>
+                                <div class="col-xs-10">
+                                    <input [(ngModel)]="subscribe.address" class="form-control" type="email" required placeholder="contact@langchao.land">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <button (click)="subscribeEvent(subscribeModal)" type="button" class="btn btn-primary" [disabled]="!(subscribe.mode && subscribe.notificationType && subscribe.address)">关注该事件</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <a class="button-setting"><i class="fa fa-cog"></i></a>
     </div>

@@ -7,6 +7,8 @@ import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
 import { RegisterComponent } from './register';
 import { AdminComponent } from './admin';
+import { TagComponent } from './tag';
+import { TagCenterComponent } from './tag/center';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'tag', component: TagCenterComponent },
+  { path: 'tag/:id', component: TagComponent },
   { path: ':id', component: EventComponent }
 ];
 

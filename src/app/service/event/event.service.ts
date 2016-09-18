@@ -59,7 +59,23 @@ export class EventService {
                             return { data: this.extractData(res), status: res.status }
                         })
                         .catch(this.handleError);
-    } 
+    }
+
+    subscribe (id: string, mode: string, notificationType: string, address: string): Observable<{}> {
+        let info = JSON.stringify({
+            mode: mode,
+            notificationType: notificationType,
+            subscriber: address
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.post(this.Global.api + 'event/' + id + '/subscribe', info, options)
+                        .map((res: Response) => {
+                            return { data: this.extractData(res), status: res.status }
+                        })
+                        .catch(this.handleError);
+    }
 
     private extractData(res: Response) {
         let body = res.json();
