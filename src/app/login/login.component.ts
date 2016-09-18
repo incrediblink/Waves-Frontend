@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LoginService } from '../service/login';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
+import { ValidationService } from '../const/validation.service';
 
 @Component({
   selector: 'my-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     constructor(private loginService: LoginService, 
         private router: Router, 
         private ref: ChangeDetectorRef,
-        private cookieService: CookieService) { 
+        private cookieService: CookieService,
+        private Validation: ValidationService) { 
             if (this.cookieService.get('authorization'))
                 this.router.navigate(['/']);
     }

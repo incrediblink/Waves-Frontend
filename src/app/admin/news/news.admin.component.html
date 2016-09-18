@@ -6,15 +6,18 @@
                 (select)="tab.addNews.active = true"
                 (deselect)="tab.addNews.active = false">
                 <div class="single-page admin-pages">
-                    <h2 class="font-title">添加事件</h2>
+                    <h2 class="font-title">添加新闻</h2>
                     <div class="form-group row">
                         <label for="newsUrl" class="col-xs-2 col-form-label">新闻链接</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="url" class="form-control" type="text" placeholder="新闻链接" required>
+                            <input [(ngModel)]="url" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(url)" type="text" placeholder="新闻链接" required>
                         </div>
                     </div>
                     <div class="submit">
-                        <button (click)="addNews(url)" type="button" class="btn btn-primary">添加</button>
+                        <button (click)="addNews(url)" type="button" class="btn btn-primary"
+                            [disabled]="!Validation.Url.test(url)">
+                            添加
+                        </button>
                     </div>
                 </div>
             </tab>

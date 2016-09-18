@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../service/event';
 import { UploadService } from '../../service/upload';
+import { ValidationService } from '../../const/validation.service';
 
 @Component({
   selector: 'my-event-admin',
@@ -74,7 +75,11 @@ export class EventAdminComponent implements OnInit {
             });
     }
 
-    constructor(private eventService: EventService, private uploadService: UploadService) { }
+    constructor(
+        private eventService: EventService, 
+        private uploadService: UploadService,
+        private Validation: ValidationService    
+    ) { }
 
     ngOnInit() {
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagService } from '../../service/tag';
+import { ValidationService } from '../../const/validation.service';
 
 @Component({
   selector: 'my-tag-admin',
@@ -52,7 +53,10 @@ export class TagAdminComponent implements OnInit {
             )
     }
 
-    constructor(private tagService: TagService) {
+    constructor(
+        private tagService: TagService,
+        private Validation: ValidationService
+    ) {
         // Do stuff
     }
 

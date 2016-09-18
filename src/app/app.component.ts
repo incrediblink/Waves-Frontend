@@ -30,6 +30,12 @@ export class AppComponent implements OnInit, DoCheck {
         { title: '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
     ];
 
+    public alerts: Array<Object> = [];
+
+    public closeAlert(i:number):void {
+        this.alerts.splice(i, 1);
+    }
+
     private cookie;
 
     public isHidden: Boolean = true;

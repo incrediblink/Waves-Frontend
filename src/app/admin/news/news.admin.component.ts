@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../service/news';
+import { ValidationService } from '../../const/validation.service';
 
 @Component({
   selector: 'my-news-admin',
@@ -30,9 +31,10 @@ export class NewsAdminComponent implements OnInit {
             )
     }
 
-    constructor(private newsService: NewsService) {
-        // Do stuff
-    }
+    constructor(
+        private newsService: NewsService,
+        private Validation: ValidationService
+    ) { }
 
     ngOnInit() {
         console.log('Hello news');
