@@ -1,0 +1,20 @@
+<div class="full-container">
+    <div class="content-left header font-title">
+        <h1>事件标签</h1>
+    </div>
+    <div class="content-right">
+        <div class="tags-container">
+            <h4 class="font-content" style="margin-bottom: 1rem; width: 100%">最新事件标签</h4>
+            <div class="tags card" *ngFor="let tag of tagCollection">
+                <a class="no-decoration" [routerLink]="'tag/' + tag._id">
+                    <div class="card-block tag-title-block">
+                        <h4 class="card-title tag-title">{{tag.Title}}</h4>
+                        <div class="tag-static">
+                            <span class="tag tag-primary tag-margin">{{tag.Events.length}} 个事件</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+.header {
+    background-image: url('img/waves.jpg');
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 0 #31708f;
+}
+
+.tags-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 45rem;
+    margin: 1rem;
+}
+
+.tags {
+    width: 49%;
+    min-width: 10rem;
+    max-width: 21rem;
+}
+
+.tags:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.tag-title {
+    color: black;
+    margin: 0;
+}
+
+.tag-static {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .5rem;
+}
+
+.tag-margin {
+    margin-right: .25rem;
+}
