@@ -33,8 +33,8 @@
         </div>
         <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+                <div class="modal-content font-content">
+                    <div class="modal-header font-title">
                         <button type="button" class="close" (click)="subscribeModal.hide()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -71,17 +71,23 @@
                             <div class="form-group row">
                                 <label for="email" class="col-xs-2 col-form-label">邮箱</label>
                                 <div class="col-xs-10">
-                                    <input [(ngModel)]="subscribe.address" class="form-control" type="email" required placeholder="contact@langchao.land">
+                                    <input [(ngModel)]="subscribe.address" class="form-control" [class.ng-invalid-control]="!Validation.Email.test(subscribe.address)"
+                                        type="email" required placeholder="contact@langchao.land">
                                 </div>
                             </div>
                         </div>
                         <div class="submit">
-                            <button (click)="subscribeEvent(subscribeModal)" type="button" class="btn btn-primary" [disabled]="!(subscribe.mode && subscribe.notificationType && subscribe.address)">关注该事件</button>
+                            <button *ngFor="let button of Global.notificationType"
+                                (click)="subscribeEvent(subscribeModal)" type="button" class="btn btn-primary" 
+                                [hidden]="subscribe.notificationType != button.Mode"
+                                [disabled]="!(subscribe.mode && subscribe.notificationType && subscribe.address && Validation[button.Mode].test(subscribe.address))">
+                                关注该事件
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <a class="button-setting"><i class="fa fa-cog"></i></a>
+        <!--<a class="button-setting"><i class="fa fa-cog"></i></a>-->
     </div>
 </div>

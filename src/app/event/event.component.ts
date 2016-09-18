@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@ang
 import { EventService } from '../service/event';
 import { TimelineService } from '../service/timeline';
 import { GlobalService } from '../global';
+import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
@@ -56,8 +57,11 @@ export class EventComponent implements OnInit, OnDestroy {
                 this.subscribe.time = option.Title;
             },
             notificationType: (option) => {
-                this.subscribe.notificationType = option.Mode;
-                this.subscribe.method = option.Title;
+                if (option.Mode != this.subscribe.notificationType) {
+                    this.subscribe.address = null;
+                    this.subscribe.notificationType = option.Mode;
+                    this.subscribe.method = option.Title;
+                }
             }
         }
     }
@@ -75,6 +79,8 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.mode = null;
                     this.subscribe.notificationType = null;
                     this.subscribe.address = null;
+                    this.event.Subscriber[this.event.Subscriber.length] = 0;
+                    this.ref.detectChanges();
                 },
                 err => console.log(err)
             );
@@ -92,6 +98,7 @@ export class EventComponent implements OnInit, OnDestroy {
         private eventService: EventService, 
         private timelineService: TimelineService,
         private Global: GlobalService,
+        private Validation: ValidationService,
         private ref: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router
@@ -103,11 +110,14 @@ export class EventComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id'];
             this.eventService.get(this.id)
-                .subscribe(result => { 
-                    this.event = result; 
-                    this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
-                    this.ref.detectChanges();
-                 }, err => console.log(err));
+                .subscribe(
+                    result => { 
+                        this.event = result; 
+                        this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
+                        this.ref.detectChanges();
+                    }, 
+                    err => console.log(err)
+                );
             this.timelineService.get(this.id)
                 .subscribe(result => { this.collections = result; this.ref.detectChanges(); }, err => console.log(err));
         });
