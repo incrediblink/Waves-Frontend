@@ -14,6 +14,12 @@ export class EventService {
                         .catch(this.handleError);
     }
 
+    getTag (id: string): Observable<{}> {
+        return this.http.get(this.Global.api + 'event/' + id + '/tag')
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     create (title: string, news: string): Observable<{}> {
         let eventInfo
         if (news != null)

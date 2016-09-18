@@ -93,6 +93,8 @@ export class EventComponent implements OnInit, OnDestroy {
     public twitterHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('https://twitter.com/intent/tweet?text=' + newsTitle + '&hashtags=' + eventTitle + ' ' + this.Global.root + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
     }
+
+    public tagCollection;
     
     constructor(
         private eventService: EventService, 
@@ -119,7 +121,21 @@ export class EventComponent implements OnInit, OnDestroy {
                     err => console.log(err)
                 );
             this.timelineService.get(this.id)
-                .subscribe(result => { this.collections = result; this.ref.detectChanges(); }, err => console.log(err));
+                .subscribe(
+                    result => { 
+                        this.collections = result; 
+                        this.ref.detectChanges(); 
+                    }, 
+                    err => console.log(err)
+                );
+            this.eventService.getTag(this.id)
+                .subscribe(
+                    result => {
+                        this.tagCollection = result;
+                        console.log(this.tagCollection);
+                        this.ref.detectChanges();
+                    }
+                );
         });
     }
 

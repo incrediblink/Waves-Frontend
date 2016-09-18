@@ -7,9 +7,9 @@
         </a>
         <div class="header-info">
             <h1 class="font-title header-title">{{event.Title}}</h1>
-            <!--<div class="tag-set" *ngIf="event.tag">
-                <a class="tag" *ngFor="let tag of event.tag">{{tag}}</a>
-            </div>-->
+            <div class="tag-set">
+                <a class="tag" *ngFor="let tag of tagCollection">{{tag.Title}}</a>
+            </div>
         </div>
     </div>
     <div class="content-right">
@@ -20,9 +20,12 @@
                 <div class="news-bottom">
                     <a class="text-muted font-content">{{(news.Time).toLocaleString()}}</a>
                     <div class="button-bottom">
-                        <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
-                        <a href="javascript:void(0);" (click)="weiboHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
-                        <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
+                        <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" 
+                            tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
+                        <a href="javascript:void(0);" (click)="weiboHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" 
+                            tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
+                        <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
+                            class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
                     </div>
                 </div>
             </div>
