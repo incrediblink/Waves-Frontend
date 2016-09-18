@@ -14,6 +14,12 @@ export class TagService {
                         .catch(this.handleError);
     }
 
+    getLatest (): Observable<{}> {
+        return this.http.get(this.Global.api + 'tag/latest')
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     add (id: string, event: string): Observable<{}> {
         let tagInfo = JSON.stringify({
             'events': event
