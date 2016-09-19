@@ -8,7 +8,7 @@ import { Observable }     from 'rxjs/Observable';
 export class TagService {
     constructor (private http: Http, private Global: GlobalService) {}
 
-    get (id: Number): Observable<{}> {
+    get (id: Number): Observable<any> {
         return this.http.get(this.Global.api + 'tag/' + id)
                         .map(this.extractData)
                         .catch(this.handleError);

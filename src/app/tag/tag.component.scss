@@ -1,0 +1,51 @@
+.header {
+    background: #999999 url("img/pixels.png") repeat;
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 0 #31708f;
+    font-size: 4rem;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 45rem;
+    margin: 1rem;
+}
+
+.event {
+    width: 100%;
+    min-width: 10rem;
+    max-width: 40rem;
+}
+
+.event:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.event-image {
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    background-color: aliceblue;
+    width: 100%;
+    height: 10rem;
+}
+
+.event-title {
+    color: black;
+    margin: 0;
+}
+
+.event-static {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .5rem;
+}
+
+.tag-margin {
+    margin-right: .25rem;
+}

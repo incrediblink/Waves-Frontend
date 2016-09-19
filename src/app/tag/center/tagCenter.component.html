@@ -6,7 +6,7 @@
         <div class="tags-container">
             <h4 class="font-content" style="margin-bottom: 1rem; width: 100%">最新事件标签</h4>
             <div class="tags card" *ngFor="let tag of tagCollection">
-                <a class="no-decoration" [routerLink]="'tag/' + tag._id">
+                <a class="no-decoration" [routerLink]="tag._id">
                     <div class="card-block tag-title-block">
                         <h4 class="card-title tag-title">{{tag.Title}}</h4>
                         <div class="tag-static">
