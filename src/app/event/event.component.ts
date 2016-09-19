@@ -4,7 +4,6 @@ import { TimelineService } from '../service/timeline';
 import { GlobalService } from '../global';
 import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 
 @Component({

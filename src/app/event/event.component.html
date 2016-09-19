@@ -1,5 +1,5 @@
 <div class="full-container">
-    <div class="content-left event-header" [style.background-image]="'url(' + (event.HeaderImage.ImageUrl || 'img/2015年6月7日170803.png') + ')'">
+    <div class="content-left event-header" [style.background-image]="'url(' + (event.HeaderImage.ImageUrl || Global.cdn + 'default.png') + ')'">
         <a class="header-image-source" [href]="event.HeaderImage.SourceUrl || 'https://zh.wikipedia.org/wiki/%E5%A4%A9%E6%B3%A8%E5%AE%9A'" target="_blank"
             tooltipPlacement="left"
             [tooltip]="'图片来自' + (event.HeaderImage.ImageSource || '贾樟柯《天注定》')">
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="content-right">
+    <div class="content-right font-content">
         <div class="timeline">
             <h4 style="margin-bottom: 1rem">事件相关新闻</h4>
             <div class="card card-block news" *ngFor="let news of collections">
@@ -68,7 +68,19 @@
                                     {{subscribe.method}} <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-                                    <li role="menuitem" *ngFor="let option of Global.notificationType"><a class="dropdown-item" (click)="subscribe.select.notificationType(option)" href="javascript:void(0);">{{option.Title}}</a></li>
+                                    <li role="menuitem" *ngFor="let option of Global.notificationType">
+                                        <div *ngIf="option.Permission.LoginRequired" style="position:relative;left:100rem">
+                                            <a class="dropdown-item" (click)="option.Permission.LoginRequired ? 1 : subscribe.select.notificationType(option)" 
+                                                href="javascript:void(0);" tooltipPlacement="right" [tooltip]="option.Permission.message"
+                                                style="position:relative;right:100rem" [class.disabled]="option.Permission.LoginRequired">
+                                                {{option.Title}}
+                                            </a>
+                                        </div>
+                                        <a *ngIf="!option.Permission.LoginRequired" class="dropdown-item" (click)="subscribe.select.notificationType(option)" 
+                                            href="javascript:void(0);">
+                                            {{option.Title}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

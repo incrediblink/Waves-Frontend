@@ -30,10 +30,18 @@ export class GlobalService {
     notificationType = [
         {
             Title: '用邮件提醒我',
-            Mode: 'Email'
+            Mode: 'Email',
+            Permission: {
+                LoginRequired: false,
+                message: null
+            } 
         }, {
             Title: '用我的账号在 Twitter 上发推',
-            Mode: 'Twitter'
+            Mode: 'Twitter',
+            Permission: {
+                LoginRequired: true,
+                message: '要使用该订阅模式，请先登录浪潮并绑定 Twitter 账号'
+            } 
         }
     ];
 }
