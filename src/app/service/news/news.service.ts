@@ -14,14 +14,14 @@ export class NewsService {
                         .catch(this.handleError);
     }
 
-    add (url: string): Observable<{}> {
+    add (url: string): Observable<any> {
         let newsInfo = JSON.stringify({
             'url': url
         });
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post(this.Global.api + 'user/login', newsInfo, options)
+        return this.http.post(this.Global.api + 'news', newsInfo, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })

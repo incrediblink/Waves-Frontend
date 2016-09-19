@@ -10,7 +10,7 @@
                     <div class="form-group row">
                         <label for="eventTitle" class="col-xs-2 col-form-label">事件名</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="create.title" class="form-control" [class.ng-invalid-control]="!Validation.EventID.test(create.title)" type="text" placeholder="事件名" required>
+                            <input [(ngModel)]="create.title" class="form-control" type="text" placeholder="事件名" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="submit">
                         <button (click)="createEvent(create.title, create.news)" type="button" class="btn btn-primary"
-                            [disabled]="!(Validation.EventID.test(create.title) && Validation.Url.test(create.news))">
+                            [disabled]="!(create.title && Validation.Url.test(create.news))">
                             添加
                         </button>
                     </div>
@@ -40,14 +40,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-2 col-form-label">新闻链接</label>
+                        <label for="newsUrl" class="col-xs-2 col-form-label">新闻</label>
                         <div class="col-xs-10">
-                            <input [(ngModel)]="add.url" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(add.url)" type="text" placeholder="新闻链接" required>
+                            <input [(ngModel)]="add.url" class="form-control" [class.ng-invalid-control]="!(Validation.Url.test(add.url) || Validation.EventID.test(add.url))" type="text" placeholder="新闻链接或代号" required>
                         </div>
                     </div>
                     <div class="submit">
                         <button (click)="addNews(add.id, add.url)" type="button" class="btn btn-primary"
-                            [disabled]="!(Validation.EventID.test(add.id) && Validation.Url.test(add.url))">
+                            [disabled]="!(Validation.EventID.test(add.id) && (Validation.Url.test(add.url) || Validation.EventID.test(add.url)))">
                             添加
                         </button>
                     </div>

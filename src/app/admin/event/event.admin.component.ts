@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../service/event';
+import { NewsService } from '../../service/news';
 import { UploadService } from '../../service/upload';
+import { AlertService } from '../../service/alert';
 import { ValidationService } from '../../const/validation.service';
 
 @Component({
   selector: 'my-event-admin',
   templateUrl: './event.admin.component.html',
   styleUrls: ['./event.admin.component.scss'],
-  providers: [EventService, UploadService]
+  providers: [EventService, UploadService, NewsService]
 })
 export class EventAdminComponent implements OnInit {
 
@@ -52,14 +54,29 @@ export class EventAdminComponent implements OnInit {
     }
     
     public addNews = (id, url) => {
-        this.eventService.addNews(id, url)
-            .subscribe(
-                data => {
-                    this.add.id = null;
-                    this.add.url = null;
-                },
-                err => console.log(err)
-            );
+        if (this.Validation.Url.test(url))
+            this.newsService.add(url)
+                .subscribe(
+                    newsID => {
+                        this.eventService.addNews(id, newsID)
+                            .subscribe(
+                                data => {
+                                    this.add.id = null;
+                                    this.add.url = null;
+                                },
+                                err => this.alertService.push(err, 'warning')
+                            );
+                    }
+                );
+        if (this.Validation.EventID.test(url))
+            this.eventService.addNews(id, url)
+                .subscribe(
+                    data => {
+                        this.add.id = null;
+                        this.add.url = null;
+                    },
+                    err => this.alertService.push(err, 'warning')
+                );
     }
 
     public upload = (id: string, imageSource: string, sourceUrl: string) => {
@@ -77,7 +94,9 @@ export class EventAdminComponent implements OnInit {
 
     constructor(
         private eventService: EventService, 
+        private newsService: NewsService,
         private uploadService: UploadService,
+        private alertService: AlertService,
         private Validation: ValidationService    
     ) { }
 

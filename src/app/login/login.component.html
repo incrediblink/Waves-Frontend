@@ -21,12 +21,15 @@
             </div>
             <p class="form-text text-muted">{{helpText}}</p>
         </div>
-        <div class="submit">
-            <button type="button" class="btn btn-link no-decoration">忘记密码</button>
-            <button (click)="login(username, password)" type="button" class="btn btn-primary"
-                [disabled]="!(Validation.Username.test(username) && Validation.Password.test(password))">
-                登录
-            </button>
+        <div class="login">
+            <button type="button" class="btn btn-link no-decoration" [routerLink]="['/register']">注册</button>
+            <div>
+                <button type="button" class="btn btn-link no-decoration">忘记密码</button>
+                <button (click)="login(username, password)" type="button" class="btn btn-primary"
+                    [disabled]="!(Validation.Username.test(username) && Validation.Password.test(password))">
+                    登录
+                </button>
+            </div>
         </div>
     </div>
 </div>

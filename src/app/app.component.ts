@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TooltipModule } from 'ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/core';
 import { AlertService } from './service/alert';
-import { Observable }     from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 // import './rxjs-operators';
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, DoCheck {
     public tabs: Array<any> = [
         { title: '事件', link: '/', icon: 'fa-newspaper-o' },
         { title: '标签', link: '/tag', icon: 'fa-tags' },
-        { title: '我的', link: '/home', icon: 'fa-home' }
+        { title: '设置', link: '/setting', icon: 'fa-cogs' }
     ];
 
     public tabsBottom: [any] = [
@@ -82,7 +82,6 @@ export class AppComponent implements OnInit, DoCheck {
         setInterval(this.ngZone.run(() => {
             if (this.alerts != this.alertService.get()) {
                 this.alerts = this.alertService.get();
-                console.log(this.alerts);
                 this.ref.detectChanges();
             }
         }), 50);
