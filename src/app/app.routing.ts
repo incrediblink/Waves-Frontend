@@ -9,6 +9,7 @@ import { RegisterComponent } from './register';
 import { AdminComponent } from './admin';
 import { TagComponent } from './tag';
 import { TagCenterComponent } from './tag/center';
+import { SettingComponent } from './setting';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'tag', component: TagCenterComponent },
   { path: 'tag/:id', component: TagComponent },
+  { path: 'setting', component: SettingComponent },
   { path: ':id', component: EventComponent }
 ];
 
