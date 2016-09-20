@@ -54,21 +54,7 @@ export class EventAdminComponent implements OnInit {
     }
     
     public addNews = (id, url) => {
-        if (this.Validation.Url.test(url))
-            this.newsService.add(url)
-                .subscribe(
-                    newsID => {
-                        this.eventService.addNews(id, newsID)
-                            .subscribe(
-                                data => {
-                                    this.add.id = null;
-                                    this.add.url = null;
-                                },
-                                err => this.alertService.push(err, 'warning')
-                            );
-                    }
-                );
-        if (this.Validation.EventID.test(url))
+        if (this.Validation.EventID.test(url) || this.Validation.Url.test(url))
             this.eventService.addNews(id, url)
                 .subscribe(
                     data => {

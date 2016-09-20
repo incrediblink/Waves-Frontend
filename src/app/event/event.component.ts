@@ -114,7 +114,8 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => { 
                         this.event = result; 
-                        this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
+                        if (this.event.HeaderImage)
+                            this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
                         this.ref.detectChanges();
                     }, 
                     err => console.log(err)
