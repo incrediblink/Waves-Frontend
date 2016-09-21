@@ -11,7 +11,7 @@
         <div class="events-container font-content">
             <h4 style="margin-bottom: 1rem">最新事件</h4>
             <div class="event card" *ngFor="let event of eventCollection">
-                <a class="no-decoration" [routerLink]="event._id">
+                <a class="no-decoration" [routerLink]="['/event/' + event._id]">
                     <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || (Global.cdn + 'default.png')) + ')'" ></div>
                     <div class="card-block event-title-block">
                         <h4 class="card-title event-title">{{event.Title}}</h4>

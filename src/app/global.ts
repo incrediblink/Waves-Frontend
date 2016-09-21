@@ -40,7 +40,7 @@ export class GlobalService {
             Mode: 'Twitter',
             Permission: {
                 LoginRequired: true,
-                message: '要使用该订阅模式，请先登录浪潮并关联 Twitter 账号'
+                message: '暂不支持此种关注方式'
             } 
         }
     ];
