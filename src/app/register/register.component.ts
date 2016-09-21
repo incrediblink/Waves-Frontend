@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 import { RegisterService } from '../service/register';
+import { ValidationService } from '../const/validation.service';
+import { AlertService } from '../service/alert';
 
 @Component({
   selector: 'my-register',
@@ -16,10 +18,8 @@ export class RegisterComponent implements OnInit {
     public register = () => {
         this.registerService.register(this.username, this.password, this.email)
             .subscribe(
-                result => {
-                    console.log(result);
-                },
-                err => console.log(err)
+                result => this.alertService.push(result.data, 'success'),
+                err => this.alertService.push(err, 'warning')
             );
     }
 
@@ -28,7 +28,9 @@ export class RegisterComponent implements OnInit {
             private registerService: RegisterService,
             private router: Router, 
             private ref: ChangeDetectorRef,
-            private cookieService: CookieService
+            private cookieService: CookieService,
+            private Validation: ValidationService,
+            private alertService: AlertService
         ) { 
             if (this.cookieService.get('authorization'))
                 this.router.navigate(['/']);

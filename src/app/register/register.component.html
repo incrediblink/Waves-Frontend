@@ -5,23 +5,33 @@
             <div class="form-group row">
                 <label for="username" class="col-xs-2 col-form-label">用户名</label>
                 <div class="col-xs-10">
-                    <input [(ngModel)]="username" class="form-control" type="text" required placeholder="仅限 5-20 位英文字符及数字">
+                    <input [(ngModel)]="username" class="form-control" type="text" 
+                        [class.ng-invalid-control]="!Validation.Username.test(username)" 
+                        required placeholder="仅限 5-20 位英文字符及数字">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-xs-2 col-form-label">邮箱</label>
                 <div class="col-xs-10">
-                    <input [(ngModel)]="email" class="form-control" type="email" required placeholder="contact@langchao.land">
+                    <input [(ngModel)]="email" class="form-control" type="email" 
+                        [class.ng-invalid-control]="!Validation.Email.test(email)" 
+                        required placeholder="contact@langchao.land">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-xs-2 col-form-label">密码</label>
                 <div class="col-xs-10">
-                    <input [(ngModel)]="password" class="form-control" type="password" required placeholder="仅限 6-32 位英文字符、数字及常用特殊字符">
+                    <input [(ngModel)]="password" class="form-control" type="password" 
+                        [class.ng-invalid-control]="!Validation.Password.test(password)" 
+                        required placeholder="仅限 6-32 位英文字符、数字及常用特殊字符"
+                        (keyup.enter)="(Validation.Username.test(username) && Validation.Email.test(email) && Validation.Password.test(password)) ? register() : 1">
                 </div>
             </div>
             <div class="submit">
-                <button (click)="register()" type="button" class="btn btn-primary">注册</button>
+                <button (click)="register()" type="button" class="btn btn-primary"
+                    [disabled]="!(Validation.Username.test(username) && Validation.Email.test(email) && Validation.Password.test(password))">
+                    注册
+                </button>
             </div>
         </div>
     </div>

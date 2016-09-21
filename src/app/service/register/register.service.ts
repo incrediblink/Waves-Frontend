@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class RegisterService {
     constructor (private http: Http, private Global: GlobalService) {}
 
-    register (username, password, email): Observable<{}> {
+    register (username, password, email): Observable<any> {
         let userInfo = JSON.stringify({
             'username': username,
             'password': password,
