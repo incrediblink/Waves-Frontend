@@ -5,6 +5,7 @@ import { GlobalService } from '../global';
 import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
+import { AlertService } from '../service/alert';
 
 @Component({
   selector: 'my-event',
@@ -85,6 +86,22 @@ export class EventComponent implements OnInit, OnDestroy {
             );
     }
 
+    public add = null;
+
+    public addNews = (modal) => {
+        if (this.Validation.EventID.test(this.add) || this.Validation.Url.test(this.add))
+            this.eventService.addNews(this.id, this.add)
+                .subscribe(
+                    data => {
+                        modal.hide();
+                        this.add = null;
+                        this.alertService.push('提交成功！', 'success');
+                        this.ref.detectChanges();
+                    },
+                    err => this.alertService.push(err, 'warning')
+                );
+    }
+
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' ' + this.Global.root + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
     }
@@ -102,7 +119,8 @@ export class EventComponent implements OnInit, OnDestroy {
         private Validation: ValidationService,
         private ref: ChangeDetectorRef,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private alertService: AlertService
     ) {}
 
     public sub; public id;

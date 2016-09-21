@@ -8,7 +8,7 @@
         <div class="header-info">
             <h1 class="font-title header-title">{{event.Title}}</h1>
             <div class="tag-set">
-                <a class="tag" *ngFor="let tag of tagCollection">{{tag.Title}}</a>
+                <a class="tag" *ngFor="let tag of tagCollection" [routerLink]="['/tag/' + tag._id]">{{tag.Title}}</a>
             </div>
         </div>
     </div>
@@ -16,6 +16,7 @@
         <div class="timeline">
             <h4 style="margin-bottom: 1rem">事件相关新闻</h4>
             <div class="card card-block news" *ngFor="let news of collections">
+                <small class="text-muted">{{news.Source}}</small>
                 <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>
                 <div class="news-bottom">
@@ -32,8 +33,9 @@
             </div>
         </div>
         <div class="follow">
-            <button [hidden]="event.Subscriber.length == 0" type="button" class="btn btn-info btn-sm button-follow">已有 {{event.Subscriber.length}} 人关注该事件</button>
-            <button type="button" (click)="subscribeModal.show()" class="btn btn-primary btn-sm button-follow">关注</button>
+            <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
+                tooltipPlacement="bottom" [tooltip]="event.Subscriber.length != 0 ? '已有 ' + event.Subscriber.length + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
+            <button type="button" (click)="addNewsModal.show()" class="btn btn-primary btn-sm button-follow">为该事件添加新闻</button>
         </div>
         <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -99,6 +101,34 @@
                                 [hidden]="subscribe.notificationType != button.Mode"
                                 [disabled]="!(subscribe.mode && subscribe.notificationType && subscribe.address && Validation[button.Mode].test(subscribe.address))">
                                 关注该事件
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div bsModal #addNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content font-content">
+                    <div class="modal-header font-title">
+                        <button type="button" class="close" (click)="addNewsModal.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">添加新闻至该事件</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="newsUrl" class="col-xs-2 col-form-label">新闻</label>
+                            <div class="col-xs-10">
+                                <input [(ngModel)]="add" class="form-control" 
+                                    [class.ng-invalid-control]="!(Validation.Url.test(add) || Validation.EventID.test(add))" 
+                                    type="text" placeholder="新闻链接或代号" required>
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <button (click)="addNews(addNewsModal)" type="button" class="btn btn-primary"
+                                [disabled]="!(Validation.Url.test(add) || Validation.EventID.test(add))">
+                                添加
                             </button>
                         </div>
                     </div>
