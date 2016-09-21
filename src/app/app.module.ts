@@ -19,7 +19,8 @@ import { TagAdminComponent } from './admin/tag';
 import { NewsAdminComponent } from './admin/news';
 import { EventAdminComponent } from './admin/event';
 import { UserAdminComponent } from './admin/user';
-import { SettingComponent } from './setting';
+import { MyComponent } from './my';
+// import { SettingComponent } from './setting';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { GlobalService } from './global';
@@ -55,7 +56,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     NewsAdminComponent,
     EventAdminComponent,
     UserAdminComponent,
-    SettingComponent
+    MyComponent,
+    // SettingComponent
   ],
   providers: [
     CookieService,

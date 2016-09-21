@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, DoCheck {
     public tabs: Array<any> = [
         { title: '事件', link: '/', icon: 'fa-newspaper-o' },
         { title: '标签', link: '/tag', icon: 'fa-tags' },
-        { title: '设置', link: '/setting', icon: 'fa-cogs' }
+        { title: '我的', link: '/my', icon: 'fa-home' }
     ];
 
     public tabsBottom: [any] = [

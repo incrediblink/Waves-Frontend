@@ -9,7 +9,8 @@ import { RegisterComponent } from './register';
 import { AdminComponent } from './admin';
 import { TagComponent } from './tag';
 import { TagCenterComponent } from './tag/center';
-import { SettingComponent } from './setting';
+import { MyComponent } from './my';
+// import { SettingComponent } from './setting';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'tag', component: TagCenterComponent },
   { path: 'tag/:id', component: TagComponent },
-  { path: 'setting', component: SettingComponent },
-  { path: ':id', component: EventComponent }
+  { path: 'my', component: MyComponent },
+  // { path: 'setting', component: SettingComponent },
+  { path: 'event/:id', component: EventComponent }
 ];
 
 export const appRoutingProviders: any[] = [
