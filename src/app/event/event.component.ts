@@ -103,11 +103,11 @@ export class EventComponent implements OnInit, OnDestroy {
     }
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
-        window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' ' + this.Global.root + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
+        window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' ' + this.Global.root + 'event/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
     }
 
     public twitterHref: any = function(newsTitle, eventID, eventTitle) {
-        window.open('https://twitter.com/intent/tweet?text=' + newsTitle + '&hashtags=' + eventTitle + ' ' + this.Global.root + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
+        window.open('https://twitter.com/intent/tweet?text=' + newsTitle + '&hashtags=' + eventTitle + ' ' + this.Global.root + 'event/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
     }
 
     public tagCollection;

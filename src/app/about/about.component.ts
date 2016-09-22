@@ -7,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() {
-    // Do stuff
-  }
+    public resizeIframe = (obj) => {
+      console.log(obj.contentWindow.document.body.scrollHeight);
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
 
-  ngOnInit() {
-    console.log('Hello About');
-  }
+    constructor() {
+      // Do stuff
+    }
+
+    ngOnInit() {
+      console.log('Hello About');
+    }
 
 }

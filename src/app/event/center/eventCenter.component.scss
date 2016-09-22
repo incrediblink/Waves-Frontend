@@ -7,7 +7,7 @@
     width: 50%;
     align-self: center;
     position: absolute;
-    bottom: 15%;
+    bottom: 10%;
     color: white;
 }
 
@@ -20,6 +20,13 @@
 .icon-slogan {
     display: flex;
     justify-content: space-between;
+    margin-bottom: .75rem;
+}
+
+.icon-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .events-container {
