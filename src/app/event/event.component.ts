@@ -6,6 +6,7 @@ import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { AlertService } from '../service/alert';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'my-event',
@@ -110,7 +111,17 @@ export class EventComponent implements OnInit, OnDestroy {
         window.open('https://twitter.com/intent/tweet?text=' + newsTitle + '&hashtags=' + eventTitle + ' ' + this.Global.root + 'event/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
     }
 
-    public tagCollection;
+    public tagCollection; private isAdmin = false;
+
+    public removeNews = (news, i) => {
+        this.eventService.removeNews(this.id, news)
+            .subscribe(
+                data => {
+                    this.collections.splice(i, 1);
+                    this.alertService.push(data, 'success');
+                }
+            );
+    }
     
     constructor(
         private eventService: EventService, 
@@ -120,8 +131,11 @@ export class EventComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router,
-        private alertService: AlertService
-    ) {}
+        private alertService: AlertService,
+        private cookieService: CookieService
+    ) {
+        this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
+    }
 
     public sub; public id;
 

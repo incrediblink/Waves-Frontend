@@ -15,7 +15,7 @@
     <div class="content-right font-content">
         <div class="timeline">
             <h4 style="margin-bottom: 1rem">事件相关新闻</h4>
-            <div class="card card-block news" *ngFor="let news of collections">
+            <div class="card card-block news" *ngFor="let news of collections; let i = index">
                 <small class="text-muted">{{news.Source}}</small>
                 <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>
@@ -28,6 +28,8 @@
                             tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
                         <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
                             class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
+                        <a href="javascript:void(0);" [hidden]="!isAdmin" (click)="removeNews(news._id, i)" tooltipPlacement="bottom" 
+                            tooltip="移除该新闻" class="fa fa-trash no-decoration button-share icon-trash" aria-hidden="true"></a>
                     </div>
                 </div>
             </div>

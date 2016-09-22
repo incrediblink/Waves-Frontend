@@ -62,6 +62,17 @@ export class EventService {
                         .catch(this.handleError);
     }
 
+    removeNews (id: string, news: string): Observable<any> {
+        let info = JSON.stringify({
+            'news': news
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        return this.http.post(this.Global.api + 'event/' + id + '/remove', info, options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     uploadHeaderImage (id: string, imageUrl: string, imageSource: string, sourceUrl: string): Observable<any> {
         let info = JSON.stringify({
             imageUrl: imageUrl,
