@@ -134,7 +134,8 @@ export class EventComponent implements OnInit, OnDestroy {
         private alertService: AlertService,
         private cookieService: CookieService
     ) {
-        this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
+        if (this.cookieService.get('waves_permission'))
+            this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
     }
 
     public sub; public id;
