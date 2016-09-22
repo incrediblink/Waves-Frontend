@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
         private Validation: ValidationService,
         private alertService: AlertService
     ) { 
-        if (this.cookieService.get('authorization'))
+        if (this.cookieService.get('waves_authorization'))
             this.router.navigate(['/']);
     }
 

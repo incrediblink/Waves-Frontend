@@ -93,6 +93,45 @@
                     </div>
                 </div>
             </tab>
+            <tab heading="审核新闻"
+                [active]="tab.verifyNews.active"
+                (select)="tab.verifyNews.active = true"
+                (deselect)="tab.verifyNews.active = false">
+                <div class="single-page admin-pages">
+                    <h2 class="font-title">审核新闻</h2>
+                    <div class="form-group row">
+                        <label for="eventTitle" class="col-xs-2 col-form-label">事件标号</label>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="verify.id" class="form-control" 
+                                [class.ng-invalid-control]="!Validation.EventID.test(verify.id)" type="text" placeholder="事件标号" required>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <button (click)="1" type="button" class="btn btn-primary" [disabled]="!Validation.EventID.test(verify.id)">
+                            查看该事件的待审核新闻
+                        </button>
+                    </div>
+                </div>
+                <div class="card card-block news" *ngFor="let news of queue; let i = index">
+                    <small class="text-muted">来源：{{news.News.Source}} 提交者：{{news.Queue.Submitter.toString()}}</small>
+                    <a [routerLink]="['/event/' + news.Event._id]" class="no-decoration">
+                        <small class="text-muted">事件：{{news.Event.Title}}</small>
+                    </a>
+                    <a href="{{news.News.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.News.Title}}</h4></a>
+                    <p *ngIf="news.Abstract" class="card-text font-content">{{news.News.Abstract}}</p>
+                    <div class="news-bottom">
+                        <a class="text-muted font-content">{{(news.News.Time).toLocaleString()}}</a>
+                        <div class="button-bottom">
+                            <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
+                                class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div class="verify">
+                        <button type="button" (click)="rejectNews(news.Event._id, news.News._id, i)" class="btn btn-danger btn-sm button-follow">拒绝</button>
+                        <button type="button" (click)="addNews(news.Event._id, news.News._id, i)" class="btn btn-primary btn-sm button-follow">通过</button>
+                    </div>
+                </div>
+            </tab>
         </tabset>
     </div>
 </div>

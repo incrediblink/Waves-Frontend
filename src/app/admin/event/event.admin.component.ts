@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { EventService } from '../../service/event';
 import { NewsService } from '../../service/news';
 import { UploadService } from '../../service/upload';
@@ -21,6 +21,9 @@ export class EventAdminComponent implements OnInit {
             active: false
         },
         uploadImage: {
+            active: false
+        },
+        verifyNews: {
             active: false
         }
     };
@@ -46,20 +49,24 @@ export class EventAdminComponent implements OnInit {
         url: null
     }
 
-    public uploadImage = {
+    public uploadImageOrig = {
         id: null,
         image: null,
         url: null,
         source: null
     }
+
+    public uploadImage = this.uploadImageOrig;
     
-    public addNews = (id, url) => {
+    public addNews = (id, url, i) => {
         if (this.Validation.EventID.test(url) || this.Validation.Url.test(url))
             this.eventService.addNews(id, url)
                 .subscribe(
                     data => {
                         this.add.id = null;
                         this.add.url = null;
+                        if (i)
+                            this.queue.splice(i, 1);
                     },
                     err => this.alertService.push(err, 'warning')
                 );
@@ -72,10 +79,38 @@ export class EventAdminComponent implements OnInit {
                 this.eventService.uploadHeaderImage(id, result.data.Key, imageSource, sourceUrl)
                     .subscribe(
                         data => {
-                            console.log(data);
+                            this.uploadImage = this.uploadImageOrig;
                         }
-                    )
+                    );
             });
+    }
+
+    public verify = {
+        id: null
+    };
+
+    public filter; public queue = [];
+
+    public getQueue = () => {
+        if (this.verify.id)
+            this.filter = { Event: this.verify.id }
+        this.eventService.getQueue(this.filter)
+            .subscribe(
+                result => {
+                    this.queue = result;
+                    this.ref.detectChanges();
+                }
+            );
+    }
+
+    public rejectNews = (id, news, i) => {
+        this.eventService.rejectNews(id, news)
+            .subscribe(
+                result => {
+                    this.alertService.push(result, 'success');
+                    this.queue.splice(i, 1);
+                }
+            );
     }
 
     constructor(
@@ -83,8 +118,11 @@ export class EventAdminComponent implements OnInit {
         private newsService: NewsService,
         private uploadService: UploadService,
         private alertService: AlertService,
-        private Validation: ValidationService    
-    ) { }
+        private Validation: ValidationService,
+        private ref: ChangeDetectorRef 
+    ) {
+        this.getQueue();
+    }
 
     ngOnInit() {
     }

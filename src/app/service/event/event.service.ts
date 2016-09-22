@@ -51,7 +51,18 @@ export class EventService {
                         .catch(this.handleError);
     }
 
-    uploadHeaderImage (id: string, imageUrl: string, imageSource: string, sourceUrl: string): Observable<{}> {
+    rejectNews (id: string, news: string): Observable<any> {
+        let info = JSON.stringify({
+            'news': news
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        return this.http.post(this.Global.api + 'event/' + id + '/reject', info, options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
+    uploadHeaderImage (id: string, imageUrl: string, imageSource: string, sourceUrl: string): Observable<any> {
         let info = JSON.stringify({
             imageUrl: imageUrl,
             imageSource: imageSource,
@@ -79,6 +90,20 @@ export class EventService {
         return this.http.post(this.Global.api + 'event/' + id + '/subscribe', info, options)
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
+                        })
+                        .catch(this.handleError);
+    }
+
+    getQueue (filter): Observable<any> {
+        let info = JSON.stringify({
+            'filter': filter
+        });
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.post(this.Global.api + 'event/queue', info, options)
+                        .map((res: Response) => {
+                            return this.extractData(res);
                         })
                         .catch(this.handleError);
     }

@@ -1,13 +1,37 @@
-// .event-container {
-//     background-color: transparent;
-// }
+.button-bottom {
+    position: relative;
+    left: 3rem;
+}
 
-// .event-page-container {
-//     max-width: 40rem;
-// }
+.button-share {
+    position: relative;
+    right: 3rem;
+    color: #666666 !important;
+}
 
-// .event-page {
-//     max-width: 40rem;
-//     min-height: 0;
-//     margin: 1rem 0;
-// }
+.icon-source:hover {
+    color: #014c8c !important;
+}
+
+.news-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+}
+
+.news:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.verify {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
