@@ -36,8 +36,8 @@ export class TagComponent implements OnInit, OnDestroy {
                 .subscribe(
                     tag => {
                         for (let i = 0; i < tag.Events.length; i++) {
-                            tag.Events[i] = JSON.parse(tag.Events[i]);
-                            tag.Events[i].ImageUrl = this.Global.cdn + tag.Events[i].HeaderImage.ImageUrl;
+                            if (tag.Events[i].HeaderImage)
+                                tag.Events[i].ImageUrl = this.Global.cdn + tag.Events[i].HeaderImage.ImageUrl;
                         }
                         this.tag = tag;
                         this.ref.detectChanges();

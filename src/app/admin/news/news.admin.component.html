@@ -27,6 +27,16 @@
                 (deselect)="tab.newsCue.active = false">
                 <div class="single-page admin-pages font-content">
                     <h2 class="font-title">队列内新闻</h2>
+                    <table cellpadding="5">
+                        <tr>
+                            <th>域名</th>
+                            <th>新闻链接</th>
+                        </tr>
+                        <tr *ngFor="let news of newsCollection">
+                            <td>{{domain(news.Url)}}</td>
+                            <td>{{news.Url}}</td>
+                        </tr>
+                    </table>
                 </div>
             </tab>
         </tabset>

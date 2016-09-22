@@ -28,6 +28,12 @@ export class NewsService {
                         .catch(this.handleError);
     }
 
+    getUnsavedNews (): Observable<any> {
+        return this.http.get(this.Global.api + 'news/unsaved')
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data || { };

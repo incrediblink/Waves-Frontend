@@ -31,10 +31,24 @@ export class NewsAdminComponent implements OnInit {
             )
     }
 
+    public newsCollection = [];
+
+    public domain = (url) => {
+        return url.match(/^(?:https?:\/\/)?(‌​?:[^@\/\n]+@)?(?:www\‌​.)?([^:\/\n]+)/im)[2];
+    }
+
     constructor(
         private newsService: NewsService,
         private Validation: ValidationService
-    ) { }
+    ) { 
+        this.newsService.getUnsavedNews()
+            .subscribe(
+                newsCollection => {
+                    this.newsCollection = newsCollection;
+                    console.log(this.newsCollection);
+                }
+            )
+    }
 
     ngOnInit() {
         console.log('Hello news');
