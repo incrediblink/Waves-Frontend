@@ -5,8 +5,6 @@ import { CookieService } from 'angular2-cookie/core';
 import { AlertService } from './service/alert';
 import { Observable } from 'rxjs/Observable';
 
-// import './rxjs-operators';
-
 import '../style/app.scss';
 
 /*

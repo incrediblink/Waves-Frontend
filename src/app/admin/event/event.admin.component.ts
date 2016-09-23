@@ -73,10 +73,11 @@ export class EventAdminComponent implements OnInit {
     }
 
     public upload = (id: string, imageSource: string, sourceUrl: string) => {
-        let file = document.getElementById('image').files[0];
+        let image: any = document.getElementById('image')
+        let file = image.files[0];
         this.uploadService.upload(file)
             .then(result => {
-                this.eventService.uploadHeaderImage(id, result.data.Key, imageSource, sourceUrl)
+                this.eventService.uploadHeaderImage(id, result.Key, imageSource, sourceUrl)
                     .subscribe(
                         data => {
                             this.uploadImage = this.uploadImageOrig;

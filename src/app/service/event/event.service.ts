@@ -73,7 +73,7 @@ export class EventService {
                         .catch(this.handleError);
     }
 
-    uploadHeaderImage (id: string, imageUrl: string, imageSource: string, sourceUrl: string): Observable<any> {
+    uploadHeaderImage (id: string, imageUrl, imageSource: string, sourceUrl: string): Observable<any> {
         let info = JSON.stringify({
             imageUrl: imageUrl,
             imageSource: imageSource,
@@ -84,7 +84,7 @@ export class EventService {
 
         return this.http.post(this.Global.api + 'event/' + id + '/image', info, options)
                         .map((res: Response) => {
-                            return { data: this.extractData(res), status: res.status }
+                            return this.extractData(res);
                         })
                         .catch(this.handleError);
     }

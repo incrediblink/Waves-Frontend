@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TagAdminComponent } from './tag';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-admin',
