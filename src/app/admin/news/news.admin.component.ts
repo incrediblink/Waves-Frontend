@@ -45,7 +45,6 @@ export class NewsAdminComponent implements OnInit {
             .subscribe(
                 newsCollection => {
                     this.newsCollection = newsCollection;
-                    console.log(this.newsCollection);
                 }
             )
     }

@@ -20,7 +20,8 @@ import { NewsAdminComponent } from './admin/news';
 import { EventAdminComponent } from './admin/event';
 import { UserAdminComponent } from './admin/user';
 import { MyComponent } from './my';
-// import { SettingComponent } from './setting';
+import { MyEventComponent } from './my/event';
+import { MySettingComponent } from './my/setting';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { GlobalService } from './global';
@@ -57,7 +58,8 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     EventAdminComponent,
     UserAdminComponent,
     MyComponent,
-    // SettingComponent
+    MyEventComponent,
+    MySettingComponent
   ],
   providers: [
     Title,

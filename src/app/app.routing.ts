@@ -10,7 +10,6 @@ import { AdminComponent } from './admin';
 import { TagComponent } from './tag';
 import { TagCenterComponent } from './tag/center';
 import { MyComponent } from './my';
-// import { SettingComponent } from './setting';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -19,10 +18,11 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/:section', component: AdminComponent },
   { path: 'tag', component: TagCenterComponent },
   { path: 'tag/:id', component: TagComponent },
   { path: 'my', component: MyComponent },
-  // { path: 'setting', component: SettingComponent },
+  { path: 'my/:section', component: MyComponent },
   { path: 'event/:id', component: EventComponent }
 ];
 

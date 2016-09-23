@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="submit">
-                        <button (click)="addEvent(addEvent.id, addEvent.event)" type="button" class="btn btn-primary"
+                        <button (click)="addEventService(addEvent.id, addEvent.event)" type="button" class="btn btn-primary"
                             [disabled]="!(Validation.EventID.test(addEvent.event) && Validation.EventID.test(addEvent.id))">
                             添加
                         </button>
