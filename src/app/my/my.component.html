@@ -1,0 +1,23 @@
+<div class="full-container">
+    <div class="content-left header font-title">
+        <p>我的</p>
+    </div>
+    <div class="content-right my-component">
+        <div class="page-container admin-pages-container font-content">
+            <tabset>
+                <tab heading="已关注事件"
+                    [active]="tab.event.active"
+                    (select)="select('event')"
+                    (deselect)="tab.event.active = false">
+                    <my-event-home></my-event-home>
+                </tab>
+                <tab heading="设置"
+                    [active]="tab.setting.active"
+                    (select)="select('setting')"
+                    (deselect)="tab.setting.active = false">
+                    <my-setting-home></my-setting-home>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

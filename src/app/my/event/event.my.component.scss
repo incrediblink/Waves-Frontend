@@ -1,0 +1,33 @@
+.event {
+    width: 100%;
+    min-width: 10rem;
+    max-width: 40rem;
+    margin-top: 1rem;
+}
+
+.event:hover {
+    background-color: rgba(0,0,0,.04);
+}
+
+.event-image {
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    background-color: aliceblue;
+    width: 100%;
+    height: 10rem;
+}
+
+.event-title {
+    color: black;
+    margin: 0;
+}
+
+.event-static {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: .5rem;
+}
+
+.tag-margin {
+    margin-right: .25rem;
+}

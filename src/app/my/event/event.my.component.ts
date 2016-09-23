@@ -1,0 +1,41 @@
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertService } from '../../service/alert';
+import { GlobalService } from '../../global';
+import { Title } from '@angular/platform-browser';
+import { UserService } from '../../service/user';
+
+@Component({
+    selector: 'my-event-home',
+    templateUrl: './event.my.component.html',
+    styleUrls: ['./event.my.component.scss'],
+    providers: [UserService]
+})
+export class MyEventComponent {
+
+    public eventCollection;
+
+    constructor(
+        private ref: ChangeDetectorRef,
+        private Global: GlobalService,
+        private titleService: Title,
+        private alertService: AlertService,
+        private userService: UserService
+    ) { 
+        this.titleService.setTitle('正在关注的事件 | ' + this.Global.slogan);
+        this.userService.getFollowingEvent()
+            .subscribe(
+                data => {
+                    this.eventCollection = data;
+                    for (let event of this.eventCollection) {
+                        if (event.HeaderImage)
+                            event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl;
+                    }
+                    this.ref.detectChanges();
+                }
+            );
+            // this.alertService.push('“我的”功能尚未实现。', 'warning');
+            // this.router.navigate(['/']);
+    }
+
+}
