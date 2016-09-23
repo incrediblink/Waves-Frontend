@@ -4,6 +4,7 @@ import { CookieService } from 'angular2-cookie/core';
 import { RegisterService } from '../service/register';
 import { ValidationService } from '../const/validation.service';
 import { AlertService } from '../service/alert';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-register',
@@ -30,10 +31,12 @@ export class RegisterComponent implements OnInit {
             private ref: ChangeDetectorRef,
             private cookieService: CookieService,
             private Validation: ValidationService,
-            private alertService: AlertService
+            private alertService: AlertService,
+            private titleService: Title
         ) { 
             if (this.cookieService.get('waves_authorization'))
                 this.router.navigate(['/']);
+            this.titleService.setTitle('注册浪潮账号');
         }
 
     ngOnInit() {

@@ -37,8 +37,10 @@ export class AdminComponent implements OnInit {
         }
     } 
 
-    constructor() {
-        // Do stuff
+    constructor(
+        private titleService: Title
+    ) {
+        this.titleService.setTitle('控制中心');
     }
 
     ngOnInit() {

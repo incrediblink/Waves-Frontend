@@ -1,5 +1,5 @@
 import { NgModule, ApplicationRef, ChangeDetectorRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule, AlertModule, TabsModule, ModalModule, DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
@@ -60,6 +60,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     // SettingComponent
   ],
   providers: [
+    Title,
     CookieService,
     GlobalService,
     AlertService,

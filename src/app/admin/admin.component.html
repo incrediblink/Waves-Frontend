@@ -4,7 +4,8 @@
             <a *ngFor="let tab of tabs" 
                 (click)="switchTab(tab.title)" 
                 href="javascript:void(0)" 
-                [class]="'admin-tab font-content no-decoration ' + (tab.hidden ? '' : 'admin-tab-active')"
+                class="admin-tab font-content no-decoration"
+                [class.admin-tab-active]="!tab.hidden"
                 tooltipPlacement="right"
                 [tooltip]="tab.title">
                 <i [class]="'fa ' + tab.icon"></i>

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { EventCenterService } from '../../service/eventCenter';
 import { GlobalService } from '../../global';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-event-center',
@@ -14,8 +15,10 @@ export class EventCenterComponent {
     constructor(
         private eventCenterService: EventCenterService, 
         private ref: ChangeDetectorRef,
-        private Global: GlobalService
+        private Global: GlobalService,
+        private titleService: Title
     ){
+        this.titleService.setTitle(this.Global.slogan);
         this.eventCenterService.get()
             .subscribe(
                 result => {

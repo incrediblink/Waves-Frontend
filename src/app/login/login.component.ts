@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 import { AlertService } from '../service/alert';
 import { ValidationService } from '../const/validation.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-login',
@@ -21,10 +22,12 @@ export class LoginComponent implements OnInit {
         private ref: ChangeDetectorRef,
         private cookieService: CookieService,
         private Validation: ValidationService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private titleService: Title
     ) { 
         if (this.cookieService.get('waves_authorization'))
             this.router.navigate(['/']);
+        this.titleService.setTitle('登录浪潮');
     }
 
     login: any = function(username, password) {

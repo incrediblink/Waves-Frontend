@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { AlertService } from '../service/alert';
 import { CookieService } from 'angular2-cookie/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-event',
@@ -81,6 +82,7 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.notificationType = null;
                     this.subscribe.address = null;
                     this.event.Subscriber[this.event.Subscriber.length] = 0;
+                    this.alertService.push('订阅成功！', 'success');
                     this.ref.detectChanges();
                 },
                 err => console.log(err)
@@ -132,7 +134,8 @@ export class EventComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private alertService: AlertService,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private titleService: Title
     ) {
         if (this.cookieService.get('waves_permission'))
             this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
@@ -149,6 +152,7 @@ export class EventComponent implements OnInit, OnDestroy {
                         this.event = result; 
                         if (this.event.HeaderImage)
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
+                        this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.ref.detectChanges();
                     }, 
                     err => console.log(err)

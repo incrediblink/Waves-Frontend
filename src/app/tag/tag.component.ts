@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TagService } from '../service/tag';
 import { GlobalService } from '../global';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-tag',
@@ -12,6 +13,7 @@ import { GlobalService } from '../global';
 export class TagComponent implements OnInit, OnDestroy {
 
     public tag = {
+        Title: null,
         Events: [{
             ImageUrl: null,
             Subscriber: [0],
@@ -24,7 +26,8 @@ export class TagComponent implements OnInit, OnDestroy {
         private router: Router, 
         private route: ActivatedRoute,
         private ref: ChangeDetectorRef,
-        private Global: GlobalService
+        private Global: GlobalService,
+        private titleService: Title
     ) { }
 
     public sub; public id;
@@ -41,6 +44,7 @@ export class TagComponent implements OnInit, OnDestroy {
                         }
                         this.tag = tag;
                         this.ref.detectChanges();
+                        this.titleService.setTitle('标签 - ' + this.tag.Title + ' | ' + this.Global.slogan);
                     }
                 );
         });
