@@ -1,3 +1,16 @@
 .about-container {
     width: 100%;
+    height: calc(100vh - 3rem);
+}
+
+@media (min-width: 768px) {
+    .about-container {
+        height: initial;
+    }
+}
+
+@media (max-width: 768px) {
+    .full-container {
+        min-height: initial;
+    }
 }
