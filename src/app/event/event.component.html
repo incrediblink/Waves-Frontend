@@ -90,8 +90,8 @@
                         </div>
                         <div [hidden]="subscribe.notificationType != 'Email'" class="subscribe-option">
                             <div class="form-group row">
-                                <label for="email" class="col-xs-3 col-form-label">邮箱</label>
-                                <div class="col-xs-9">
+                                <label for="email" class="col-xs-3 col-md-2 col-form-label">邮箱</label>
+                                <div class="col-xs-9 col-md-10">
                                     <input [(ngModel)]="subscribe.address" class="form-control" [class.ng-invalid-control]="!Validation.Email.test(subscribe.address)"
                                         type="email" required placeholder="contact@langchao.land">
                                 </div>
@@ -120,8 +120,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="newsUrl" class="col-xs-3 col-form-label">新闻</label>
-                            <div class="col-xs-9">
+                            <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">新闻</label>
+                            <div class="col-xs-9 col-md-10">
                                 <input [(ngModel)]="add" class="form-control" 
                                     [class.ng-invalid-control]="!(Validation.Url.test(add) || Validation.EventID.test(add))" 
                                     type="text" placeholder="新闻链接或代号" required>

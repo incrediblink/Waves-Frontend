@@ -1,42 +1,40 @@
 <link rel="stylesheet" href="/bootstrap.min.css">
 
-<div class="overall">
-    <div class="overall-navbar" (mouseover)="1">
-        <div class="navbar-top">
-            <a routerLink="/" 
-                tooltipPlacement="right"
-                tooltip="渴望重回土地"
-                class="tab">
-                <img class="tab-icon" src="img/siteicon.svg" width="100%"/>
-            </a>
-            <a *ngFor="let tab of tabs" 
-                [routerLink]="tab.link" 
-                class="tab"
-                routerLinkActive="tab-active"
-                tooltipPlacement="right"
-                [tooltip]="tab.title">
-                <i [class]="'fa ' + tab.icon"></i>
-            </a>
-        </div> 
-        <div class="navbar-bottom">
-            <a *ngFor="let tab of tabsBottom" 
-                [routerLink]="tab.link" 
-                class="tab-bottom"
-                routerLinkActive="tab-bottom-active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                tooltipPlacement="right"
-                [tooltip]="tab.title"
-                [hidden]="!tab.visible">
-                <i [class]="'fa ' + tab.icon"></i>
-            </a>
-        </div>
+<div class="overall-navbar" (mouseover)="1">
+    <div class="navbar-top">
+        <a routerLink="/event" 
+            tooltipPlacement="right"
+            tooltip="渴望重回土地"
+            class="tab">
+            <img class="tab-icon" src="img/siteicon.svg" width="100%"/>
+        </a>
+        <a *ngFor="let tab of tabs" 
+            [routerLink]="tab.link" 
+            class="tab"
+            routerLinkActive="tab-active"
+            tooltipPlacement="right"
+            [tooltip]="tab.title">
+            <i [class]="'fa ' + tab.icon"></i>
+        </a>
+    </div> 
+    <div class="navbar-bottom">
+        <a *ngFor="let tab of tabsBottom" 
+            [routerLink]="tab.link" 
+            class="tab-bottom"
+            routerLinkActive="tab-bottom-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            tooltipPlacement="right"
+            [tooltip]="tab.title"
+            [hidden]="!tab.visible">
+            <i [class]="'fa ' + tab.icon"></i>
+        </a>
     </div>
-    <div class="content" (mouseover)="1">
-        <router-outlet></router-outlet>
-    </div>
-    <div class="alert">
-        <alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" dismissible="true" dismissOnTimeout="3000" (close)="closeAlert(i)">
-            {{ alert?.msg }}
-        </alert>
-    </div>
+</div>
+<div class="content" (mouseover)="1">
+    <router-outlet></router-outlet>
+</div>
+<div class="alert">
+    <alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" dismissible="true" dismissOnTimeout="3000" (close)="closeAlert(i)">
+        {{ alert?.msg }}
+    </alert>
 </div>

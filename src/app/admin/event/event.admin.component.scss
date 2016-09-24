@@ -35,3 +35,17 @@
     top: 1rem;
     right: 1rem;
 }
+
+.btn-outline-primary {
+    max-width: 100%;
+}
+
+.file-input {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .center {
+        justify-content: initial;
+    }
+}

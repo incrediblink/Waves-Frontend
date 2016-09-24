@@ -8,8 +8,8 @@
                 <div class="single-page admin-pages">
                     <h2 class="font-title">添加新闻</h2>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-2 col-form-label">新闻链接</label>
-                        <div class="col-xs-10">
+                        <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">新闻链接</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="url" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(url)" type="text" placeholder="新闻链接" required>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
                             <th>新闻链接</th>
                         </tr>
                         <tr *ngFor="let news of newsCollection">
-                            <td>{{domain(news.Url)}}</td>
-                            <td>{{news.Url}}</td>
+                            <td class="news-table">{{domain(news.Url)}}</td>
+                            <td class="news-table">{{news.Url}}</td>
                         </tr>
                     </table>
                 </div>

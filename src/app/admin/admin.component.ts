@@ -73,7 +73,7 @@ export class AdminComponent implements OnInit, OnDestroy {
             let temp = 0;
             if (this.section) {
                 for (let tab of this.tabs) {
-                    if (tab.path = this.section) {
+                    if (tab.path == this.section) {
                         this.switchTab(tab.title);
                         temp++;
                     }

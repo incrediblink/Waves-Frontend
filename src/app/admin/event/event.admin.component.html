@@ -8,14 +8,14 @@
                 <div class="single-page admin-pages">
                     <h2 class="font-title">添加事件</h2>
                     <div class="form-group row">
-                        <label for="eventTitle" class="col-xs-2 col-form-label">事件名</label>
-                        <div class="col-xs-10">
+                        <label for="eventTitle" class="col-xs-3 col-md-2 col-form-label">事件名</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="create.title" class="form-control" type="text" placeholder="事件名" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="eventNews" class="col-xs-2 col-form-label">首条新闻</label>
-                        <div class="col-xs-10">
+                        <label for="eventNews" class="col-xs-3 col-md-2 col-form-label">首条新闻</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="create.news" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(create.news)" type="text" placeholder="新闻链接">
                         </div>
                     </div>
@@ -34,14 +34,14 @@
                 <div class="single-page admin-pages font-content">
                     <h2 class="font-title">添加新闻至事件</h2>
                     <div class="form-group row">
-                        <label for="eventId" class="col-xs-2 col-form-label">事件代号</label>
-                        <div class="col-xs-10">
+                        <label for="eventId" class="col-xs-3 col-md-2 col-form-label">事件代号</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="add.id" class="form-control" [class.ng-invalid-control]="!Validation.EventID.test(add.id)" type="text" placeholder="事件代号" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-2 col-form-label">新闻</label>
-                        <div class="col-xs-10">
+                        <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">新闻</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="add.url" class="form-control" [class.ng-invalid-control]="!(Validation.Url.test(add.url) || Validation.EventID.test(add.url))" type="text" placeholder="新闻链接或代号" required>
                         </div>
                     </div>
@@ -60,28 +60,28 @@
                 <div class="single-page admin-pages font-content">
                     <h2 class="font-title">上传事件标题图</h2>
                     <div class="form-group row">
-                        <label for="eventId" class="col-xs-2 col-form-label">事件代号</label>
-                        <div class="col-xs-10">
+                        <label for="eventId" class="col-xs-3 col-md-2 col-form-label">事件代号</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="uploadImage.id" class="form-control" [class.ng-invalid-control]="!Validation.EventID.test(uploadImage.id)" type="text" placeholder="事件代号" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="image" class="col-xs-2 col-form-label">上传图片</label>
-                        <div class="col-xs-10">
+                        <label for="image" class="col-xs-3 col-md-2 col-form-label">上传图片</label>
+                        <div class="col-xs-9 col-md-10">
                             <button class="btn btn-outline-primary" type="button" required>
                                 <input id="image" type="file" class="file-input" accept="image/gif, image/jpeg, image/png">
                             </button>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-2 col-form-label">图片来源</label>
-                        <div class="col-xs-10">
+                        <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">图片来源</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="uploadImage.source" class="form-control" type="text" placeholder="如：新华社、新京报、CNN" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-2 col-form-label">图片地址</label>
-                        <div class="col-xs-10">
+                        <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">图片地址</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="uploadImage.url" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(uploadImage.url)" type="text" placeholder="如：http://xinhuanet.com/.../xxx.jpg" required>
                         </div>
                     </div>
@@ -100,8 +100,8 @@
                 <div class="single-page admin-pages">
                     <h2 class="font-title">审核新闻</h2>
                     <div class="form-group row">
-                        <label for="eventTitle" class="col-xs-2 col-form-label">事件标号</label>
-                        <div class="col-xs-10">
+                        <label for="eventTitle" class="col-xs-3 col-md-2 col-form-label">事件标号</label>
+                        <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="verify.id" class="form-control" 
                                 [class.ng-invalid-control]="!Validation.EventID.test(verify.id)" type="text" placeholder="事件标号" required>
                         </div>

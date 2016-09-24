@@ -1,0 +1,9 @@
+.news-table {
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .center {
+        justify-content: initial;
+    }
+}

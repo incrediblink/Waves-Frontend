@@ -2,6 +2,9 @@
     width: 3rem;
     background-color: #bbbbbb;
     padding: 1rem 0 1rem 0;
+    height: calc(100% - 3rem);
+    position: fixed;
+    top: 3rem;
 }
 
 .admin-right {
@@ -37,4 +40,19 @@
 
 .admin-page {
     width: 100%;
+}
+
+.center {
+    justify-content: initial;
+} 
+
+@media (min-width: 768px) {
+    .admin-left {
+        height: 100%;
+        top: initial;
+    }
+
+    .center {
+        justify-content: center;
+    }
 }
