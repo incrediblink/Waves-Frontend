@@ -23,6 +23,14 @@ export class LoginService {
                         .catch(this.handleError);
     }
 
+    logout (): Observable<any> {
+        let options = new RequestOptions({ withCredentials: true });
+
+        return this.http.get(this.Global.api + 'user/logout', options)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data || { };
