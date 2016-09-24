@@ -2,11 +2,6 @@
     padding: 1rem;
 }
 
-.header-info {
-    position: absolute;
-    bottom: 4rem;
-}
-
 .header-title {
     font-weight: bold;
     color: white;
@@ -63,8 +58,9 @@
     display: flex;
     flex-direction: row;
     position: fixed;
-    top: 1rem;
+    bottom: .5rem;
     right: 1rem;
+    z-index: 100;
 }
 
 .button-follow {
@@ -72,14 +68,7 @@
     font-size: 1rem;
 }
 
-.button-bottom {
-    position: relative;
-    left: 3rem;
-}
-
 .button-share {
-    position: relative;
-    right: 3rem;
     color: #666666 !important;
 }
 
@@ -132,4 +121,27 @@
 
 .subscribe-option {
     margin: .1rem;
+}
+
+@media (min-width: 768px) {
+    .header-info {
+        position: absolute;
+        bottom: 4rem;
+        top: initial;
+    }
+
+    .follow {
+        top: 1rem;
+        bottom: initial;
+    }
+
+    .button-bottom {
+        position: relative;
+        left: 3rem;
+    }
+
+    .button-share {
+        position: relative;
+        right: 3rem;
+    }
 }

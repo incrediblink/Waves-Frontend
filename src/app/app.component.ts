@@ -19,7 +19,7 @@ import '../style/app.scss';
 })
 export class AppComponent implements OnInit, DoCheck {
     public tabs: Array<any> = [
-        { title: '事件', link: '/', icon: 'fa-newspaper-o' },
+        { title: '事件', link: '/event', icon: 'fa-newspaper-o' },
         { title: '标签', link: '/tag', icon: 'fa-tags' },
         { title: '我的', link: '/my', icon: 'fa-home' }
     ];

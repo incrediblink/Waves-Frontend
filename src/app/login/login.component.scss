@@ -3,7 +3,8 @@
     flex-direction: column;
     align-self: center;
     justify-content: center;
-    width: 28rem;
+    padding: 1rem;
+    width: 100%;
 }
 
 .icon {
@@ -29,4 +30,11 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+@media (min-width: 768px) {
+    .login-container {
+        width: 28rem;
+        padding: initial;
+    }
 }

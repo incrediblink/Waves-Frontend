@@ -1,59 +1,54 @@
 // styles applied on :host are applied on the current component, "app" in this case
 
-.for-phone {
-    display: flex;
-    flex-direction: column;
-}
-
-.for-desktop {
+.overall {
     display: flex;
     flex-direction: row;
 }
 
-.desktop-navbar {
+.overall-navbar {
     position: fixed;
     display: flex;
-    flex-direction: column;
-    width: 4rem;
-    height: 100vh;
+    flex-direction: row;
+    height: 3rem;
+    width: 100%;
     background-color: #555555;
     z-index: 100;
 }
 
 .navbar-top {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
     left: 1000rem;
-    width: 4rem;
+    height: 100%;
 }
 
 .navbar-bottom {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: fixed;
-    bottom: 0;
-    left: 1000rem;
-    width: 4rem;
-    padding-bottom: 1rem;
+    right: .5rem;
+    height: 3rem;
+    align-items: center;
 }
 
 .content {
-    margin-left: 4rem;
-    width: calc(100% - 4rem);
+    width: 100%;
+    position: absolute;
+    top: 3rem;
 }
 
 .tab {
     position: relative;
     right: 1000rem;
-    width: 4rem;
-    height: 4rem;
-    padding: .4rem;
+    width: 3rem;
+    height: 100%;
+    padding: .3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     text-decoration: none;
 }
 
@@ -67,14 +62,13 @@
 
 .tab-bottom {
     position: relative;
-    right: 1000rem;
-    width: 4rem;
-    height: 2rem;
+    width: 1.75rem;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999999;
-    font-size: 1.25rem !important;
+    font-size: 1rem !important;
     text-decoration: none;
 }
 
@@ -86,9 +80,100 @@
     color: white;
 }
 
+.tab-icon {
+    height: 100%;
+}
+
 .alert {
     position: fixed;
     bottom: 0rem;
-    width: calc(100% - 16rem);
-    margin: 0 8rem;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .overall-navbar {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        width: 4rem;
+        height: 100vh;
+        background-color: #555555;
+        z-index: 100;
+    }
+
+    .navbar-top {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 1000rem;
+        width: 4rem;
+    }
+
+    .navbar-bottom {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+        left: 1000rem;
+        width: 4rem;
+        padding-bottom: 1rem;
+        height: initial;
+    }
+
+    .content {
+        margin-left: 4rem;
+        width: calc(100% - 4rem);
+        top: 0rem;
+    }
+
+    .tab {
+        position: relative;
+        right: 1000rem;
+        width: 4rem;
+        height: 4rem;
+        padding: .4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.75rem;
+        text-decoration: none;
+    }
+
+    .tab:hover {
+        background-color: rgb(0, 160, 200);
+    }
+
+    .tab-active {
+        background-color: rgba(0, 180, 250, .5)
+    }
+
+    .tab-bottom {
+        position: relative;
+        right: 1000rem;
+        width: 4rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999999;
+        font-size: 1.25rem !important;
+        text-decoration: none;
+    }
+
+    .tab-bottom:hover {
+        color: white;
+    }
+
+    .tab-bottom-active {
+        color: white;
+    }
+
+    .alert {
+        position: fixed;
+        bottom: 0rem;
+        width: calc(100% - 16rem);
+        margin: 0 8rem;
+    }
 }

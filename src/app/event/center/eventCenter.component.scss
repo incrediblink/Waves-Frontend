@@ -1,14 +1,7 @@
 .header {
     background-image: url('/img/waves.jpg');
     padding: 1rem;
-}
-
-.icon {
-    width: 50%;
-    align-self: center;
-    position: absolute;
-    bottom: 10%;
-    color: white;
+    display: none;
 }
 
 .icon-image {
@@ -68,4 +61,19 @@
 
 .tag-margin {
     margin-right: .25rem;
+}
+
+@media (min-width: 768px) {
+    .icon {
+        width: 50%;
+        align-self: center;
+        position: absolute;
+        bottom: 10%;
+        color: white;
+        display: initial;
+    }
+
+    .header {
+        display: initial;
+    }
 }
