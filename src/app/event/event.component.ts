@@ -8,6 +8,7 @@ import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { AlertService } from '../service/alert';
 import { CookieService } from 'angular2-cookie/core';
 import { Title } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'my-event',
@@ -135,13 +136,18 @@ export class EventComponent implements OnInit, OnDestroy {
         private router: Router,
         private alertService: AlertService,
         private cookieService: CookieService,
-        private titleService: Title
+        private titleService: Title,
+        private location: Location
     ) {
         if (this.cookieService.get('waves_permission'))
             this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
     }
 
     public sub; public id;
+
+    public getEventDetail = () => {
+        
+    }
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -153,6 +159,8 @@ export class EventComponent implements OnInit, OnDestroy {
                         if (this.event.HeaderImage)
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
                         this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
+                        this.location.go('/event/' + this.event.Title);
+                        this.id = this.event._id;
                         this.ref.detectChanges();
                     }, 
                     err => console.log(err)

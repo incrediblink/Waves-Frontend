@@ -8,7 +8,7 @@
         <div class="header-info">
             <h1 class="font-title header-title">{{event.Title}}</h1>
             <div class="tag-set">
-                <a class="tag" *ngFor="let tag of tagCollection" [routerLink]="['/tag/' + tag._id]">{{tag.Title}}</a>
+                <a class="tag" *ngFor="let tag of tagCollection" [routerLink]="['/tag/' + tag.Title]">{{tag.Title}}</a>
             </div>
         </div>
     </div>

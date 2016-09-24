@@ -34,8 +34,6 @@ export class MyEventComponent {
                     this.ref.detectChanges();
                 }
             );
-            // this.alertService.push('“我的”功能尚未实现。', 'warning');
-            // this.router.navigate(['/']);
     }
 
 }
