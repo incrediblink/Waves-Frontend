@@ -114,6 +114,11 @@ export class EventAdminComponent implements OnInit {
             );
     }
 
+    public getTime = (time) => {
+        time = new Date(time);
+        return time.toLocaleString();
+    }
+
     constructor(
         private eventService: EventService, 
         private newsService: NewsService,

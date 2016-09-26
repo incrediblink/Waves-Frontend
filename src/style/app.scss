@@ -112,8 +112,8 @@ tooltip-container {
     }
 
     .content-right {
-        width: 70% !important;
-        margin-left: 30% !important;
+        width: calc(70% - 1rem) !important;
+        margin-left: calc(30% + 1rem) !important;
     }
 
     tooltip-container {

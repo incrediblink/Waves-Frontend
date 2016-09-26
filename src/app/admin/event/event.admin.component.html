@@ -120,7 +120,7 @@
                     <a href="{{news.News.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.News.Title}}</h4></a>
                     <p *ngIf="news.Abstract" class="card-text font-content">{{news.News.Abstract}}</p>
                     <div class="news-bottom">
-                        <a class="text-muted font-content">{{(news.News.Time).toLocaleString()}}</a>
+                        <a class="text-muted font-content">{{getTime(news.News.Time)}}</a>
                         <div class="button-bottom">
                             <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
                                 class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>

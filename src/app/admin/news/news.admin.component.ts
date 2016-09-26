@@ -50,7 +50,6 @@ export class NewsAdminComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Hello news');
     }
 
 }

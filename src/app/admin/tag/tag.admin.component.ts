@@ -61,7 +61,6 @@ export class TagAdminComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Hello tag');
     }
 
 }

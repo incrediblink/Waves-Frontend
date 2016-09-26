@@ -20,7 +20,7 @@
                 <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>
                 <div class="news-bottom">
-                    <a class="text-muted font-content">{{(news.Time).toLocaleString()}}</a>
+                    <a class="text-muted font-content">{{getTime(news.Time)}}</a>
                     <div class="button-bottom">
                         <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" 
                             tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>

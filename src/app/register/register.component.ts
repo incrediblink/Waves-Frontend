@@ -39,7 +39,5 @@ export class RegisterComponent implements OnInit {
             this.titleService.setTitle('注册浪潮账号');
         }
 
-    ngOnInit() {
-        console.log('Register Component');
-    }
+    ngOnInit() {}
 }

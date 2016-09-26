@@ -125,6 +125,11 @@ export class EventComponent implements OnInit, OnDestroy {
                 }
             );
     }
+
+    public getTime = time => {
+        time = new Date(time);
+        return time.toLocaleString('zh-CN');
+    }
     
     constructor(
         private eventService: EventService, 

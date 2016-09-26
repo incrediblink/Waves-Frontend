@@ -70,6 +70,7 @@
 
 .button-share {
     color: #666666 !important;
+    margin: .25rem;
 }
 
 .button-setting {
@@ -143,5 +144,6 @@
     .button-share {
         position: relative;
         right: 3rem;
+        margin: 0;
     }
 }

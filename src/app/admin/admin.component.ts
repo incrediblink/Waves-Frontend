@@ -79,8 +79,8 @@ export class AdminComponent implements OnInit, OnDestroy {
                     }
                 }
             }
-            if (!this.section || temp == 0) {
-                this.router.navigate(['/admin']);
+            if (!this.section || (temp == 0)) {
+                this.location.go('/admin/news');
             }
         });
     }
