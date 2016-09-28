@@ -10,8 +10,10 @@ export class UploadService {
             let xmlHttp = new XMLHttpRequest();
             let form = new FormData();
             xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState == 4 && xmlHttp.status == 201)
-                    resolve(JSON.parse(xmlHttp.responseText));
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 201) {
+                    let result = JSON.parse(xmlHttp.responseText);
+                    resolve(result);
+                }
             }
             form.append('file', file);
             xmlHttp.open('POST', this.Global.api + 'upload', true);
