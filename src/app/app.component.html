@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/bootstrap.min.css">
-
 <div class="overall-navbar" (mouseover)="1">
     <div class="navbar-top">
         <a routerLink="/event" 
@@ -14,7 +12,10 @@
             routerLinkActive="tab-active"
             tooltipPlacement="right"
             [tooltip]="tab.title">
-            <i [class]="'fa ' + tab.icon"></i>
+            <div class="tab-block">
+                <i [class]="'fa ' + tab.icon"></i>
+                <p class="tab-title font-content">{{tab.title}}</p>
+            </div>
         </a>
     </div> 
     <div class="navbar-bottom">

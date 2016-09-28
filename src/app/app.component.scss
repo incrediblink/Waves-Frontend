@@ -41,7 +41,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.25rem;
+    font-size: .8rem;
     text-decoration: none;
 }
 
@@ -51,6 +51,16 @@
 
 .tab-active {
     background-color: rgba(0, 180, 250, .5)
+}
+
+.tab-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab-title {
+    margin: 0;
 }
 
 .tab-bottom {
@@ -140,6 +150,10 @@
 
     .tab-active {
         background-color: rgba(0, 180, 250, .5)
+    }
+
+    .tab-title {
+        display: none;
     }
 
     .tab-bottom {
