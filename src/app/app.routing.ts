@@ -13,7 +13,7 @@ import { MyComponent } from './my';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: '', component: EventCenterComponent },
+  { path: '', redirectTo: '/event', pathMatch: 'full' },
   { path: 'event', component: EventCenterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
