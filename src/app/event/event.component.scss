@@ -1,12 +1,13 @@
-.event-header {
-    padding: 1rem;
-}
-
 .header-title {
     font-weight: bold;
     color: white;
     font-size: 3rem;
-    text-shadow: 3px 3px 0 #31708f;
+}
+
+.header-info {
+    padding: 3rem 1rem 1rem 1rem;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .75));
+    width: 100%
 }
 
 .tag-set {
@@ -27,6 +28,7 @@
 
 .header-image-source {
     position: absolute;
+    top: 1rem;
     right: 1rem;
     color: black !important;
     text-decoration: none !important;
@@ -126,9 +128,19 @@
 }
 
 @media (min-width: 768px) {
+    .event-header {
+        padding: 1rem;
+    }
+
     .header-info {
         position: absolute;
-        bottom: 4rem;
+        bottom: 0;
+        left: 0;
+        padding: 3rem 1rem 4rem 1rem;
+        top: initial;
+    }
+
+    .header-image-source {
         top: initial;
     }
 
