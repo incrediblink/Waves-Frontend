@@ -59,7 +59,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private alertService: AlertService
     ) {
-        if (!this.cookieService.get('waves_authorization')) {
+        if (!(this.cookieService.get('waves_permission').includes('Admin'))) {
             this.alertService.push('您无法访问控制面板。', 'warning');
             this.router.navigate(['/login']);
         }

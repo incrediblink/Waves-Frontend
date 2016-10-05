@@ -43,8 +43,7 @@ export class MyComponent implements OnInit {
         private Global: GlobalService,
         private location: Location
     ) { 
-        if (!(this.cookieService.get('waves_authorization') &&
-            this.cookieService.get('waves_user') &&
+        if (!(this.cookieService.get('waves_user') &&
             this.cookieService.get('waves_permission'))) {
             this.alertService.push('您需要先登录才能访问“我的”页面。', 'warning');
             this.router.navigate(['/login']);

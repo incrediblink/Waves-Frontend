@@ -52,8 +52,8 @@ export class AppComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck() {
-        if (this.cookie !== (this.cookieService.get('waves_authorization') + (this.cookieService.get('waves_permission') || ' '))) {
-            this.tabsBottom[2] = this.cookieService.get('waves_authorization')
+        if (this.cookie !== (this.cookieService.get('waves_permission') || ' ')) {
+            this.tabsBottom[2] = this.cookieService.get('waves_permission')
                 ? { title:  '登出', link: '/logout', icon: 'fa-sign-out', visible: 1 }
                 : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
 
@@ -64,16 +64,16 @@ export class AppComponent implements OnInit, DoCheck {
                 this.tabsBottom[0].visible = 0;
                 
             this.ref.detectChanges();
-            this.cookie = this.cookieService.get('waves_authorization') + (this.cookieService.get('waves_permission') || ' ');
+            this.cookie = this.cookieService.get('waves_permission') || ' ';
         }
     }
 
     ngOnInit() {
-        this.cookie = this.cookieService.get('waves_authorization');
+        this.cookie = this.cookieService.get('waves_permission') || ' ';
         if (this.cookieService.get('waves_permission'))
             this.tabsBottom[0].visible = 
                 JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? 1 : 0;
-        this.tabsBottom[2] = this.cookieService.get('waves_authorization')
+        this.tabsBottom[2] = this.cookieService.get('waves_permission')
             ? { title:  '登出', link: '/logout', icon: 'fa-sign-out', visible: 1 }
             : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 };
         this.ref.detectChanges();

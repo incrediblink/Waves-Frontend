@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService,
         private titleService: Title
     ) { 
-        if (this.cookieService.get('waves_authorization'))
+        if (this.cookieService.get('waves_permission'))
             this.router.navigate(['/']);
         this.titleService.setTitle('登录浪潮');
     }
