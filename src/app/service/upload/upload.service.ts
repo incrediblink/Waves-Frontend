@@ -11,7 +11,7 @@ export class UploadService {
             let form = new FormData();
             xmlHttp.onreadystatechange = function() {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 201) {
-                    let result = JSON.parse(xmlHttp.responseText);
+                    let result = JSON.parse(xmlHttp.responseText).data;
                     resolve(result);
                 }
             }

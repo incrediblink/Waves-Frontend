@@ -12,7 +12,9 @@ import { LoginService } from '../service/login';
 export class LogoutComponent {
 
     public logout = () => {
-        this.cookieService.removeAll();
+        document.cookie = "waves_authorization=;domain=.langchao.land;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+        document.cookie = "waves_user=;domain=.langchao.land;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+        document.cookie = "waves_permission=;domain=.langchao.land;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
         this.alertService.push('您已登出账号。', 'success');
         this.router.navigate(['/login']);
     }
