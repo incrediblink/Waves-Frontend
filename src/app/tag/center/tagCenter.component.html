@@ -1,6 +1,6 @@
 <div class="full-container">
-    <div class="content-left header font-title">
-        <p>事件标签</p>
+    <div class="content-left header font-content">
+        <p class="title">事件标签</p>
     </div>
     <div class="content-right">
         <div class="tags-container">
@@ -8,7 +8,7 @@
             <div class="tags card" *ngFor="let tag of tagCollection">
                 <a class="no-decoration" [routerLink]="['/tag/' + tag.Title]">
                     <div class="card-block tag-title-block">
-                        <h4 class="card-title tag-title">{{tag.Title}}</h4>
+                        <h4 class="card-title tag-title font-title">{{tag.Title}}</h4>
                         <div class="tag-static">
                             <span class="tag tag-primary tag-margin">{{tag.Events.length}} 个事件</span>
                         </div>

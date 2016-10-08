@@ -2,6 +2,13 @@
     display: none;
 }
 
+.title {
+    margin: 0;
+    padding: 3rem 1rem 3rem 1rem;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .75));
+    width: 100%
+}
+
 .my-container {
     padding: 1rem;
 }
@@ -9,12 +16,10 @@
 @media (min-width: 768px) {
     .header {
         background: #999999 url("img/pixels.png") repeat;
-        padding: 3rem 1rem;
         display: flex;
         justify-content: flex-end;
         font-weight: bold;
         color: white;
-        text-shadow: 3px 3px 0 #31708f;
         font-size: 4rem;
     }
 }

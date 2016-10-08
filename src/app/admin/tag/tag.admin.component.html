@@ -35,22 +35,22 @@
                 <div class="single-page admin-pages font-content">
                     <h2 class="font-title">增加事件至标签</h2>
                     <div class="form-group row">
-                        <label for="tagId" class="col-xs-3 col-md-2 col-form-label">标签序号</label>
+                        <label for="tagId" class="col-xs-3 col-md-2 col-form-label">标签</label>
                         <div class="col-xs-9 col-md-10">
-                            <input [(ngModel)]="addEvent.id" class="form-control" [class.ng-invalid-control]="!Validation.EventID.test(addEvent.id)" 
-                                type="text" placeholder="标签序号" required>
+                            <input [(ngModel)]="addEvent.id" class="form-control" [class.ng-invalid-control]="!addEvent.id"
+                                type="text" placeholder="标签名或序号" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="tagEvent" class="col-xs-3 col-md-2 col-form-label">所含事件</label>
                         <div class="col-xs-9 col-md-10">
-                            <input [(ngModel)]="addEvent.event" class="form-control" [class.ng-invalid-control]="!Validation.EventID.test(addEvent.event)"
-                                type="text" placeholder="具有该标签的事件序号" required>
+                            <input [(ngModel)]="addEvent.event" class="form-control" [class.ng-invalid-control]="!addEvent.event"
+                                type="text" placeholder="具有该标签的事件的名称或代号" required>
                         </div>
                     </div>
                     <div class="submit">
                         <button (click)="addEventService(addEvent.id, addEvent.event)" type="button" class="btn btn-primary"
-                            [disabled]="!(Validation.EventID.test(addEvent.event) && Validation.EventID.test(addEvent.id))">
+                            [disabled]="!(addEvent.event && addEvent.id)">
                             添加
                         </button>
                     </div>
