@@ -1,6 +1,6 @@
 export class GlobalService {
     root: string = 'https://' + document.domain + '/';
-    api: string = 'http://localhost:3080/';
+    api: string = 'https://api.langchao.land:38452/';
     cdn: string = 'https://s3-ap-northeast-1.amazonaws.com/wavesstatic/';
     slogan: string = '浪潮 - 渴望重回土地';
     subscribeMode = [
