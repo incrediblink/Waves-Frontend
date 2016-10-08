@@ -1,0 +1,14 @@
+<div class="full-container admin-container center">
+    <div class="page-container admin-pages-container font-content">
+        <tabset>
+            <tab heading="用户列表"
+                 [active]="tab.userList.active"
+                 (select)="tab.userList.active = true"
+                 (deselect)="tab.userList.active = false">
+                <div class="single-page admin-pages">
+                    <h2 class="font-title">用户列表</h2>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
