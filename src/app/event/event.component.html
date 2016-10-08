@@ -36,7 +36,7 @@
         </div>
         <div class="follow">
             <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
-                tooltipPlacement="bottom" [tooltip]="event.Subscriber.length != 0 ? '已有 ' + event.Subscriber.length + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
+                tooltipPlacement="bottom" [tooltip]="event.Subscriber[0] != 0 ? '已有 ' + event.Subscriber[0] + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
             <button type="button" (click)="addNewsModal.show()" class="btn btn-primary btn-sm button-follow">为该事件添加新闻</button>
         </div>
         <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
