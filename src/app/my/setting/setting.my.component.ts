@@ -12,6 +12,14 @@ export class MySettingComponent {
     
     private userInfo = JSON.parse(this.cookieService.get('waves_user'));
 
+    private connectTwitter:any = function() => {
+        window.open(this.Global.api + 'oauth/twitter', '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
+    }
+
+    private disconnectTwitter:any = function() => {
+
+    }
+
     constructor(
         private cookieService: CookieService,
         private alertService: AlertService,

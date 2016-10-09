@@ -2,10 +2,11 @@
     <h5>关联账号</h5>
     <div class="setting-bar">
         Twitter：
-        <button *ngIf="!userInfo.connect.Twitter" type="button" class="btn btn-info">关联 Twitter 账号</button>
+        <button *ngIf="!userInfo.connect.Twitter" type="button"
+                class="btn btn-info" (click)="connectTwitter">关联 Twitter 账号</button>
         <div *ngIf="userInfo.connect.Twitter" class="setting-bar">
             @{{userInfo.connect.Twitter}}
-            <button type="button" class="btn btn-link">注销 Twitter 账号</button>
+            <button type="button" class="btn btn-link" (click)="disconnectTwitter">注销 Twitter 账号</button>
         </div>
     </div>
 </div>
