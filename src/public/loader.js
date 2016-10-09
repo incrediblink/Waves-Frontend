@@ -1,1 +1,1 @@
-function loaded(){++counter<3||(document.getElementsByClassName("loader")[0].setAttribute("hidden",!0),document.getElementById("content").setAttribute("style","display: initial"))}var counter=0;
+function loaded(){document.getElementsByClassName("loader")[0].setAttribute("hidden",!0),document.getElementById("content").setAttribute("style","display:initial")}window.onload=loaded;
