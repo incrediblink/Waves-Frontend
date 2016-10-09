@@ -7,10 +7,23 @@
         <title>浪潮 - 渴望重回土地</title>
         <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
         <base href="/">
-        <link rel="stylesheet" href="/bootstrap.min.css">
+        <link rel="stylesheet" href="/loader.css">
+        <script type="text/javascript" src="/loader.js"></script>
+        <link rel="stylesheet" href="/bootstrap.min.css" onload="loaded()">
     </head>
     <body>
-        <waves></waves>
+        <div class="loader">
+            <div class="icon font-content">
+                <img class="icon-image" src="img/siteicon.svg" width="100%"/>
+                <div class="icon-slogan">
+                    <h6>渴</h6><h6>望</h6><h6>重</h6><h6>回</h6><h6>土</h6><h6>地</h6>
+                </div>
+                <div class="icon-slogan">
+                    <h6>更</h6><h6>希</h6><h6>望</h6><h6>加</h6><h6>载</h6><h6>完</h6><h6>毕</h6>
+                </div>
+            </div>
+        </div>
+        <waves id="content" onload="loaded()" hidden></waves>
         <link rel="stylesheet" href="icon/css/font-awesome.min.css">
     </body>
 </html>
