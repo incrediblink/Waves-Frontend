@@ -7,21 +7,21 @@
     background-color: rgba(0,0,0,.02);
 }
 
-.icon {
+.loader-icon {
     width: 60%;
     max-width: 15rem;
 }
 
-.icon-image {
+.loader-icon-image {
     background-color: rgb(0, 180, 250);
     background: linear-gradient(#3399CC, #005577);
     border-radius: .25rem;
     margin-bottom: .75rem;
     padding: .5rem;
-    animation: change 4s linear 0s infinite alternate;
+    animation: loading 4s linear 0s infinite alternate;
 }
 
-.icon-slogan {
+.loader-icon-slogan {
     display: flex;
     justify-content: space-between;
 }
@@ -31,7 +31,7 @@
     line-height: 125%;
 }
 
-@keyframes change {
+@keyframes loading {
     from { background: #3399CC; }
     to { background: #005577; }
 }
