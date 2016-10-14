@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { EventService } from '../service/event';
+import { NewsService } from '../service/news';
 import { TimelineService } from '../service/timeline';
 import { GlobalService } from '../global';
 import { ValidationService } from '../const/validation.service';
@@ -14,7 +15,7 @@ import { Location } from '@angular/common';
   selector: 'my-event',
   styleUrls: ['./event.component.scss'],
   templateUrl: './event.component.html',
-  providers: [EventService, TimelineService]
+  providers: [EventService, NewsService, TimelineService]
 })
 export class EventComponent implements OnInit, OnDestroy {
 
@@ -38,7 +39,44 @@ export class EventComponent implements OnInit, OnDestroy {
             'ImageUrl': null,
             'ImageSource': null,
             'SourceUrl': null
-        }
+        },
+        'Tag': []
+    };
+
+    public newsToBeEditedOrig: any = {
+        Title: '',
+        Abstract: '',
+        Time: '',
+        Url: ''
+    };
+
+    public newsToBeEdited: any = this.newsToBeEditedOrig;
+
+    public idOfNewsToBeEdited: any = '';
+
+    public editNewsCall: any = (news, modal) => {
+        this.newsToBeEdited = {
+            Title: news.Title,
+            Abstract: news.Abstract,
+            Time: news.Time.toString(),
+            Url: news.Url
+        };
+        this.idOfNewsToBeEdited = news._id;
+        modal.show();
+    };
+
+    public editNews: any = (modal) => {
+        this.newsService.edit(this.idOfNewsToBeEdited, this.newsToBeEdited)
+            .subscribe(
+                success => {
+                    this.alertService.push('修改成功，若要查看最新新闻内容请刷新页面。', 'success');
+                    modal.hide();
+                    this.newsToBeEdited = this.newsToBeEditedOrig;
+                },
+                error => {
+                    console.log(error);
+                }
+            );
     };
 
     public subscribe: any = {
@@ -67,7 +105,7 @@ export class EventComponent implements OnInit, OnDestroy {
                 }
             }
         }
-    }
+    };
 
     public subscribeMode = [{ Title: '请选择在何种情况下发出提醒', Mode: null }];
 
@@ -88,7 +126,7 @@ export class EventComponent implements OnInit, OnDestroy {
                 },
                 err => console.log(err)
             );
-    }
+    };
 
     public add = null;
 
@@ -104,17 +142,17 @@ export class EventComponent implements OnInit, OnDestroy {
                     },
                     err => this.alertService.push(err, 'warning')
                 );
-    }
+    };
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('http://widget.weibo.com/dialog/publish.php?button=pubilish&language=zh_cn&default_text=' + newsTitle + ' | ' + eventTitle + ' ' + this.Global.root + 'event/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
-    }
+    };
 
     public twitterHref: any = function(newsTitle, eventID, eventTitle) {
         window.open('https://twitter.com/intent/tweet?text=' + newsTitle + '&hashtags=' + eventTitle + ' ' + this.Global.root + 'event/' + eventID, '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
-    }
+    };
 
-    public tagCollection; private isAdmin = false;
+    private isAdmin = false;
 
     public removeNews = (news, i) => {
         this.eventService.removeNews(this.id, news)
@@ -124,15 +162,16 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.alertService.push(data, 'success');
                 }
             );
-    }
+    };
 
     public getTime = time => {
         time = new Date(time);
         return time.toLocaleString('zh-CN');
     }
-    
+
     constructor(
-        private eventService: EventService, 
+        private eventService: EventService,
+        private newsService: NewsService,
         private timelineService: TimelineService,
         private Global: GlobalService,
         private Validation: ValidationService,
@@ -150,40 +189,29 @@ export class EventComponent implements OnInit, OnDestroy {
 
     public sub; public id;
 
-    public getEventDetail = () => {
-        
-    }
-
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id'];
             this.eventService.get(this.id)
                 .subscribe(
-                    result => { 
-                        this.event = result; 
+                    result => {
+                        this.event = result;
                         if (this.event.HeaderImage)
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
                         this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.location.go('/event/' + this.event.Title);
                         this.id = this.event._id;
                         this.ref.detectChanges();
-                    }, 
+                    },
                     err => console.log(err)
                 );
             this.timelineService.get(this.id)
                 .subscribe(
-                    result => { 
-                        this.collections = result; 
-                        this.ref.detectChanges(); 
-                    }, 
-                    err => console.log(err)
-                );
-            this.eventService.getTag(this.id)
-                .subscribe(
                     result => {
-                        this.tagCollection = result;
+                        this.collections = result;
                         this.ref.detectChanges();
-                    }
+                    },
+                    err => console.log(err)
                 );
         });
     }

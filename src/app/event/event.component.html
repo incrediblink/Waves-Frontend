@@ -8,7 +8,7 @@
         <div class="header-info">
             <h1 class="font-content header-title">{{event.Title}}</h1>
             <div class="tag-set">
-                <a class="tag font-content" *ngFor="let tag of tagCollection" [routerLink]="['/tag/' + tag.Title]">{{tag.Title}}</a>
+                <a class="tag font-content" *ngFor="let tag of event.Tag" [routerLink]="['/tag/' + tag.Title]">{{tag.Title}}</a>
             </div>
         </div>
     </div>
@@ -22,13 +22,15 @@
                 <div class="news-bottom">
                     <a class="text-muted font-content">{{news.Time ? getTime(news.Time) : '加载中……'}}</a>
                     <div class="button-bottom">
-                        <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" 
+                        <a href="javascript:void(0);" (click)="twitterHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom"
                             tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share icon-twitter" aria-hidden="true"></a>
-                        <a href="javascript:void(0);" (click)="weiboHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom" 
+                        <a href="javascript:void(0);" (click)="weiboHref(news.Title, event._id, event.Title)" tooltipPlacement="bottom"
                             tooltip="分享至微博" class="fa fa-weibo no-decoration button-share icon-weibo" aria-hidden="true"></a>
-                        <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
+                        <a href="{{news.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文"
                             class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
-                        <a href="javascript:void(0);" [hidden]="!isAdmin" (click)="removeNews(news._id, i)" tooltipPlacement="bottom" 
+                        <a href="javascript:void(0);" [hidden]="!isAdmin" (click)="editNewsCall(news, editNewsModal)" tooltipPlacement="bottom"
+                            tooltip="编辑该新闻" class="fa fa-pencil no-decoration button-share icon-trash" aria-hidden="true"></a>
+                        <a href="javascript:void(0);" [hidden]="!isAdmin" (click)="removeNews(news._id, i)" tooltipPlacement="bottom"
                             tooltip="移除该新闻" class="fa fa-trash no-decoration button-share icon-trash" aria-hidden="true"></a>
                     </div>
                 </div>
@@ -36,7 +38,7 @@
         </div>
         <div class="follow">
             <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
-                tooltipPlacement="bottom" [tooltip]="event.Subscriber[0] != 0 ? '已有 ' + event.Subscriber[0] + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
+                tooltipPlacement="bottom" [tooltip]="event.Subscriber != 0 ? '已有 ' + event.Subscriber + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
             <button type="button" (click)="addNewsModal.show()" class="btn btn-primary btn-sm button-follow">为该事件添加新闻</button>
         </div>
         <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
@@ -74,13 +76,13 @@
                                 <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
                                     <li role="menuitem" *ngFor="let option of Global.notificationType">
                                         <div *ngIf="option.Permission.LoginRequired" style="position:relative;left:100rem">
-                                            <a class="dropdown-item" (click)="option.Permission.LoginRequired ? 1 : subscribe.select.notificationType(option)" 
+                                            <a class="dropdown-item" (click)="option.Permission.LoginRequired ? 1 : subscribe.select.notificationType(option)"
                                                 href="javascript:void(0);" tooltipPlacement="right" [tooltip]="option.Permission.message"
                                                 style="position:relative;right:100rem" [class.disabled]="option.Permission.LoginRequired">
                                                 {{option.Title}}
                                             </a>
                                         </div>
-                                        <a *ngIf="!option.Permission.LoginRequired" class="dropdown-item" (click)="subscribe.select.notificationType(option)" 
+                                        <a *ngIf="!option.Permission.LoginRequired" class="dropdown-item" (click)="subscribe.select.notificationType(option)"
                                             href="javascript:void(0);">
                                             {{option.Title}}
                                         </a>
@@ -99,7 +101,7 @@
                         </div>
                         <div class="submit">
                             <button *ngFor="let button of Global.notificationType"
-                                (click)="subscribeEvent(subscribeModal)" type="button" class="btn btn-primary" 
+                                (click)="subscribeEvent(subscribeModal)" type="button" class="btn btn-primary"
                                 [hidden]="subscribe.notificationType != button.Mode"
                                 [disabled]="!(subscribe.mode && subscribe.notificationType && subscribe.address && Validation[button.Mode].test(subscribe.address))">
                                 关注该事件
@@ -120,10 +122,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">新闻</label>
+                            <label class="col-xs-3 col-md-2 col-form-label">新闻</label>
                             <div class="col-xs-9 col-md-10">
-                                <input [(ngModel)]="add" class="form-control" 
-                                    [class.ng-invalid-control]="!(Validation.Url.test(add) || Validation.EventID.test(add))" 
+                                <input [(ngModel)]="add" class="form-control"
+                                    [class.ng-invalid-control]="!(Validation.Url.test(add) || Validation.EventID.test(add))"
                                     type="text" placeholder="新闻链接或代号" required>
                             </div>
                         </div>
@@ -131,6 +133,55 @@
                             <button (click)="addNews(addNewsModal)" type="button" class="btn btn-primary"
                                 [disabled]="!(Validation.Url.test(add) || Validation.EventID.test(add))">
                                 添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div bsModal #editNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content font-content">
+                    <div class="modal-header font-title">
+                        <button type="button" class="close" (click)="editNewsModal.hide()" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">修改新闻</h4>
+                    </div>
+                    <div class="modal-body">
+                        <a [href]="newsToBeEdited.Url"  target="_blank">
+                            <button type="button" class="btn btn-primary" style="margin-bottom: .5rem">
+                                访问新闻页面
+                            </button>
+                        </a>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">标题</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="newsToBeEdited.Title" class="form-control"
+                                       [class.ng-invalid-control]="!newsToBeEdited.Title"
+                                       type="text" placeholder="新闻标题（不含书引号）" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">摘要</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="newsToBeEdited.Abstract" class="form-control"
+                                       [class.ng-invalid-control]="!(newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1)"
+                                       type="text" placeholder="新闻摘要（最多 150 字）">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">时间</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="newsToBeEdited.Time" class="form-control"
+                                       [class.ng-invalid-control]="!(newsToBeEdited.Time)"
+                                       type="text" placeholder="发布时间" required>
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <button (click)="editNews(editNewsModal)" type="button" class="btn btn-primary"
+                                    [disabled]="!(newsToBeEdited.Title && (newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1) && newsToBeEdited.Time)">
+                                修改新闻
                             </button>
                         </div>
                     </div>
