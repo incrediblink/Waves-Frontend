@@ -100,7 +100,7 @@
                 <div class="single-page admin-pages">
                     <h2 class="font-title">审核新闻</h2>
                     <div class="form-group row">
-                        <label for="eventTitle" class="col-xs-3 col-md-2 col-form-label">事件</label>
+                        <label class="col-xs-3 col-md-2 col-form-label">事件</label>
                         <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="verify.id" class="form-control"
                                 [class.ng-invalid-control]="!verify.id" type="text" placeholder="事件名或代号" required>
@@ -118,13 +118,13 @@
                         <small class="text-muted">事件：{{news.Event.Title}}</small>
                     </a>
                     <a href="{{news.News.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.News.Title}}</h4></a>
-                    <p *ngIf="news.Abstract" class="card-text font-content">{{news.News.Abstract}}</p>
+                    <p *ngIf="news.News.Abstract" class="card-text font-content">{{news.News.Abstract}}</p>
                     <div class="news-bottom">
                         <a class="text-muted font-content">{{getTime(news.News.Time)}}</a>
                         <div class="button-bottom">
                             <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文"
                                 class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
-                            <a href="javascript:void(0);" (click)="editNewsCall(news, editNewsModal)" tooltipPlacement="bottom"
+                            <a href="javascript:void(0);" (click)="editNewsCall(news.News, editNewsModal)" tooltipPlacement="bottom"
                                 tooltip="编辑该新闻" class="fa fa-pencil no-decoration button-share icon-trash" aria-hidden="true"></a>
                         </div>
                     </div>

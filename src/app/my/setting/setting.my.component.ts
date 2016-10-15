@@ -15,10 +15,10 @@ export class MySettingComponent {
 
     private userInfo = JSON.parse(this.cookieService.get('waves_user'));
 
-    private renew = () => {
+    public renew = () => {
         this.userService.renew()
             .subscribe(
-                () => {
+                success => {
                     if (this.userInfo == JSON.parse(this.cookieService.get('waves_user')))
                         setTimeout(this.renew, 500);
                     else
@@ -37,7 +37,7 @@ export class MySettingComponent {
             .subscribe(
                 () => {
                     this.alertService.push('成功解除 Twitter 账户绑定。', 'success');
-                    this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
+                    this.renew();
                 }
             );
     }
