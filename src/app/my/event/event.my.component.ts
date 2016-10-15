@@ -21,7 +21,7 @@ export class MyEventComponent {
         private titleService: Title,
         private alertService: AlertService,
         private userService: UserService
-    ) { 
+    ) {
         this.titleService.setTitle('正在关注的事件 | ' + this.Global.slogan);
         this.userService.getFollowingEvent()
             .subscribe(
@@ -29,7 +29,7 @@ export class MyEventComponent {
                     this.eventCollection = data;
                     for (let event of this.eventCollection) {
                         if (event.HeaderImage)
-                            event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl;
+                            event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl + '!web';
                     }
                     this.ref.detectChanges();
                 }

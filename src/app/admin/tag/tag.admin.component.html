@@ -16,13 +16,13 @@
                     <div class="form-group row">
                         <label for="tagEvent" class="col-xs-3 col-md-2 col-form-label">所含事件</label>
                         <div class="col-xs-9 col-md-10">
-                            <input [(ngModel)]="createTag.event" class="form-control" 
-                                [class.ng-invalid-control]="!Validation.EventID.test(createTag.event)" type="text" placeholder="具有该标签的事件" required>
+                            <input [(ngModel)]="createTag.event" class="form-control"
+                                [class.ng-invalid-control]="!createTag.event" type="text" placeholder="具有该标签的事件" required>
                         </div>
                     </div>
                     <div class="submit">
                         <button (click)="createTagService(createTag.title, createTag.event)" type="button" class="btn btn-primary"
-                            [disabled]="!(createTag.title && Validation.EventID.test(createTag.event))">
+                            [disabled]="!(createTag.title && createTag.event)">
                             新建
                         </button>
                     </div>
