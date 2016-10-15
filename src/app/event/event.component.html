@@ -92,10 +92,10 @@
                         </div>
                         <div [hidden]="subscribe.notificationType != 'Email'" class="subscribe-option">
                             <div class="form-group row">
-                                <label for="email" class="col-xs-3 col-md-2 col-form-label">邮箱</label>
+                                <label class="col-xs-3 col-md-2 col-form-label">邮箱</label>
                                 <div class="col-xs-9 col-md-10">
                                     <input [(ngModel)]="subscribe.address" class="form-control" [class.ng-invalid-control]="!Validation.Email.test(subscribe.address)"
-                                        type="email" required placeholder="contact@langchao.land">
+                                        type="email" required placeholder="contact@langchao.land" [disabled]="userInfo.email">
                                 </div>
                             </div>
                         </div>

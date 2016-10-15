@@ -104,6 +104,8 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.address = null;
                     this.subscribe.notificationType = option.Mode;
                     this.subscribe.method = option.Title;
+                    if (option.Mode == 'Email' && this.userInfo.email)
+                        this.subscribe.address = this.userInfo.email;
                 }
             }
         }
@@ -182,7 +184,9 @@ export class EventComponent implements OnInit, OnDestroy {
     public getTime = time => {
         time = new Date(time);
         return time.toLocaleString('zh-CN');
-    }
+    };
+
+    private userInfo = JSON.parse(this.cookieService.get('waves_user'));
 
     constructor(
         private eventService: EventService,

@@ -20,7 +20,7 @@ export class MySettingComponent {
             .subscribe(
                 success => {
                     if (this.userInfo == JSON.parse(this.cookieService.get('waves_user')))
-                        setTimeout(this.renew, 500);
+                        setTimeout("this.renew()", 500);
                     else
                         this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
                 }
