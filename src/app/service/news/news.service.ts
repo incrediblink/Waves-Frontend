@@ -23,22 +23,34 @@ export class NewsService {
 
         return this.http.post(this.Global.api + 'news', newsInfo, options)
                         .map((res: Response) => {
-                            return { data: this.extractData(res), status: res.status }
+                            return this.extractData(res);
                         })
                         .catch(this.handleError);
     }
 
-  edit (id: string, info: any): Observable<any> {
-      let newsInfo = JSON.stringify(info);
-      let headers = new Headers({ 'Content-Type': 'text/plain' });
-      let options = new RequestOptions({ headers: headers, withCredentials: true });
+    addWithoutCrawler (info): Observable<any> {
+        info = JSON.stringify(info);
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-      return this.http.post(this.Global.api + 'news/' + id + '/edit', newsInfo, options)
-          .map((res: Response) => {
-              return { data: this.extractData(res), status: res.status }
-          })
-          .catch(this.handleError);
-  }
+        return this.http.post(this.Global.api + 'news/add/edit', info, options)
+                        .map((res: Response) => {
+                            return this.extractData(res);
+                        })
+                        .catch(this.handleError);
+    }
+
+    edit (id: string, info: any): Observable<any> {
+        let newsInfo = JSON.stringify(info);
+        let headers = new Headers({ 'Content-Type': 'text/plain' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this.http.post(this.Global.api + 'news/' + id + '/edit', newsInfo, options)
+            .map((res: Response) => {
+                return { data: this.extractData(res), status: res.status }
+            })
+            .catch(this.handleError);
+    }
 
     getUnsavedNews (): Observable<any> {
         return this.http.get(this.Global.api + 'news/unsaved')

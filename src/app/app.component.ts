@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef, NgZone } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TooltipModule } from 'ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/core';
@@ -41,13 +41,13 @@ export class AppComponent implements OnInit, DoCheck {
     public isHidden: Boolean = true;
 
     constructor(
-        private router: Router, 
+        private router: Router,
         private activatedRoute: ActivatedRoute,
-        private ref: ChangeDetectorRef, 
+        private ref: ChangeDetectorRef,
         private viewContainerRef: ViewContainerRef,
         private cookieService: CookieService,
-        private alertService: AlertService,
-        private ngZone: NgZone) {
+        private alertService: AlertService
+    ) {
             this.viewContainerRef = viewContainerRef;
     }
 
@@ -58,11 +58,11 @@ export class AppComponent implements OnInit, DoCheck {
                 : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
 
             if (this.cookieService.get('waves_permission'))
-                this.tabsBottom[0].visible = 
+                this.tabsBottom[0].visible =
                     JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? 1 : 0;
-            else 
+            else
                 this.tabsBottom[0].visible = 0;
-                
+
             this.ref.detectChanges();
             this.cookie = this.cookieService.get('waves_permission') || ' ';
         }
@@ -71,17 +71,17 @@ export class AppComponent implements OnInit, DoCheck {
     ngOnInit() {
         this.cookie = this.cookieService.get('waves_permission') || ' ';
         if (this.cookieService.get('waves_permission'))
-            this.tabsBottom[0].visible = 
+            this.tabsBottom[0].visible =
                 JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? 1 : 0;
         this.tabsBottom[2] = this.cookieService.get('waves_permission')
             ? { title:  '登出', link: '/logout', icon: 'fa-sign-out', visible: 1 }
             : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 };
         this.ref.detectChanges();
-        setInterval(this.ngZone.run(() => {
+        setInterval(() => {
             if (this.alerts != this.alertService.get()) {
                 this.alerts = this.alertService.get();
                 this.ref.detectChanges();
             }
-        }), 50);
+        }, 50);
     }
 }

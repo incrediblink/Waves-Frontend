@@ -122,16 +122,56 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-xs-3 col-md-2 col-form-label">新闻</label>
+                            <label class="col-xs-3 col-md-2 col-form-label">新闻链接</label>
                             <div class="col-xs-9 col-md-10">
-                                <input [(ngModel)]="add" class="form-control"
-                                    [class.ng-invalid-control]="!(Validation.Url.test(add) || Validation.EventID.test(add))"
-                                    type="text" placeholder="新闻链接或代号" required>
+                                <input [(ngModel)]="add.url" class="form-control"
+                                       [class.ng-invalid-control]="!(add.url && Validation.Url.test(add.url))"
+                                       type="text" placeholder="新闻链接" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">标题</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="add.title" class="form-control"
+                                       [class.ng-invalid-control]="!add.title"
+                                       type="text" placeholder="新闻标题（不含书引号）" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">新闻源</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="add.source" class="form-control"
+                                       [class.ng-invalid-control]="!add.source"
+                                       type="text" placeholder="如新京报、人民日报等" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">摘要</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="add.abstract" class="form-control"
+                                       [class.ng-invalid-control]="!(add.abstract ? add.abstract.length < 150 : 1)"
+                                       type="text" placeholder="新闻摘要（最多 150 字）">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">内容</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="add.content" class="form-control"
+                                       [class.ng-invalid-control]="!add.content"
+                                       type="text" placeholder="新闻正文（不含多媒体文件）" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">时间</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="add.time" class="form-control"
+                                       [class.ng-invalid-control]="!Validation.Time.test(add.time)"
+                                       type="text" placeholder="发布时间" required>
                             </div>
                         </div>
                         <div class="submit">
                             <button (click)="addNews(addNewsModal)" type="button" class="btn btn-primary"
-                                [disabled]="!(Validation.Url.test(add) || Validation.EventID.test(add))">
+                                [disabled]="!(add.url && Validation.Url.test(add.url) && add.source && add.title && add.content  && (add.abstract ? add.abstract.length < 150 : 1) && Validation.Time.test(add.time))">
                                 添加
                             </button>
                         </div>
@@ -174,13 +214,13 @@
                             <label class="col-xs-3 col-md-2 col-form-label">时间</label>
                             <div class="col-xs-9 col-md-10">
                                 <input [(ngModel)]="newsToBeEdited.Time" class="form-control"
-                                       [class.ng-invalid-control]="!(newsToBeEdited.Time)"
+                                       [class.ng-invalid-control]="!Validation.Time.test(newsToBeEdited.Time)"
                                        type="text" placeholder="发布时间" required>
                             </div>
                         </div>
                         <div class="submit">
                             <button (click)="editNews(editNewsModal)" type="button" class="btn btn-primary"
-                                    [disabled]="!(newsToBeEdited.Title && (newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1) && newsToBeEdited.Time)">
+                                    [disabled]="!(newsToBeEdited.Title && (newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1) && Validation.Time.test(newsToBeEdited.Time))">
                                 修改新闻
                             </button>
                         </div>

@@ -23,7 +23,7 @@ export class TagComponent implements OnInit, OnDestroy {
 
     constructor(
         private tagService: TagService,
-        private router: Router, 
+        private router: Router,
         private route: ActivatedRoute,
         private ref: ChangeDetectorRef,
         private Global: GlobalService,
@@ -40,7 +40,7 @@ export class TagComponent implements OnInit, OnDestroy {
                     tag => {
                         for (let i = 0; i < tag.Events.length; i++) {
                             if (tag.Events[i].HeaderImage)
-                                tag.Events[i].ImageUrl = this.Global.cdn + tag.Events[i].HeaderImage.ImageUrl;
+                                tag.Events[i].ImageUrl = this.Global.cdn + tag.Events[i].HeaderImage.ImageUrl + '!web';
                         }
                         this.tag = tag;
                         this.ref.detectChanges();

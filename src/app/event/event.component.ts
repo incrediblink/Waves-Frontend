@@ -128,20 +128,33 @@ export class EventComponent implements OnInit, OnDestroy {
             );
     };
 
-    public add = null;
+    public addOrig = {
+        url: '',
+        time: '',
+        content: '',
+        source: '',
+        title: '',
+        abstract: ''
+    };
+
+    public add = this.addOrig;
 
     public addNews = (modal) => {
-        if (this.Validation.EventID.test(this.add) || this.Validation.Url.test(this.add))
-            this.eventService.addNews(this.id, this.add)
-                .subscribe(
-                    data => {
-                        modal.hide();
-                        this.add = null;
-                        this.alertService.push('提交成功！', 'success');
-                        this.ref.detectChanges();
-                    },
-                    err => this.alertService.push(err, 'warning')
-                );
+        this.newsService.addWithoutCrawler(this.add)
+            .subscribe(
+                data => {
+                    this.eventService.addNews(this.id, data._id)
+                        .subscribe(
+                            data => {
+                                modal.hide();
+                                this.add = this.addOrig;
+                                this.alertService.push('提交成功！', 'success');
+                                this.ref.detectChanges();
+                            },
+                            err => this.alertService.push(err, 'warning')
+                        );
+                }
+            );
     };
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
