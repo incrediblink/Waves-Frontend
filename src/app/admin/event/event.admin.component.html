@@ -8,20 +8,20 @@
                 <div class="single-page admin-pages">
                     <h2 class="font-title">添加事件</h2>
                     <div class="form-group row">
-                        <label for="eventTitle" class="col-xs-3 col-md-2 col-form-label">事件名</label>
+                        <label class="col-xs-3 col-md-2 col-form-label">事件名</label>
                         <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="create.title" class="form-control" type="text" placeholder="事件名" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="eventNews" class="col-xs-3 col-md-2 col-form-label">首条新闻</label>
+                        <label class="col-xs-3 col-md-2 col-form-label">首条新闻</label>
                         <div class="col-xs-9 col-md-10">
-                            <input [(ngModel)]="create.news" class="form-control" [class.ng-invalid-control]="!Validation.Url.test(create.news)" type="text" placeholder="新闻链接">
+                            <input [(ngModel)]="create.news" class="form-control" [class.ng-invalid-control]="!(create.news ? (Validation.Url.test(create.news) || Validation.EventID.test(create.news)) : 1)" type="text" placeholder="新闻链接">
                         </div>
                     </div>
                     <div class="submit">
                         <button (click)="createEvent(create.title, create.news)" type="button" class="btn btn-primary"
-                            [disabled]="!(create.title && Validation.Url.test(create.news))">
+                            [disabled]="!(create.title && (add.url ? (Validation.Url.test(create.news) || Validation.EventID.test(create.news)) : 1))">
                             添加
                         </button>
                     </div>
@@ -34,13 +34,13 @@
                 <div class="single-page admin-pages font-content">
                     <h2 class="font-title">添加新闻至事件</h2>
                     <div class="form-group row">
-                        <label for="eventId" class="col-xs-3 col-md-2 col-form-label">事件</label>
+                        <label class="col-xs-3 col-md-2 col-form-label">事件</label>
                         <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="add.id" class="form-control" [class.ng-invalid-control]="!add.id" type="text" placeholder="事件名或代号" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newsUrl" class="col-xs-3 col-md-2 col-form-label">新闻</label>
+                        <label class="col-xs-3 col-md-2 col-form-label">新闻</label>
                         <div class="col-xs-9 col-md-10">
                             <input [(ngModel)]="add.url" class="form-control" [class.ng-invalid-control]="!(Validation.Url.test(add.url) || Validation.EventID.test(add.url))" type="text" placeholder="新闻链接或代号" required>
                         </div>
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="submit">
-                        <button (click)="upload(uploadImage.id, uploadImage.source, uploadImage.url)" type="button" 
+                        <button (click)="upload(uploadImage.id, uploadImage.source, uploadImage.url)" type="button"
                             class="btn btn-primary" [disabled]="!(uploadImage.id && Validation.Url.test(uploadImage.url) && uploadImage.source)">
                             添加
                         </button>
@@ -102,7 +102,7 @@
                     <div class="form-group row">
                         <label for="eventTitle" class="col-xs-3 col-md-2 col-form-label">事件</label>
                         <div class="col-xs-9 col-md-10">
-                            <input [(ngModel)]="verify.id" class="form-control" 
+                            <input [(ngModel)]="verify.id" class="form-control"
                                 [class.ng-invalid-control]="!verify.id" type="text" placeholder="事件名或代号" required>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                     <div class="news-bottom">
                         <a class="text-muted font-content">{{getTime(news.News.Time)}}</a>
                         <div class="button-bottom">
-                            <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文" 
+                            <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文"
                                 class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
                         </div>
                     </div>

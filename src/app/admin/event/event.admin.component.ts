@@ -57,7 +57,7 @@ export class EventAdminComponent implements OnInit {
     }
 
     public uploadImage = this.uploadImageOrig;
-    
+
     public addNews = (id, url, i) => {
         if (this.Validation.EventID.test(url) || this.Validation.Url.test(url))
             this.eventService.addNews(id, url)
@@ -122,12 +122,12 @@ export class EventAdminComponent implements OnInit {
     }
 
     constructor(
-        private eventService: EventService, 
+        private eventService: EventService,
         private newsService: NewsService,
         private uploadService: UploadService,
         private alertService: AlertService,
         private Validation: ValidationService,
-        private ref: ChangeDetectorRef 
+        private ref: ChangeDetectorRef
     ) {
         this.getQueue();
     }
