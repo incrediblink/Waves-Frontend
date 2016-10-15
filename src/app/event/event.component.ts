@@ -197,7 +197,7 @@ export class EventComponent implements OnInit, OnDestroy {
                     result => {
                         this.event = result;
                         if (this.event.HeaderImage)
-                            this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl
+                            this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl + '!web';
                         this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.location.go('/event/' + this.event.Title);
                         this.id = this.event._id;

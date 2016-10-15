@@ -13,7 +13,7 @@ export class EventCenterComponent {
     public eventCollection;
 
     constructor(
-        private eventCenterService: EventCenterService, 
+        private eventCenterService: EventCenterService,
         private ref: ChangeDetectorRef,
         private Global: GlobalService,
         private titleService: Title
@@ -25,7 +25,7 @@ export class EventCenterComponent {
                     this.eventCollection = result;
                     for (let event of this.eventCollection) {
                         if (event.HeaderImage)
-                            event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl;
+                            event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl + '!web';
                     }
                     this.ref.detectChanges();
                 },

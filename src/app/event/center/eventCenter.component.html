@@ -1,7 +1,7 @@
 <div class="full-container">
-    <div class="content-left header" [style.background-image]="'url(' + Global.cdn + 'waves.jpg)'">
+    <div class="content-left header" [style.background-image]="'url(' + Global.cdn + 'waves.jpg!web)'">
         <div class="icon font-content">
-            <img class="icon-image" src="img/siteicon.svg" width="100%"/>
+            <img class="icon-image" src="//assets.v2land.net/img/siteicon.svg" width="100%"/>
             <div class="icon-slogan">
                 <h6>渴</h6><h6>望</h6><h6>重</h6><h6>回</h6><h6>土</h6><h6>地</h6>
             </div>
@@ -15,7 +15,7 @@
             <h4 style="margin-bottom: 1rem">最新事件</h4>
             <div class="event card" *ngFor="let event of eventCollection">
                 <a class="no-decoration" [routerLink]="['/event/' + event.Title]">
-                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || (Global.cdn + 'default.png')) + ')'" ></div>
+                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || (Global.cdn + 'default.png!web')) + ')'" ></div>
                     <div class="card-block event-title-block">
                         <h4 class="card-title event-title">{{event.Title}}</h4>
                         <div class="event-static">

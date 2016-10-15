@@ -1,13 +1,13 @@
 <div class="overall-navbar" (mouseover)="1">
     <div class="navbar-top">
-        <a routerLink="/event" 
+        <a routerLink="/event"
             tooltipPlacement="right"
             tooltip="渴望重回土地"
             class="tab">
-            <img class="tab-icon" src="img/siteicon.svg" width="100%"/>
+            <img class="tab-icon" src="//assets.v2land.net/img/siteicon.svg" width="100%"/>
         </a>
-        <a *ngFor="let tab of tabs" 
-            [routerLink]="tab.link" 
+        <a *ngFor="let tab of tabs"
+            [routerLink]="tab.link"
             class="tab"
             routerLinkActive="tab-active"
             tooltipPlacement="right"
@@ -17,10 +17,10 @@
                 <p class="tab-title font-content">{{tab.title}}</p>
             </div>
         </a>
-    </div> 
+    </div>
     <div class="navbar-bottom">
-        <a *ngFor="let tab of tabsBottom" 
-            [routerLink]="tab.link" 
+        <a *ngFor="let tab of tabsBottom"
+            [routerLink]="tab.link"
             class="tab-bottom"
             routerLinkActive="tab-bottom-active"
             [routerLinkActiveOptions]="{ exact: true }"
