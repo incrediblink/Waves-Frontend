@@ -86,7 +86,7 @@ export class EventAdminComponent implements OnInit {
                         }
                     );
             });
-    }
+    };
 
     public verify = {
         id: null
@@ -104,7 +104,7 @@ export class EventAdminComponent implements OnInit {
                     this.ref.detectChanges();
                 }
             );
-    }
+    };
 
     public rejectNews = (id, news, i) => {
         this.eventService.rejectNews(id, news)
@@ -114,12 +114,47 @@ export class EventAdminComponent implements OnInit {
                     this.queue.splice(i, 1);
                 }
             );
-    }
+    };
 
     public getTime = (time) => {
         time = new Date(time);
         return time.toLocaleString();
-    }
+    };
+
+    public newsToBeEditedOrig: any = {
+        Title: '',
+        Abstract: '',
+        Time: '',
+        Url: ''
+    };
+
+    public newsToBeEdited: any = this.newsToBeEditedOrig;
+
+    public idOfNewsToBeEdited: any = '';
+
+    public editNewsCall: any = (news, modal) => {
+        this.newsToBeEdited = {
+            Title: news.Title,
+            Abstract: news.Abstract,
+            Time: news.Time.toString(),
+            Url: news.Url,
+            Source: news.Source
+        };
+        this.idOfNewsToBeEdited = news._id;
+        modal.show();
+    };
+
+    public editNews: any = (modal) => {
+        this.newsService.edit(this.idOfNewsToBeEdited, this.newsToBeEdited)
+            .subscribe(
+                success => {
+                    this.alertService.push('修改成功，若要查看最新新闻内容请刷新页面。', 'success');
+                    modal.hide();
+                    this.newsToBeEdited = this.newsToBeEditedOrig;
+                },
+                error => console.log(error)
+        );
+    };
 
     constructor(
         private eventService: EventService,

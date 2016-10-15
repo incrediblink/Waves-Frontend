@@ -47,7 +47,8 @@ export class EventComponent implements OnInit, OnDestroy {
         Title: '',
         Abstract: '',
         Time: '',
-        Url: ''
+        Url: '',
+        Source: ''
     };
 
     public newsToBeEdited: any = this.newsToBeEditedOrig;
@@ -59,7 +60,8 @@ export class EventComponent implements OnInit, OnDestroy {
             Title: news.Title,
             Abstract: news.Abstract,
             Time: news.Time.toString(),
-            Url: news.Url
+            Url: news.Url,
+            Source: news.Source
         };
         this.idOfNewsToBeEdited = news._id;
         modal.show();

@@ -122,7 +122,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label class="col-xs-3 col-md-2 col-form-label">新闻链接</label>
+                            <label class="col-xs-3 col-md-2 col-form-label">链接</label>
                             <div class="col-xs-9 col-md-10">
                                 <input [(ngModel)]="add.url" class="form-control"
                                        [class.ng-invalid-control]="!(add.url && Validation.Url.test(add.url))"
@@ -200,6 +200,14 @@
                                 <input [(ngModel)]="newsToBeEdited.Title" class="form-control"
                                        [class.ng-invalid-control]="!newsToBeEdited.Title"
                                        type="text" placeholder="新闻标题（不含书引号）" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">新闻源</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="newsToBeEdited.Source" class="form-control"
+                                       [class.ng-invalid-control]="!newsToBeEdited.Source"
+                                       type="text" placeholder="如新京报、人民日报等" required>
                             </div>
                         </div>
                         <div class="form-group row">

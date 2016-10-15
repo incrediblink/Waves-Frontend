@@ -124,11 +124,70 @@
                         <div class="button-bottom">
                             <a href="{{news.News.Url}}" tooltipPlacement="bottom" tooltip="跳转至原文"
                                 class="fa fa-external-link no-decoration button-share icon-source" aria-hidden="true" target="_blank"></a>
+                            <a href="javascript:void(0);" (click)="editNewsCall(news, editNewsModal)" tooltipPlacement="bottom"
+                                tooltip="编辑该新闻" class="fa fa-pencil no-decoration button-share icon-trash" aria-hidden="true"></a>
                         </div>
                     </div>
                     <div class="verify">
                         <button type="button" (click)="rejectNews(news.Event._id, news.News._id, i)" class="btn btn-danger btn-sm button-follow">拒绝</button>
                         <button type="button" (click)="addNews(news.Event._id, news.News._id, i)" class="btn btn-primary btn-sm button-follow">通过</button>
+                    </div>
+                </div>
+                <div bsModal #editNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content font-content">
+                            <div class="modal-header font-title">
+                                <button type="button" class="close" (click)="editNewsModal.hide()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">修改新闻</h4>
+                            </div>
+                            <div class="modal-body">
+                                <a [href]="newsToBeEdited.Url"  target="_blank">
+                                    <button type="button" class="btn btn-primary" style="margin-bottom: .5rem">
+                                        访问新闻页面
+                                    </button>
+                                </a>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-md-2 col-form-label">标题</label>
+                                    <div class="col-xs-9 col-md-10">
+                                        <input [(ngModel)]="newsToBeEdited.Title" class="form-control"
+                                               [class.ng-invalid-control]="!newsToBeEdited.Title"
+                                               type="text" placeholder="新闻标题（不含书引号）" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-md-2 col-form-label">新闻源</label>
+                                    <div class="col-xs-9 col-md-10">
+                                        <input [(ngModel)]="newsToBeEdited.Source" class="form-control"
+                                               [class.ng-invalid-control]="!newsToBeEdited.Source"
+                                               type="text" placeholder="如新京报、人民日报等" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-md-2 col-form-label">摘要</label>
+                                    <div class="col-xs-9 col-md-10">
+                                        <input [(ngModel)]="newsToBeEdited.Abstract" class="form-control"
+                                               [class.ng-invalid-control]="!(newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1)"
+                                               type="text" placeholder="新闻摘要（最多 150 字）">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-md-2 col-form-label">时间</label>
+                                    <div class="col-xs-9 col-md-10">
+                                        <input [(ngModel)]="newsToBeEdited.Time" class="form-control"
+                                               [class.ng-invalid-control]="!Validation.Time.test(newsToBeEdited.Time)"
+                                               type="text" placeholder="发布时间" required>
+                                    </div>
+                                </div>
+                                <div class="submit">
+                                    <button (click)="editNews(editNewsModal)" type="button" class="btn btn-primary"
+                                            [disabled]="!(newsToBeEdited.Title && (newsToBeEdited.Abstract ? newsToBeEdited.Abstract.length < 150 : 1) && Validation.Time.test(newsToBeEdited.Time))">
+                                        修改新闻
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </tab>
