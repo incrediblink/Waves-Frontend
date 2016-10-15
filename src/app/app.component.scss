@@ -116,12 +116,13 @@
     .navbar-bottom {
         display: flex;
         flex-direction: column;
+        justify-content: flex-end;
         position: fixed;
         bottom: 0;
         left: 1000rem;
         width: 4rem;
         padding-bottom: 1rem;
-        height: initial;
+        height: 8rem;
     }
 
     .content {
