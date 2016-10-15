@@ -2,24 +2,17 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions } from '@angular/http';
 import { GlobalService } from '../../global';
 
-import { Observable }     from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class UserService {
+export class OauthService {
     constructor (private http: Http, private Global: GlobalService) {}
 
-    renew (): Observable<any> {
+    disconnectTwitter (): Observable<any> {
         let options = new RequestOptions({ withCredentials: true });
-        return this.http.get(this.Global.api + 'user', options)
+        return this.http.get(this.Global.api + 'oauth/twitter/annul', options)
             .map(this.extractData)
             .catch(this.handleError);
-    }
-
-    getFollowingEvent (): Observable<any> {
-        let options = new RequestOptions({ withCredentials: true });
-        return this.http.get(this.Global.api + 'user/following', options)
-                        .map(this.extractData)
-                        .catch(this.handleError);
     }
 
     private extractData(res: Response) {
