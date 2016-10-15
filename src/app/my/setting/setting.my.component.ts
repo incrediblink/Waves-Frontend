@@ -19,17 +19,14 @@ export class MySettingComponent {
         this.userService.renew()
             .subscribe(
                 success => {
-                    if (this.userInfo == JSON.parse(this.cookieService.get('waves_user')))
-                        setTimeout("this.renew()", 500);
-                    else
-                        this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
+                    this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
+                    setTimeout("this.renew()", 750);
                 }
             );
     };
 
     private connectTwitter:any = function() {
         window.open(this.Global.api + 'oauth/twitter?a=' + Math.floor(99999999999999999999 * Math.random()), '', 'status=no,menubar=no,titlebar=no,toolbar=no,directories=no, width=600,height=400');
-        this.renew();
     };
 
     private disconnectTwitter:any = function() {
@@ -37,7 +34,6 @@ export class MySettingComponent {
             .subscribe(
                 () => {
                     this.alertService.push('成功解除 Twitter 账户绑定。', 'success');
-                    this.renew();
                 }
             );
     }
@@ -49,6 +45,6 @@ export class MySettingComponent {
         private userService: UserService,
         private oauthService: OauthService
     ) {
-
+        this.renew();
     }
 }
