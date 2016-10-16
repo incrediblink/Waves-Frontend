@@ -190,6 +190,8 @@ export class EventComponent implements OnInit, OnDestroy {
         ? JSON.parse(this.cookieService.get('waves_user'))
         : {};
 
+    private isFollowButtonShown = true;
+
     constructor(
         private eventService: EventService,
         private newsService: NewsService,

@@ -43,8 +43,11 @@
             </div>
         </div>
         <div class="follow">
-            <small class="follow-span">对这个事件感兴趣？你可以</small>
-            <div class="follow-button">
+            <i class="fa follow-close" [class.fa-chevron-circle-down]="isFollowButtonShown"
+                [class.fa-chevron-circle-up]="!isFollowButtonShown" aria-hidden="true"
+                (click)="isFollowButtonShown = !isFollowButtonShown"></i>
+            <small class="follow-span" (click)="isFollowButtonShown ? '' : (isFollowButtonShown = true)">对这个事件感兴趣？你可以……</small>
+            <div class="follow-button" [hidden]="!isFollowButtonShown">
                 <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
                     tooltipPlacement="bottom" [tooltip]="event.Subscriber != 0 ? '已有 ' + event.Subscriber + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
                 <span class="follow-or">或</span>

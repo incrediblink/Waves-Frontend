@@ -66,6 +66,7 @@
 .follow {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: rgba(192, 222, 237, .9);
     border-top: rgba(192,222,237,1) solid;
@@ -74,6 +75,14 @@
     display: flex;
     flex-direction: column;
     padding: .5rem;
+}
+
+.follow-close {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: .625rem;
+    right: 1rem;
 }
 
 .follow-span {
@@ -174,12 +183,17 @@
         top: 1rem;
         bottom: initial;
         right: 1rem;
+        left: initial;
         width: initial;
         background-color: initial;
         border-top: initial;
         justify-content: initial;
         flex-direction: row;
         padding: initial;
+    }
+
+    .follow-close {
+        display: none;
     }
 
     .follow-span {
