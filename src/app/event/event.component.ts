@@ -186,7 +186,9 @@ export class EventComponent implements OnInit, OnDestroy {
         return time.toLocaleString('zh-CN');
     };
 
-    private userInfo = JSON.parse(this.cookieService.get('waves_user'));
+    private userInfo = this.cookieService.get('waves_user')
+        ? JSON.parse(this.cookieService.get('waves_user'))
+        : {};
 
     constructor(
         private eventService: EventService,

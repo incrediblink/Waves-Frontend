@@ -32,7 +32,9 @@ export class MySettingComponent {
         private oauthService: OauthService
     ) {
         setInterval(() => {
-            this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
+            this.userInfo = this.cookieService.get('waves_user')
+                ? JSON.parse(this.cookieService.get('waves_user'))
+                : {};
         }, 500);
     }
 }
