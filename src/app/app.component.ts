@@ -90,7 +90,7 @@ export class AppComponent implements OnInit, DoCheck {
         }, 50);
 
         setInterval(() => {
-            if (this.location.isCurrentPathEqualTo('/my/setting')) {
+            if (this.location.isCurrentPathEqualTo('/my/setting') || this.location.isCurrentPathEqualTo('/event')) {
                 this.userService.renew()
                   .subscribe(() => {});
             }

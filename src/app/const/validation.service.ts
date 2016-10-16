@@ -2,7 +2,7 @@ export class ValidationService {
     Username: RegExp = /^[a-zA-Z0-9]{5,20}$/;
     Password: RegExp = /^[a-zA-Z0-9!@#$%^&*()_+-=`~\\|,.<>'"]{6,32}$/;
     Email: RegExp = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    Twitter: RegExp = /^[a-zA-Z0-9]{5,32}$/;
+    Twitter: RegExp = /^[a-zA-Z0-9]{26,28}$/;
     Time: any = {
         test: (time) => {
             time = new Date(time);

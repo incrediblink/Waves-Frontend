@@ -47,7 +47,7 @@
                 [class.fa-chevron-circle-up]="!isFollowButtonShown" aria-hidden="true"
                 (click)="isFollowButtonShown = !isFollowButtonShown"></i>
             <small class="follow-span" (click)="isFollowButtonShown ? '' : (isFollowButtonShown = true)">对这个事件感兴趣？你可以……</small>
-            <div class="follow-button" [hidden]="!isFollowButtonShown">
+            <div class="follow-button" [style.display]="isFollowButtonShown ? 'flex' : 'none'">
                 <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
                     tooltipPlacement="bottom" [tooltip]="event.Subscriber != 0 ? '已有 ' + event.Subscriber + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
                 <span class="follow-or">或</span>
@@ -66,32 +66,48 @@
                     <div class="modal-body">
                         <div class="subscribe-option-set">
                             <h4 style="margin-bottom: 1rem">请选择在什么情况下提醒你事件动态</h4>
-                            <div class="btn-group subscribe-option" dropdown keyboardNav="true">
-                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+                            <div [hidden]="!isSubscribingInASimpleWay">
+                                <div class="btn-group subscribe-option" dropdown keyboardNav="true">
+                                    <button id="simple-subscribe-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+                                        {{subscribe.situation}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-subscribe-keyboard-nav">
+                                        <li role="menuitem" *ngFor="let option of Global.simpleSubscribeMode">
+                                            <a class="dropdown-item" (click)="subscribe.select.simpleSubscribe(option)" href="javascript:void(0);">{{option.Title}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-link no-decoration" (click)="switchSubscribeOption()">高级选项</button>
+                            </div>
+                            <div class="btn-group subscribe-option" dropdown keyboardNav="true" [hidden]="isSubscribingInASimpleWay">
+                                <button id="subscribe-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
                                     {{subscribe.situation}} <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="subscribe-keyboard-nav">
                                     <li role="menuitem" *ngFor="let option of Global.subscribeMode"><a class="dropdown-item" (click)="subscribe.select.situation(option)" href="javascript:void(0);">{{option.Title}}</a></li>
                                 </ul>
                             </div>
-                            <div class="btn-group subscribe-option" dropdown keyboardNav="true">
-                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle [disabled]="subscribe.situation == '在 …… 的情况下'">
-                                    {{subscribe.time}} <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-                                    <li role="menuitem" *ngFor="let option of subscribeMode"><a class="dropdown-item" (click)="subscribe.select.time(option)" href="javascript:void(0);">{{option.Title}}</a></li>
-                                </ul>
+                            <div [hidden]="isSubscribingInASimpleWay">
+                                <div class="btn-group subscribe-option" dropdown keyboardNav="true">
+                                    <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle [disabled]="subscribe.situation == '在 …… 的情况下'">
+                                        {{subscribe.time}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                        <li role="menuitem" *ngFor="let option of subscribeMode"><a class="dropdown-item" (click)="subscribe.select.time(option)" href="javascript:void(0);">{{option.Title}}</a></li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-link no-decoration" (click)="switchSubscribeOption()">简单选项</button>
                             </div>
                             <div class="btn-group subscribe-option" dropdown keyboardNav="true">
-                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+                                <button id="subscribe-method-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
                                     {{subscribe.method}} <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="subscribe-method-keyboard-nav">
                                     <li role="menuitem" *ngFor="let option of Global.notificationType">
                                         <div *ngIf="option.Permission.LoginRequired" style="position:relative;left:100rem">
                                             <a class="dropdown-item" (click)="option.Permission.LoginRequired ? 1 : subscribe.select.notificationType(option)"
                                                 href="javascript:void(0);" tooltipPlacement="right" [tooltip]="option.Permission.message"
-                                                style="position:relative;right:100rem" [class.disabled]="option.Permission.LoginRequired">
+                                                style="position: relative; right: 100rem" [class.disabled]="option.Permission.LoginRequired">
                                                 {{option.Title}}
                                             </a>
                                         </div>
@@ -110,6 +126,24 @@
                                     <input [(ngModel)]="subscribe.address" class="form-control" [class.ng-invalid-control]="!Validation.Email.test(subscribe.address)"
                                         type="email" required placeholder="contact@langchao.land" [disabled]="userInfo.email">
                                 </div>
+                            </div>
+                        </div>
+                        <div [hidden]="subscribe.notificationType != 'Twitter'" class="subscribe-option">
+                            <label>通过我的 Twitter 账号发布推文</label>
+                            <div [hidden]="userInfo.email">
+                                抱歉，该提醒方式仅限已登录用户使用。
+                                <a href="/login" target="_blank">
+                                    <button class="btn btn-primary" (click)="renew()" [routerLink]="['/login']">登录浪潮</button>
+                                </a>
+                            </div>
+                            <div [hidden]="!(userInfo.email && !(userInfo.connect && userInfo.connect.Twitter))">
+                                请先至个人设置页面关联 Twitter 账号。
+                                <a href="/my/setting" target="_blank">
+                                    <button class="btn btn-info" (click)="renew()">关联 Twitter 账号</button>
+                                </a>
+                            </div>
+                            <div [hidden]="!(userInfo.connect && userInfo.connect.Twitter)">
+                                Twitter 账户：@{{userInfo.connect ? userInfo.connect.Twitter ? userInfo.connect.Twitter.userInfo.screen_name : '' : ''}}
                             </div>
                         </div>
                         <div class="submit">

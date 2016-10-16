@@ -107,8 +107,19 @@ export class EventComponent implements OnInit, OnDestroy {
                     if (option.Mode == 'Email' && this.userInfo.email)
                         this.subscribe.address = this.userInfo.email;
                 }
+            },
+            simpleSubscribe: (option) => {
+                this.subscribe.situation = option.Title;
+                this.subscribe.mode = option.Mode;
             }
         }
+    };
+
+    private switchSubscribeOption = () => {
+        this.subscribe.situation = '在 …… 的情况下';
+        this.subscribe.time = '在 …… 之后';
+        this.subscribe.mode = null;
+        this.isSubscribingInASimpleWay = !this.isSubscribingInASimpleWay;
     };
 
     public subscribeMode = [{ Title: '请选择在何种情况下发出提醒', Mode: null }];
@@ -190,7 +201,18 @@ export class EventComponent implements OnInit, OnDestroy {
         ? JSON.parse(this.cookieService.get('waves_user'))
         : {};
 
+    private renew = () => {
+        setInterval(() => {
+            this.userInfo = this.cookieService.get('waves_user')
+                ? JSON.parse(this.cookieService.get('waves_user'))
+                : {};
+            if (this.subscribe.notificationType == 'Twitter' && this.userInfo.connect && this.userInfo.connect.Twitter)
+                this.subscribe.address = this.userInfo.connect.Twitter.oAuthToken;
+        }, 200);
+    };
+
     private isFollowButtonShown = true;
+    private isSubscribingInASimpleWay = true;
 
     constructor(
         private eventService: EventService,
