@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
 import { AlertService } from '../../service/alert';
 import { GlobalService } from '../../global';
-import { UserService } from '../../service/user';
 import { OauthService } from '../../service/oauth';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'my-setting-home',
   templateUrl: './setting.my.component.html',
   styleUrls: ['./setting.my.component.scss'],
-  providers: [UserService, OauthService]
+  providers: [OauthService]
 })
 export class MySettingComponent {
 
@@ -31,17 +29,10 @@ export class MySettingComponent {
         private cookieService: CookieService,
         private alertService: AlertService,
         private Global: GlobalService,
-        private userService: UserService,
-        private oauthService: OauthService,
-        private location: Location
+        private oauthService: OauthService
     ) {
         setInterval(() => {
-            if (this.location.isCurrentPathEqualTo('/my/setting')) {
-                this.userService.renew()
-                    .subscribe(
-                        success => this.userInfo = JSON.parse(this.cookieService.get('waves_user'))
-                    );
-            }
-        }, 1000);
+            this.userInfo = JSON.parse(this.cookieService.get('waves_user'));
+        }, 500);
     }
 }

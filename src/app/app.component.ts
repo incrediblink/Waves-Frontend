@@ -4,6 +4,8 @@ import { TooltipModule } from 'ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/core';
 import { AlertService } from './service/alert';
 import { Observable } from 'rxjs/Observable';
+import { UserService } from './service/user';
+import { Location } from '@angular/common';
 
 import '../style/app.scss';
 
@@ -46,7 +48,9 @@ export class AppComponent implements OnInit, DoCheck {
         private ref: ChangeDetectorRef,
         private viewContainerRef: ViewContainerRef,
         private cookieService: CookieService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private location: Location,
+        private userService: UserService
     ) {
             this.viewContainerRef = viewContainerRef;
     }
@@ -83,5 +87,12 @@ export class AppComponent implements OnInit, DoCheck {
                 this.ref.detectChanges();
             }
         }, 50);
+
+        setInterval(() => {
+            if (this.location.isCurrentPathEqualTo('/my/setting')) {
+                this.userService.renew()
+                  .subscribe(() => {});
+            }
+        }, 1000);
     }
 }
