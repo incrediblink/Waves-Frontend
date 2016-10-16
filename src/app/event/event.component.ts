@@ -106,6 +106,8 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.method = option.Title;
                     if (option.Mode == 'Email' && this.userInfo.email)
                         this.subscribe.address = this.userInfo.email;
+                    if (option.Mode == 'Twitter' && this.userInfo.connect && this.userInfo.connect.Twitter)
+                        this.subscribe.address = this.userInfo.connect.Twitter.oAuthToken;
                 }
             },
             simpleSubscribe: (option) => {
