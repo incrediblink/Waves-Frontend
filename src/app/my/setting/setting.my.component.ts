@@ -4,6 +4,7 @@ import { AlertService } from '../../service/alert';
 import { GlobalService } from '../../global';
 import { UserService } from '../../service/user';
 import { OauthService } from '../../service/oauth';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'my-setting-home',
@@ -22,9 +23,7 @@ export class MySettingComponent {
     private disconnectTwitter:any = function() {
         this.oauthService.disconnectTwitter()
             .subscribe(
-                () => {
-                    this.alertService.push('成功解除 Twitter 账户绑定。', 'success');
-                }
+                () => this.alertService.push('成功解除 Twitter 账户绑定。', 'success')
             );
     };
 
@@ -33,13 +32,16 @@ export class MySettingComponent {
         private alertService: AlertService,
         private Global: GlobalService,
         private userService: UserService,
-        private oauthService: OauthService
+        private oauthService: OauthService,
+        private location: Location
     ) {
         setInterval(() => {
-            this.userService.renew()
-                .subscribe(
-                    success => this.userInfo = JSON.parse(this.cookieService.get('waves_user'))
-          );
-        }, 750);
+            if (this.location.isCurrentPathEqualTo('/my/setting')) {
+                this.userService.renew()
+                    .subscribe(
+                        success => this.userInfo = JSON.parse(this.cookieService.get('waves_user'))
+                    );
+            }
+        }, 1000);
     }
 }
