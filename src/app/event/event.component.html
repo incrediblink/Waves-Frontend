@@ -10,6 +10,12 @@
             <div class="tag-set">
                 <a class="tag font-content" *ngFor="let tag of event.Tag" [routerLink]="['/tag/' + tag.Title]">{{tag.Title}}</a>
             </div>
+            <div class="header-share">
+              <a href="javascript:void(0);" (click)="twitterHref('', event._id, event.Title)" tooltipPlacement="bottom"
+                 tooltip="分享至 Twitter" class="fa fa-twitter no-decoration button-share-white icon-twitter" aria-hidden="true"></a>
+              <a href="javascript:void(0);" (click)="weiboHref('', event._id, event.Title)" tooltipPlacement="bottom"
+                 tooltip="分享至微博" class="fa fa-weibo no-decoration button-share-white icon-weibo" aria-hidden="true"></a>
+            </div>
         </div>
     </div>
     <div class="content-right font-content">

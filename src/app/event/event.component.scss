@@ -10,6 +10,12 @@
     width: 100%
 }
 
+.header-share {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+}
+
 .tag-set {
     display: flex;
     flex-direction: row;
@@ -70,6 +76,11 @@
 
 .button-share {
     color: #666666 !important;
+    margin: .25rem;
+}
+
+.button-share-white {
+    color: #ffffff !important;
     margin: .25rem;
 }
 
