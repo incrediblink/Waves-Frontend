@@ -65,13 +65,31 @@
 
 .follow {
     position: fixed;
-    bottom: .5rem;
-    right: 1rem;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(192, 222, 237, .9);
+    border-top: rgba(192,222,237,1) solid;
+    justify-content: center;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+}
+
+.follow-span {
+    align-self: center;
+}
+
+.follow-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-follow {
     font-size: 1rem;
+    margin: .25rem;
 }
 
 .button-share {
@@ -155,6 +173,21 @@
     .follow {
         top: 1rem;
         bottom: initial;
+        right: 1rem;
+        width: initial;
+        background-color: initial;
+        border-top: initial;
+        justify-content: initial;
+        flex-direction: row;
+        padding: initial;
+    }
+
+    .follow-span {
+        display: none;
+    }
+
+    .follow-or {
+        display: none;
     }
 
     .button-bottom {

@@ -18,6 +18,7 @@ import '../style/app.scss';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    providers: [UserService]
 })
 export class AppComponent implements OnInit, DoCheck {
     public tabs: Array<any> = [
