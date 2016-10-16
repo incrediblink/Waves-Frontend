@@ -1,8 +1,17 @@
 export class GlobalService {
     root: string = 'https://' + document.domain + '/';
-    api: string = 'https://api.langchao.land:38452/';
-    cdn: string = 'https://s3-ap-northeast-1.amazonaws.com/wavesstatic/';
+    api: string = 'https://api.langchao.land:26462/';
+    cdn: string = 'https://static.v2land.net/';
     slogan: string = '浪潮 - 渴望重回土地';
+    simpleSubscribeMode = [
+        {
+            Title: '从现在起每周',
+            Mode: 'Weekly'
+        }, {
+            Title: '每当事件有七天没有新的新闻',
+            Mode: '7DaysAfterLatestNews'
+        }
+    ];
     subscribeMode = [
         {
             Title: '从现在起',
@@ -23,8 +32,8 @@ export class GlobalService {
             Title: '每当事件有 …… 日没有新闻更新',
             Options: [
                 { Title: '一天没有新的新闻', Mode: '1DayAfterLatestNews' },
-                { Title: '一周没有新的新闻', Mode: '7DayAfterLatestNews' },
-                { Title: '一个月没有新的新闻', Mode: '30DayAfterLatestNews' }
+                { Title: '一周没有新的新闻', Mode: '7DaysAfterLatestNews' },
+                { Title: '一个月没有新的新闻', Mode: '30DaysAfterLatestNews' }
             ]
         }
     ];
@@ -35,14 +44,14 @@ export class GlobalService {
             Permission: {
                 LoginRequired: false,
                 message: null
-            } 
+            }
         }, {
             Title: '用我的账号在 Twitter 上发推',
             Mode: 'Twitter',
             Permission: {
-                LoginRequired: true,
-                message: '暂不支持此种关注方式'
-            } 
+                LoginRequired: false,
+                message: null
+            }
         }
     ];
 }
