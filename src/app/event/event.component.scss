@@ -172,24 +172,24 @@
         bottom: 0;
         left: 0;
         padding: 3rem 1rem 4rem 1rem;
-        top: initial;
+        top: auto;
     }
 
     .header-image-source {
-        top: initial;
+        top: auto;
     }
 
     .follow {
         top: 1rem;
-        bottom: initial;
+        bottom: auto;
         right: 1rem;
-        left: initial;
-        width: initial;
-        background-color: initial;
-        border-top: initial;
+        left: auto;
+        width: auto;
+        background-color: transparent;
+        border-top: none;
         justify-content: initial;
         flex-direction: row;
-        padding: initial;
+        padding: 0;
     }
 
     .follow-close {
