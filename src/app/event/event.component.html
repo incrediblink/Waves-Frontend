@@ -132,7 +132,7 @@
                             <div [hidden]="userInfo.email">
                                 抱歉，该提醒方式仅限已登录用户使用。
                                 <a href="/login" target="_blank">
-                                    <button class="btn btn-primary" (click)="renew()" [routerLink]="['/login']">登录浪潮</button>
+                                    <button class="btn btn-primary" (click)="renew()">登录浪潮</button>
                                 </a>
                             </div>
                             <div [hidden]="!(userInfo.email && !(userInfo.connect && userInfo.connect.Twitter))">

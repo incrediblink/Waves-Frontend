@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, DoCheck {
 
     public tabsBottom: [any] = [
         { title: '后台', link: '/admin', icon: 'fa-lock', visible: 0 },
-        { title: '关于', link: '/about', icon: 'fa-book', visible: 1 },
+        { title: '关于以及使用指南', link: '/about', icon: 'fa-question-circle', visible: 1 },
         { title: '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
     ];
 
