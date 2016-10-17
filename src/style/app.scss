@@ -34,7 +34,7 @@
 }
 
 tooltip-container {
-    display: none;
+    opacity: 0;
 }
 
 .single-page {
@@ -113,6 +113,6 @@ tooltip-container {
     }
 
     tooltip-container {
-        display: flex;
+        opacity: 1;
     }
 }
