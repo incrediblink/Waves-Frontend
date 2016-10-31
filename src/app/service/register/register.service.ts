@@ -24,6 +24,16 @@ export class RegisterService {
                         .catch(this.handleError);
     }
 
+    verify (id): Observable<any> {
+      let options = new RequestOptions({ withCredentials: true });
+
+      return this.http.get(this.Global.api + 'user/verify/' + id, options)
+          .map((res: Response) => {
+              return this.extractData(res);
+          })
+          .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body.data || { };

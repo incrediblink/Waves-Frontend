@@ -6,6 +6,7 @@ import { EventCenterComponent } from './event/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
 import { RegisterComponent } from './register';
+import { VerifyComponent } from './register/verify';
 import { AdminComponent } from './admin';
 import { TagComponent } from './tag';
 import { TagCenterComponent } from './tag/center';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'verify/:id', component: VerifyComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/:section', component: AdminComponent },
   { path: 'tag', component: TagCenterComponent },

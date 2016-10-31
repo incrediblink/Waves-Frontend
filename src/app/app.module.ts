@@ -15,6 +15,7 @@ import { TagCenterComponent } from './tag/center';
 import { LoginComponent } from './login';
 import { LogoutComponent } from './logout';
 import { RegisterComponent } from './register';
+import { VerifyComponent } from './register/verify';
 import { AdminComponent } from './admin';
 import { TagAdminComponent } from './admin/tag';
 import { NewsAdminComponent } from './admin/news';
@@ -61,6 +62,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
+    VerifyComponent,
     AdminComponent,
     TagAdminComponent,
     NewsAdminComponent,
