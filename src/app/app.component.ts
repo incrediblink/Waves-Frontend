@@ -6,6 +6,7 @@ import { AlertService } from './service/alert';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from './service/user';
 import { Location } from '@angular/common';
+// import { MetaService } from 'ng2-meta';
 
 import '../style/app.scss';
 
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit, DoCheck {
 
     public tabsBottom: [any] = [
         { title: '后台', link: '/admin', icon: 'fa-lock', visible: 0 },
-        { title: '关于以及使用指南', link: '/about', icon: 'fa-question-circle', visible: 1 },
+        { title: '关于 & 使用指南', link: '/about', icon: 'fa-question-circle', visible: 1 },
         { title: '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
     ];
 
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit, DoCheck {
         private alertService: AlertService,
         private location: Location,
         private userService: UserService
+        // private metaService: MetaService
     ) {
             this.viewContainerRef = viewContainerRef;
     }

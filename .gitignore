@@ -53,3 +53,14 @@ __build__/**
 # IDE #
 .idea/
 *.swp
+
+*.component.js
+index.js
+*.service.js
+vendor.js
+app.routing.js
+global.js
+app.module.js
+polyfills.js
+main.js
+*.map

@@ -106,7 +106,7 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.method = option.Title;
                     if (option.Mode == 'Email' && this.userInfo.email)
                         this.subscribe.address = this.userInfo.email;
-                    if (option.Mode == 'Twitter' && this.userInfo.connect && this.userInfo.connect.Twitter)
+                    if (this.subscribe.notificationType == 'Twitter' && this.userInfo.connect && this.userInfo.connect.Twitter)
                         this.subscribe.address = this.userInfo.connect.Twitter.oAuthToken;
                 }
             },
@@ -243,8 +243,10 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.event = result;
-                        if (this.event.HeaderImage)
+                        if (this.event.HeaderImage) {
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl + '!web';
+                            // this.metaService.setTag('og:image',this.event.HeaderImage.ImageUrl);
+                        }
                         this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.location.go('/event/' + this.event.Title);
                         this.id = this.event._id;
@@ -256,6 +258,7 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.collections = result;
+                        // this.metaService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
                         this.ref.detectChanges();
                     },
                     err => console.log(err)

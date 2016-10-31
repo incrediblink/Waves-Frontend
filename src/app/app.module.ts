@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule, AlertModule, TabsModule, ModalModule, DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+// import { MetaConfig, MetaModule } from 'ng2-meta';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
@@ -30,6 +31,13 @@ import { ValidationService } from './const/validation.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
+// const metaConfig: MetaConfig = {
+//   defaults: {
+//     title: '浪潮 - 渴望重回土地',
+//     description: '如果你想记住那些曾使你牵挂的事件，这里或许是个好地方。'
+//   }
+// };
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,6 +49,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     TabsModule,
     ModalModule,
     DropdownModule
+    // MetaModule.forRoot(metaConfig)
   ],
   declarations: [
     AppComponent,
