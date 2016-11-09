@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'tag/:id', component: TagComponent },
   { path: 'my', component: MyComponent },
   { path: 'my/:section', component: MyComponent },
-  { path: 'event/:id', component: EventComponent }
+  { path: 'event/:id', component: EventComponent },
+  { path: '', redirectTo: '/event', pathMatch: 'prefix' }
 ];
 
 export const appRoutingProviders: any[] = [
