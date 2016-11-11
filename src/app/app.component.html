@@ -1,4 +1,4 @@
-<div class="overall-navbar" (mouseover)="1">
+<div class="overall-navbar">
     <div class="navbar-top">
         <a routerLink="/event"
             tooltipPlacement="right"
@@ -31,11 +31,7 @@
         </a>
     </div>
 </div>
-<div class="content" (mouseover)="1">
+<div class="content">
     <router-outlet></router-outlet>
-</div>
-<div class="alert">
-    <alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" dismissible="true" dismissOnTimeout="3000" (close)="closeAlert(i)">
-        {{ alert?.msg }}
-    </alert>
+    <ng2-toasty [position]="'bottom-center'"></ng2-toasty>
 </div>

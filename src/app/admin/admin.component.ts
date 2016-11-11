@@ -5,7 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { GlobalService } from '../global';
 import { CookieService } from 'angular2-cookie/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService } from '../service/alert';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'my-admin',
@@ -57,10 +57,10 @@ export class AdminComponent implements OnInit, OnDestroy {
         private cookieService: CookieService,
         private router: Router,
         private route: ActivatedRoute,
-        private alertService: AlertService
+        private toastyService: ToastyService
     ) {
         if (!(this.cookieService.get('waves_permission').includes('Admin'))) {
-            this.alertService.push('您无法访问控制面板。', 'warning');
+            this.toastyService.warning('您无法访问控制面板。');
             this.router.navigate(['/login']);
         }
     }

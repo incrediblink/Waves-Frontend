@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 import { RegisterService } from '../../service/register';
-import { AlertService } from '../../service/alert';
 import { Title } from '@angular/platform-browser';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'my-verifier',
@@ -20,7 +20,7 @@ export class VerifyComponent implements OnInit {
         private route: ActivatedRoute,
         private ref: ChangeDetectorRef,
         private cookieService: CookieService,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private titleService: Title
     ) {
         if (this.cookieService.get('waves_permission'))
@@ -34,11 +34,11 @@ export class VerifyComponent implements OnInit {
             this.registerService.verify(this.id)
                 .subscribe(
                     () => {
-                        this.alertService.push('验证成功！', 'success');
+                        this.toastyService.success('验证成功！');
                         this.router.navigate(['/login']);
                     },
                     () => {
-                        this.alertService.push('验证失败', 'warning');
+                        this.toastyService.error('验证失败');
                         this.router.navigate(['/']);
                     }
                 );

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService } from '../service/alert';
 import { CookieService } from 'angular2-cookie/core';
 import { Title } from '@angular/platform-browser';
 import { GlobalService } from '../global';
 import { Location } from '@angular/common';
+import { ToastyService, ToastOptions } from 'ng2-toasty';
 
 @Component({
     selector: 'my-home',
@@ -22,30 +22,36 @@ export class MyComponent implements OnInit {
             active: false,
             title: '我的设置'
         }
-    }
+    };
 
     public tabs = ['event', 'setting'];
 
     private sub; private section;
 
     public select = (tab) => {
-        this.tab[tab].active = true; 
+        this.tab[tab].active = true;
         this.titleService.setTitle(this.tab[tab].title + ' | ' + this.Global.slogan);
         this.location.go('/my/' + tab);
-    }
+    };
 
     constructor(
-        private router: Router, 
+        private router: Router,
         private route: ActivatedRoute,
-        private alertService: AlertService,
         private cookieService: CookieService,
         private titleService: Title,
         private Global: GlobalService,
-        private location: Location
-    ) { 
+        private location: Location,
+        private toastyService: ToastyService
+    ) {
         if (!(this.cookieService.get('waves_user') &&
             this.cookieService.get('waves_permission'))) {
-            this.alertService.push('您需要先登录才能访问“我的”页面。', 'warning');
+            let toastOptions: ToastOptions = {
+                title: '',
+                msg: "您需要先登录才能访问“我的”页面。",
+                showClose: true,
+                timeout: 5000
+            };
+            this.toastyService.warning(toastOptions);
             this.router.navigate(['/login']);
         }
     }

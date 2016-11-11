@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { EventService } from '../../service/event';
 import { NewsService } from '../../service/news';
 import { UploadService } from '../../service/upload';
-import { AlertService } from '../../service/alert';
+import { ToastyService } from 'ng2-toasty';
 import { ValidationService } from '../../const/validation.service';
 
 @Component({
@@ -68,7 +68,7 @@ export class EventAdminComponent implements OnInit {
                         if (i)
                             this.queue.splice(i, 1);
                     },
-                    err => this.alertService.push(err, 'warning')
+                    err => this.toastyService.warning(err)
                 );
     }
 
@@ -110,7 +110,7 @@ export class EventAdminComponent implements OnInit {
         this.eventService.rejectNews(id, news)
             .subscribe(
                 result => {
-                    this.alertService.push(result, 'success');
+                    this.toastyService.success(result);
                     this.queue.splice(i, 1);
                 }
             );
@@ -148,7 +148,7 @@ export class EventAdminComponent implements OnInit {
         this.newsService.edit(this.idOfNewsToBeEdited, this.newsToBeEdited)
             .subscribe(
                 success => {
-                    this.alertService.push('修改成功，若要查看最新新闻内容请刷新页面。', 'success');
+                    this.toastyService.success('修改成功，若要查看最新新闻内容请刷新页面。');
                     modal.hide();
                     this.newsToBeEdited = this.newsToBeEditedOrig;
                 },
@@ -160,7 +160,7 @@ export class EventAdminComponent implements OnInit {
         private eventService: EventService,
         private newsService: NewsService,
         private uploadService: UploadService,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private Validation: ValidationService,
         private ref: ChangeDetectorRef
     ) {

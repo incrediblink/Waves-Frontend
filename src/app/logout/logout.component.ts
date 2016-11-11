@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
-import { AlertService } from '../service/alert';
+import { ToastyService } from 'ng2-toasty';
 import { LoginService } from '../service/login';
 
 @Component({
@@ -16,14 +16,14 @@ export class LogoutComponent {
         document.cookie = "waves_user=;domain=.langchao.land;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
         document.cookie = "waves_permission=;domain=.langchao.land;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
         this.cookieService.removeAll();
-        this.alertService.push('您已登出账号。', 'success');
+        this.toastyService.success('您已登出账号。');
         this.router.navigate(['/login']);
-    }
+    };
 
     constructor(
         private router: Router,
         private cookieService: CookieService,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private loginService: LoginService
     ) {
         this.loginService.logout()

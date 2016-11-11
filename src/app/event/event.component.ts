@@ -6,7 +6,7 @@ import { GlobalService } from '../global';
 import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
-import { AlertService } from '../service/alert';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 import { CookieService } from 'angular2-cookie/core';
 import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
@@ -68,10 +68,19 @@ export class EventComponent implements OnInit, OnDestroy {
     };
 
     public editNews: any = (modal) => {
+        let loadingID: number;
+        let loadingToast: ToastOptions = {
+            title: '',
+            msg: "正在登录……",
+            showClose: true,
+            onAdd: (toast: ToastData) => loadingID = toast.id
+        };
+        this.toastyService.wait(loadingToast);
         this.newsService.edit(this.idOfNewsToBeEdited, this.newsToBeEdited)
             .subscribe(
                 success => {
-                    this.alertService.push('修改成功，若要查看最新新闻内容请刷新页面。', 'success');
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.success('修改成功，若要查看最新新闻内容请刷新页面。');
                     modal.hide();
                     this.newsToBeEdited = this.newsToBeEditedOrig;
                 },
@@ -127,6 +136,16 @@ export class EventComponent implements OnInit, OnDestroy {
     public subscribeMode = [{ Title: '请选择在何种情况下发出提醒', Mode: null }];
 
     public subscribeEvent: any = function(modal) {
+        let loadingID: number;
+        let loadingToast: ToastOptions = {
+            title: '',
+            msg: "正在提交关注请求……",
+            showClose: true,
+            onAdd: (toast: ToastData) => {
+                loadingID = toast.id;
+            }
+        };
+        this.toastyService.wait(loadingToast);
         this.eventService.subscribe(this.id, this.subscribe.mode, this.subscribe.notificationType, this.subscribe.address)
             .subscribe(
                 result => {
@@ -138,7 +157,8 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.subscribe.notificationType = null;
                     this.subscribe.address = null;
                     this.event.Subscriber[this.event.Subscriber.length] = 0;
-                    this.alertService.push('订阅成功！', 'success');
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.success('订阅成功！');
                     this.ref.detectChanges();
                 },
                 err => console.log(err)
@@ -165,10 +185,10 @@ export class EventComponent implements OnInit, OnDestroy {
                             data => {
                                 modal.hide();
                                 this.add = this.addOrig;
-                                this.alertService.push('提交成功！', 'success');
+                                this.toastyService.success('提交成功！');
                                 this.ref.detectChanges();
                             },
-                            err => this.alertService.push(err, 'warning')
+                            err => this.toastyService.warning(err)
                         );
                 }
             );
@@ -189,7 +209,7 @@ export class EventComponent implements OnInit, OnDestroy {
             .subscribe(
                 data => {
                     this.collections.splice(i, 1);
-                    this.alertService.push(data, 'success');
+                    this.toastyService.success(data);
                 }
             );
     };
@@ -225,7 +245,7 @@ export class EventComponent implements OnInit, OnDestroy {
         private ref: ChangeDetectorRef,
         private route: ActivatedRoute,
         private router: Router,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private cookieService: CookieService,
         private titleService: Title,
         private location: Location

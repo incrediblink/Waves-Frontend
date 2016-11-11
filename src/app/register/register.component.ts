@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 import { RegisterService } from '../service/register';
 import { ValidationService } from '../const/validation.service';
-import { AlertService } from '../service/alert';
 import { Title } from '@angular/platform-browser';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 @Component({
   selector: 'my-register',
@@ -12,32 +12,47 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './register.component.html',
   providers: [ChangeDetectorRef, RegisterService]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
     public username; public password; public email;
 
     public register = () => {
+        let loadingID: number;
+        let loadingToast: ToastOptions = {
+            title: '',
+            msg: "正在发出注册请求……",
+            showClose: true,
+            onAdd: (toast: ToastData) => {
+                loadingID = toast.id;
+            }
+        };
+        this.toastyService.wait(loadingToast);
         this.registerService.register(this.username, this.password, this.email)
             .subscribe(
-                result => this.alertService.push(result.data, 'success'),
-                err => this.alertService.push(err, 'warning')
+                result => {
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.success(result.data);
+                    this.router.navigate(['/']);
+                },
+                err => {
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.warning(err);
+                }
             );
-    }
+    };
 
     constructor
         (
             private registerService: RegisterService,
-            private router: Router, 
+            private router: Router,
             private ref: ChangeDetectorRef,
             private cookieService: CookieService,
             private Validation: ValidationService,
-            private alertService: AlertService,
-            private titleService: Title
-        ) { 
+            private titleService: Title,
+            private toastyService: ToastyService
+        ) {
             if (this.cookieService.get('waves_permission'))
                 this.router.navigate(['/']);
             this.titleService.setTitle('注册浪潮账号');
         }
-
-    ngOnInit() {}
 }

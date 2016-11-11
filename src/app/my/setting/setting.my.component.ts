@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CookieService } from 'angular2-cookie/core';
-import { AlertService } from '../../service/alert';
+import { ToastyService } from 'ng2-toasty';
 import { GlobalService } from '../../global';
 import { OauthService } from '../../service/oauth';
 
@@ -21,13 +21,13 @@ export class MySettingComponent {
     private disconnectTwitter:any = function() {
         this.oauthService.disconnectTwitter()
             .subscribe(
-                () => this.alertService.push('成功解除 Twitter 账户绑定。', 'success')
+                () => this.toastyService.success('成功解除 Twitter 账户绑定。')
             );
     };
 
     constructor(
         private cookieService: CookieService,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private Global: GlobalService,
         private oauthService: OauthService
     ) {

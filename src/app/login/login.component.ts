@@ -1,50 +1,58 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from '../service/login';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
-import { AlertService } from '../service/alert';
 import { ValidationService } from '../const/validation.service';
 import { Title } from '@angular/platform-browser';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 @Component({
   selector: 'my-login',
   styleUrls: ['./login.component.scss'],
   templateUrl: './login.component.html',
-  providers: [LoginService, ChangeDetectorRef]
+  providers: [LoginService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
     public username; public password; public helpText;
 
     constructor(
-        private loginService: LoginService, 
-        private router: Router, 
-        private ref: ChangeDetectorRef,
+        private loginService: LoginService,
+        private router: Router,
         private cookieService: CookieService,
         private Validation: ValidationService,
-        private alertService: AlertService,
-        private titleService: Title
-    ) { 
+        private titleService: Title,
+        private toastyService: ToastyService
+    ) {
         if (this.cookieService.get('waves_permission'))
             this.router.navigate(['/']);
         this.titleService.setTitle('登录浪潮');
     }
 
     login: any = function(username, password) {
+        let loadingID: number;
+        let loadingToast: ToastOptions = {
+            title: '',
+            msg: "正在登录……",
+            showClose: true,
+            onAdd: (toast: ToastData) => {
+                loadingID = toast.id;
+            }
+        };
+        this.toastyService.wait(loadingToast);
         this.loginService
             .login(username, password)
             .subscribe(
                 result => {
                     if (result.status == 200)
                         this.router.navigate(['/']);
-                    this.alertService.push('您已成功登录。', 'success');
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.success("登录成功。");
                 },
                 error => {
-                    this.alertService.push(error, 'danger');
-                    this.ref.detectChanges();
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.error(error);
                 }
             );
-    }
-
-    ngOnInit() {}
+    };
 }

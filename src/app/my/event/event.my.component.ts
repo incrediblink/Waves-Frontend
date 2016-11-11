@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from '../../service/alert';
+import { ToastyService } from 'ng2-toasty';
 import { GlobalService } from '../../global';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../../service/user';
@@ -19,7 +19,7 @@ export class MyEventComponent {
         private ref: ChangeDetectorRef,
         private Global: GlobalService,
         private titleService: Title,
-        private alertService: AlertService,
+        private toastyService: ToastyService,
         private userService: UserService
     ) {
         this.titleService.setTitle('正在关注的事件 | ' + this.Global.slogan);

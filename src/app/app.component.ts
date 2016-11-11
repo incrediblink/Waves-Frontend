@@ -1,11 +1,9 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TooltipModule } from 'ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/core';
-import { AlertService } from './service/alert';
-import { Observable } from 'rxjs/Observable';
 import { UserService } from './service/user';
 import { Location } from '@angular/common';
+import { ToastyService, ToastyConfig, ToastOptions, ToastyComponent } from 'ng2-toasty';
 // import { MetaService } from 'ng2-meta';
 
 import '../style/app.scss';
@@ -34,12 +32,6 @@ export class AppComponent implements OnInit, DoCheck {
         { title: '登录', link: '/login', icon: 'fa-sign-in', visible: 1 }
     ];
 
-    public alerts: Array<Object> = [];
-
-    public closeAlert(i:number):void {
-        this.alerts.splice(i, 1);
-    }
-
     private cookie;
 
     public isHidden: Boolean = true;
@@ -50,12 +42,14 @@ export class AppComponent implements OnInit, DoCheck {
         private ref: ChangeDetectorRef,
         private viewContainerRef: ViewContainerRef,
         private cookieService: CookieService,
-        private alertService: AlertService,
         private location: Location,
-        private userService: UserService
+        private userService: UserService,
+        private toastyService: ToastyService,
+        private toastyConfig: ToastyConfig
         // private metaService: MetaService
     ) {
-            this.viewContainerRef = viewContainerRef;
+        this.viewContainerRef = viewContainerRef;
+        this.toastyConfig.theme = 'bootstrap';
     }
 
     ngDoCheck() {
@@ -84,12 +78,6 @@ export class AppComponent implements OnInit, DoCheck {
             ? { title:  '登出', link: '/logout', icon: 'fa-sign-out', visible: 1 }
             : { title:  '登录', link: '/login', icon: 'fa-sign-in', visible: 1 };
         this.ref.detectChanges();
-        setInterval(() => {
-            if (this.alerts != this.alertService.get()) {
-                this.alerts = this.alertService.get();
-                this.ref.detectChanges();
-            }
-        }, 50);
 
         setInterval(() => {
             if (this.location.isCurrentPathEqualTo('/my/setting') || this.location.isCurrentPathEqualTo('/event')) {

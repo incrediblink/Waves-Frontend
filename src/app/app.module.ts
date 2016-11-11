@@ -2,6 +2,7 @@ import { NgModule, ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { ToastyModule } from 'ng2-toasty';
 import { TooltipModule, AlertModule, TabsModule, ModalModule, DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 // import { MetaConfig, MetaModule } from 'ng2-meta';
@@ -27,7 +28,6 @@ import { MySettingComponent } from './my/setting';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { GlobalService } from './global';
-import { AlertService } from './service/alert';
 import { ValidationService } from './const/validation.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -49,8 +49,13 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     AlertModule,
     TabsModule,
     ModalModule,
-    DropdownModule
+    DropdownModule,
+    ToastyModule.forRoot()
     // MetaModule.forRoot(metaConfig)
+  ],
+  exports: [
+    BrowserModule,
+    ToastyModule
   ],
   declarations: [
     AppComponent,
@@ -76,7 +81,6 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     Title,
     CookieService,
     GlobalService,
-    AlertService,
     ValidationService,
     appRoutingProviders
   ],
