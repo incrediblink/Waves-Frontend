@@ -71,7 +71,7 @@ export class EventComponent implements OnInit, OnDestroy {
         let loadingID: number;
         let loadingToast: ToastOptions = {
             title: '',
-            msg: "正在登录……",
+            msg: "正在提交修改请求……",
             showClose: true,
             onAdd: (toast: ToastData) => loadingID = toast.id
         };
