@@ -20,7 +20,7 @@
     </div>
     <div class="content-right font-content">
         <div class="timeline">
-            <h4 style="margin-bottom: 1rem">事件相关新闻</h4>
+            <h4 style="margin-bottom: 1rem; font-weight: bold">事件相关新闻</h4>
             <div class="card card-block news" *ngFor="let news of collections; let i = index">
                 <small class="text-muted">{{news.Source}}</small>
                 <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>

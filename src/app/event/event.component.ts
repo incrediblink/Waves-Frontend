@@ -186,6 +186,7 @@ export class EventComponent implements OnInit, OnDestroy {
                                 modal.hide();
                                 this.add = this.addOrig;
                                 this.toastyService.success('提交成功！');
+                                this.add = this.addOrig;
                                 this.ref.detectChanges();
                             },
                             err => this.toastyService.warning(err)

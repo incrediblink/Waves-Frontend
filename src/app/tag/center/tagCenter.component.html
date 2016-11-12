@@ -4,7 +4,7 @@
     </div>
     <div class="content-right">
         <div class="tags-container">
-            <h4 class="font-content" style="margin-bottom: 1rem; width: 100%">最新事件标签</h4>
+            <h4 class="font-content" style="margin-bottom: 1rem; width: 100%; font-weight: bold">最新事件标签</h4>
             <div class="tags card" *ngFor="let tag of tagCollection">
                 <a class="no-decoration" [routerLink]="['/tag/' + tag.Title]">
                     <div class="card-block tag-title-block">
