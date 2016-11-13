@@ -114,7 +114,7 @@ input {
 
     .content-left {
         position: fixed;
-        width: 30%;
+        width: calc(.3 * (100% - 4rem));
         height: 100%;
         max-width: 30rem;
         display: flex !important;

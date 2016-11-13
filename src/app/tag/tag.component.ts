@@ -50,7 +50,7 @@ export class TagComponent implements OnInit, OnDestroy {
                     },
                     err => {
                         this.toastyService.warning("你所查看的标签不存在或已被隐藏！");
-                        this.router.navigate(['/']);
+                        this.router.navigate(['/event']);
                     }
                 );
         });

@@ -7,7 +7,7 @@
             <h4 style="margin-bottom: 1rem; font-weight: bold">具有标签“{{tag.Title}}”的事件</h4>
             <div class="event card" *ngFor="let event of tag.Events">
                 <a class="no-decoration" [routerLink]="['/event/' + event.Title]">
-                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || Global.cdn + 'img/waves.jpg!web') + ')'" ></div>
+                    <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || '') + ')'" ></div>
                     <div class="card-block event-title-block">
                         <h4 class="card-title event-title">{{event.Title}}</h4>
                         <div class="event-static">

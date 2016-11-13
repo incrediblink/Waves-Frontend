@@ -1,24 +1,30 @@
-var width = getScrollbarWidth(), origWidthA = 0, origWidthB = 0;
+var width = getScrollbarWidth(), origWidthA = 0, origWidthB = 0, clientWidth = 0;
 ab();
 
 function ab() {
   var a = document.getElementsByClassName("content")[0];
   var b = document.getElementsByClassName("content-left")[0];
   var c = document.getElementById("fill");
+  var d = document.getElementsByClassName("about-container")[0];
+  var e = document.getElementsByClassName("overall-navbar")[0].offsetWidth;
   if (a) {
     if (document.documentElement.clientWidth > 768) {
-      if (origWidthA == 0)
+      if (origWidthA == 0 || clientWidth != document.documentElement.clientWidth) {
+        a.style.width = (document.documentElement.clientWidth - e) + 'px';
         origWidthA = window.innerWidth <= document.documentElement.clientWidth
           ? a.offsetWidth
           : a.offsetWidth + width;
-      a.style.width = (origWidthA - width) + 'px';
+        clientWidth = document.documentElement.clientWidth;
+      }
+      if (!d)
+        a.style.width = (origWidthA - width) + 'px';
       if (b) {
         if (origWidthB == 0)
           origWidthB = b.offsetWidth;
         if (b.offsetWidth > 30)
           b.style.width = (.3 * (origWidthA - width)) + 'px';
       }
-      if (window.innerWidth <= document.documentElement.clientWidth)
+      if (window.innerWidth <= document.documentElement.clientWidth && !d)
         c.style.width = width + 'px';
       else
         c.style.width = 0;

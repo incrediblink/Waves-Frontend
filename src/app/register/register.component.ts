@@ -32,7 +32,7 @@ export class RegisterComponent {
                 result => {
                     this.toastyService.clear(loadingID);
                     this.toastyService.success(result.data);
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/event']);
                 },
                 err => {
                     this.toastyService.clear(loadingID);
@@ -52,7 +52,7 @@ export class RegisterComponent {
             private toastyService: ToastyService
         ) {
             if (this.cookieService.get('waves_permission'))
-                this.router.navigate(['/']);
+                this.router.navigate(['/event']);
             this.titleService.setTitle('注册浪潮账号');
         }
 }
