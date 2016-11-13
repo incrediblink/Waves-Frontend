@@ -43,6 +43,7 @@
     color: white;
     font-size: .8rem;
     text-decoration: none;
+    transition: background-color .5s;
 }
 
 .tab:hover {
@@ -73,6 +74,7 @@
     color: #999999;
     font-size: 1rem !important;
     text-decoration: none;
+    transition: color .5s;
 }
 
 .tab-bottom:hover {
