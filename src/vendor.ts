@@ -13,3 +13,4 @@ import '@angularclass/hmr';
 // You can import js, ts, css, sass, ...
 
 import './style/app.scss';
+import './public/scrollbarDetect.js';
