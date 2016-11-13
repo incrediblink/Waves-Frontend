@@ -273,7 +273,10 @@ export class EventComponent implements OnInit, OnDestroy {
                         this.id = this.event._id;
                         this.ref.detectChanges();
                     },
-                    err => console.log(err)
+                    err => {
+                        this.toastyService.warning('你所查看的事件不存在或已被隐藏！');
+                        this.router.navigate(['/']);
+                    }
                 );
             this.timelineService.get(this.id)
                 .subscribe(
@@ -282,7 +285,7 @@ export class EventComponent implements OnInit, OnDestroy {
                         // this.metaService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
                         this.ref.detectChanges();
                     },
-                    err => console.log(err)
+                    err => this.router.navigate(['/'])
                 );
         });
     }

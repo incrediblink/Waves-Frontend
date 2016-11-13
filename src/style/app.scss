@@ -94,12 +94,12 @@ tooltip-container {
     transition: background-color .5s, cursor .5s, opacity .5s, color .5s, border-color .5s;
 }
 
-.button-share {
-    transition: background-color .2s;
+.button-share-white, .button-share {
+    transition: color .2s;
 }
 
-.button-share-white {
-  transition: color .2s;
+.card, .dropdown-item {
+    transition: background-color .2s;
 }
 
 input {
@@ -226,22 +226,21 @@ input {
  ***************/
 
 #toasty .toast.toasty-theme-bootstrap {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 12px;
-  border-radius: 4px;
+  font-size: 1rem;
+  border-radius: .25rem;
   border: 1px solid transparent;
 }
 #toasty .toast.toasty-theme-bootstrap .close-button:after {
   content: 'x';
   color: #ffffff;
-  font-size: 17px;
+  font-size: 1.5rem;
   font-weight: 100;
 }
 #toasty .toast.toasty-theme-bootstrap .toast-text {
   color: #ffffff;
 }
 #toasty .toast.toasty-theme-bootstrap .toast-text .toast-title {
-  font-size: 13px;
+  font-size: 1rem;
 }
 #toasty .toast.toasty-theme-bootstrap .toast-text .toast-msg {
   /**/

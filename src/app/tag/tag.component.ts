@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TagService } from '../service/tag';
 import { GlobalService } from '../global';
 import { Title } from '@angular/platform-browser';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'my-tag',
@@ -27,7 +28,8 @@ export class TagComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private ref: ChangeDetectorRef,
         private Global: GlobalService,
-        private titleService: Title
+        private titleService: Title,
+        private toastyService: ToastyService
     ) { }
 
     public sub; public id;
@@ -45,6 +47,10 @@ export class TagComponent implements OnInit, OnDestroy {
                         this.tag = tag;
                         this.ref.detectChanges();
                         this.titleService.setTitle('标签 - ' + this.tag.Title + ' | ' + this.Global.slogan);
+                    },
+                    err => {
+                        this.toastyService.warning("你所查看的标签不存在或已被隐藏！");
+                        this.router.navigate(['/']);
                     }
                 );
         });
