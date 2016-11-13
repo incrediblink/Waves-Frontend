@@ -8,24 +8,24 @@ function ab() {
   if (a) {
     if (document.documentElement.clientWidth > 768) {
       if (origWidthA == 0)
-        origWidthA = a.offsetWidth;
-      a.setAttribute('style', "width: " + (origWidthA - width) + "px");
+        origWidthA = window.innerWidth <= document.documentElement.clientWidth
+          ? a.offsetWidth
+          : a.offsetWidth + width;
+      a.style.width = (origWidthA - width) + 'px';
       if (b) {
         if (origWidthB == 0)
           origWidthB = b.offsetWidth;
-        if (b.offsetWidth > 20)
-          b.setAttribute('style', "width: " + (.3333 * origWidthA - width) + "px");
+        if (b.offsetWidth > 30)
+          b.style.width = (.3 * (origWidthA - width)) + 'px';
       }
       if (window.innerWidth <= document.documentElement.clientWidth)
-        c.setAttribute('style', "width:" + width + "px");
+        c.style.width = width + 'px';
       else
-        c.setAttribute('style', "width:0");
+        c.style.width = 0;
     } else if (document.documentElement.clientWidth > 0 && document.documentElement.clientWidth <= 768) {
-      if (origWidthA)
-        a.setAttribute('style', "width: 100%");
-      if (origWidthB)
-        b.setAttribute('style', "width: 100%");
-
+      a.style.width = "100%";
+      b.style.width = "100%";
+      c.style.width = 0;
     }
   }
   setTimeout(ab, 200);
