@@ -1,9 +1,9 @@
 <div class="full-container">
-    <div class="content-left admin-left">
+    <div class="admin-left">
         <div class="admin-navbar">
-            <a *ngFor="let tab of tabs" 
-                (click)="switchTab(tab.title)" 
-                href="javascript:void(0)" 
+            <a *ngFor="let tab of tabs"
+                (click)="switchTab(tab.title)"
+                href="javascript:void(0)"
                 class="admin-tab font-content no-decoration"
                 [class.admin-tab-active]="!tab.hidden"
                 tooltipPlacement="right"

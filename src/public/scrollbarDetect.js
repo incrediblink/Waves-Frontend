@@ -28,7 +28,7 @@ function ab() {
       c.style.width = 0;
     }
   }
-  setTimeout(ab, 200);
+  setTimeout(ab, 10);
 }
 
 function getScrollbarWidth() {
