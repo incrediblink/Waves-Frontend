@@ -1,4 +1,4 @@
-var width = getScrollbarWidth(), origWidthA = 0, origWidthB = 0, clientWidth = 0;
+var width = getScrollbarWidth(), origWidthA = 0, origWidthB = 0, windowWidth = 0;
 ab();
 
 function ab() {
@@ -6,28 +6,31 @@ function ab() {
   var b = document.getElementsByClassName("content-left")[0];
   var c = document.getElementById("fill");
   var d = document.getElementsByClassName("about-container")[0];
-  var e = document.getElementsByClassName("overall-navbar")[0].offsetWidth;
-  if (a) {
-    if (document.documentElement.clientWidth > 768) {
-      if (origWidthA == 0 || clientWidth != document.documentElement.clientWidth) {
-        a.style.width = (document.documentElement.clientWidth - e) + 'px';
-        origWidthA = window.innerWidth <= document.documentElement.clientWidth
-          ? a.offsetWidth
-          : a.offsetWidth + width;
-        clientWidth = document.documentElement.clientWidth;
+  var e = document.getElementsByClassName("overall-navbar")[0];
+  var f = document.getElementsByClassName("follow")[0];
+  if (a && e) {
+    if (window.innerWidth > 768) {
+      if (origWidthA == 0 || windowWidth != window.innerWidth) {
+        origWidthA = window.innerWidth - e.offsetWidth - width;
+        windowWidth = window.innerWidth;
       }
       if (!d)
-        a.style.width = (origWidthA - width) + 'px';
+        a.style.width = origWidthA + 'px';
+      else
+        a.style.width = (window.innerWidth - e.offsetWidth) + 'px';
       if (b) {
         if (origWidthB == 0)
           origWidthB = b.offsetWidth;
         if (b.offsetWidth > 30)
-          b.style.width = (.3 * (origWidthA - width)) + 'px';
+          b.style.width = (.3 * origWidthA) + 'px';
       }
       if (window.innerWidth <= document.documentElement.clientWidth && !d)
         c.style.width = width + 'px';
       else
         c.style.width = 0;
+      if (f) {
+        f.setAttribute('style', "right: calc(1rem - " + (window.innerWidth <= document.documentElement.clientWidth ? 0 : width) + "px)");
+      }
     } else if (document.documentElement.clientWidth > 0 && document.documentElement.clientWidth <= 768) {
       a.style.width = "100%";
       b.style.width = "100%";
