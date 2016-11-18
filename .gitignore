@@ -55,7 +55,6 @@ __build__/**
 *.swp
 
 *.component.js
-index.js
 *.service.js
 vendor.js
 app.routing.js
