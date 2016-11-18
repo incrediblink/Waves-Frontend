@@ -5,7 +5,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'my-event-center',
-  styleUrls: ['./eventCenter.component.scss'],
+  styleUrls: ['eventCenter.component.scss'],
   templateUrl: './eventCenter.component.html',
   providers: [EventCenterService]
 })

@@ -5,7 +5,7 @@ import { ValidationService } from '../../const/validation.service';
 @Component({
   selector: 'my-news-admin',
   templateUrl: './news.admin.component.html',
-  styleUrls: ['./news.admin.component.scss'],
+  styleUrls: ['news.admin.component.scss'],
   providers: [NewsService]
 })
 export class NewsAdminComponent implements OnInit {

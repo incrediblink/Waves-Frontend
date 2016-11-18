@@ -6,9 +6,9 @@ import { GlobalService } from '../../global';
 
 @Component({
   selector: 'my-tag-center',
-  styleUrls: ['./tagCenter.component.scss'],
+  styleUrls: ['tagCenter.component.css'],
   templateUrl: './tagCenter.component.html',
-  providers: [ChangeDetectorRef, TagService]
+  providers: [TagService]
 })
 export class TagCenterComponent implements OnInit {
     public tagCollection;

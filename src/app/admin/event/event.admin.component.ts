@@ -8,7 +8,7 @@ import { ValidationService } from '../../const/validation.service';
 @Component({
   selector: 'my-event-admin',
   templateUrl: './event.admin.component.html',
-  styleUrls: ['./event.admin.component.scss'],
+  styleUrls: ['event.admin.component.scss'],
   providers: [EventService, UploadService, NewsService]
 })
 export class EventAdminComponent implements OnInit {

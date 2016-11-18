@@ -7,13 +7,13 @@ import { ValidationService } from '../const/validation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
-import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 
 @Component({
   selector: 'my-event',
-  styleUrls: ['./event.component.scss'],
+  styleUrls: ['event.component.scss'],
   templateUrl: './event.component.html',
   providers: [EventService, NewsService, TimelineService]
 })
@@ -220,14 +220,14 @@ export class EventComponent implements OnInit, OnDestroy {
         return time.toLocaleString('zh-CN');
     };
 
-    private userInfo = this.cookieService.get('waves_user')
-        ? JSON.parse(this.cookieService.get('waves_user'))
+    private userInfo = Cookie.get('waves_user')
+        ? JSON.parse(Cookie.get('waves_user'))
         : {};
 
     private renew = () => {
         setInterval(() => {
-            this.userInfo = this.cookieService.get('waves_user')
-                ? JSON.parse(this.cookieService.get('waves_user'))
+            this.userInfo = Cookie.get('waves_user')
+                ? JSON.parse(Cookie.get('waves_user'))
                 : {};
             if (this.subscribe.notificationType == 'Twitter' && this.userInfo.connect && this.userInfo.connect.Twitter)
                 this.subscribe.address = this.userInfo.connect.Twitter.oAuthToken;
@@ -247,12 +247,11 @@ export class EventComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private toastyService: ToastyService,
-        private cookieService: CookieService,
         private titleService: Title,
         private location: Location
     ) {
-        if (this.cookieService.get('waves_permission'))
-            this.isAdmin = JSON.parse(this.cookieService.get('waves_permission')).includes('Admin') ? true : false;
+        if (Cookie.get('waves_permission'))
+            this.isAdmin = JSON.parse(Cookie.get('waves_permission')).includes('Admin') ? true : false;
     }
 
     public sub; public id;

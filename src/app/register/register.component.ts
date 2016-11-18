@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { RegisterService } from '../service/register';
 import { ValidationService } from '../const/validation.service';
 import { Title } from '@angular/platform-browser';
@@ -8,9 +8,9 @@ import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 @Component({
   selector: 'my-register',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['register.component.scss'],
   templateUrl: './register.component.html',
-  providers: [ChangeDetectorRef, RegisterService]
+  providers: [RegisterService]
 })
 export class RegisterComponent {
 
@@ -46,12 +46,11 @@ export class RegisterComponent {
             private registerService: RegisterService,
             private router: Router,
             private ref: ChangeDetectorRef,
-            private cookieService: CookieService,
             private Validation: ValidationService,
             private titleService: Title,
             private toastyService: ToastyService
         ) {
-            if (this.cookieService.get('waves_permission'))
+            if (Cookie.get('waves_permission'))
                 this.router.navigate(['/event']);
             this.titleService.setTitle('注册浪潮账号');
         }

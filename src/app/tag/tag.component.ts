@@ -7,9 +7,9 @@ import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'my-tag',
-  styleUrls: ['./tag.component.scss'],
+  styleUrls: ['tag.component.scss'],
   templateUrl: './tag.component.html',
-  providers: [ChangeDetectorRef, TagService]
+  providers: [TagService]
 })
 export class TagComponent implements OnInit, OnDestroy {
 

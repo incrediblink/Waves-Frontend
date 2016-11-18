@@ -1,12 +1,20 @@
-import { NgModule, ApplicationRef, ChangeDetectorRef } from '@angular/core';
+import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { ToastyModule } from 'ng2-toasty';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { TooltipModule, AlertModule, TabsModule, ModalModule, DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
-// import { MetaConfig, MetaModule } from 'ng2-meta';
+import { ToastyModule } from 'ng2-toasty';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
+/*
+ * Platform and Environment providers/directives/pipes
+ */
+import { ENV_PROVIDERS } from './environment';
+import { ROUTES } from './app.routes';
+
+// App is our top level component
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about';
 import { EventComponent } from './event';
@@ -25,82 +33,111 @@ import { UserAdminComponent } from './admin/user';
 import { MyComponent } from './my';
 import { MyEventComponent } from './my/event';
 import { MySettingComponent } from './my/setting';
-import { routing, appRoutingProviders } from './app.routing';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InternalStateType } from './app.service';
 
 import { GlobalService } from './global';
 import { ValidationService } from './const/validation.service';
 
-import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+// Application wide providers
+const APP_PROVIDERS = [
+  ...APP_RESOLVER_PROVIDERS,
+  AppState
+];
 
-// const metaConfig: MetaConfig = {
-//   defaults: {
-//     title: '浪潮 - 渴望重回土地',
-//     description: '如果你想记住那些曾使你牵挂的事件，这里或许是个好地方。'
-//   }
-// };
+type StoreType = {
+  state: InternalStateType,
+  restoreInputValues: () => void,
+  disposeOldHosts: () => void
+};
 
+/**
+ * `AppModule` is the main entry point into Angular2's bootstraping process
+ */
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    routing,
-    TooltipModule,
-    AlertModule,
-    TabsModule,
-    ModalModule,
-    DropdownModule,
-    ToastyModule.forRoot()
-    // MetaModule.forRoot(metaConfig)
-  ],
-  exports: [
-    BrowserModule,
-    ToastyModule
-  ],
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    EventComponent,
-    EventCenterComponent,
-    TagComponent,
-    TagCenterComponent,
-    LoginComponent,
-    LogoutComponent,
-    RegisterComponent,
-    VerifyComponent,
-    AdminComponent,
-    TagAdminComponent,
-    NewsAdminComponent,
-    EventAdminComponent,
-    UserAdminComponent,
-    MyComponent,
-    MyEventComponent,
-    MySettingComponent
-  ],
-  providers: [
-    Title,
-    CookieService,
-    GlobalService,
-    ValidationService,
-    appRoutingProviders
-  ],
-  bootstrap: [AppComponent]
+    bootstrap: [ AppComponent ],
+    declarations: [
+        AppComponent,
+        AboutComponent,
+        EventComponent,
+        EventCenterComponent,
+        TagComponent,
+        TagCenterComponent,
+        LoginComponent,
+        LogoutComponent,
+        RegisterComponent,
+        VerifyComponent,
+        AdminComponent,
+        TagAdminComponent,
+        NewsAdminComponent,
+        EventAdminComponent,
+        UserAdminComponent,
+        MyComponent,
+        MyEventComponent,
+        MySettingComponent
+    ],
+    exports: [
+        BrowserModule,
+        ToastyModule
+    ],
+    imports: [ // import Angular's modules
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(ROUTES, { useHash: false }),
+        TooltipModule,
+        AlertModule,
+        TabsModule,
+        ModalModule,
+        DropdownModule,
+        ToastyModule.forRoot()
+    ],
+    providers: [ // expose our Services and Providers into Angular's dependency injection
+        ENV_PROVIDERS,
+        APP_PROVIDERS,
+        Title,
+        GlobalService,
+        ValidationService,
+        Cookie
+    ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef) {}
-  hmrOnInit(store) {
-    console.log('HMR store', store);
+  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+
+  hmrOnInit(store: StoreType) {
+    if (!store || !store.state) return;
+    console.log('HMR store', JSON.stringify(store, null, 2));
+    // set state
+    this.appState._state = store.state;
+    // set input values
+    if ('restoreInputValues' in store) {
+      let restoreInputValues = store.restoreInputValues;
+      setTimeout(restoreInputValues);
+    }
+
+    this.appRef.tick();
+    delete store.state;
+    delete store.restoreInputValues;
   }
-  hmrOnDestroy(store) {
-    let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    // recreate elements
+
+  hmrOnDestroy(store: StoreType) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    // save state
+    const state = this.appState._state;
+    store.state = state;
+    // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
+    // save input values
+    store.restoreInputValues  = createInputTransfer();
     // remove styles
     removeNgStyles();
   }
-  hmrAfterDestroy(store) {
+
+  hmrAfterDestroy(store: StoreType) {
     // display new elements
     store.disposeOldHosts();
     delete store.disposeOldHosts;
   }
+
 }
+

@@ -8,7 +8,7 @@ import { ToastyService } from 'ng2-toasty';
 @Component({
   selector: 'my-verifier',
   template: `验证中，请稍候`,
-  providers: [ChangeDetectorRef, RegisterService]
+  providers: [RegisterService]
 })
 export class VerifyComponent implements OnInit {
 
@@ -19,12 +19,12 @@ export class VerifyComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private ref: ChangeDetectorRef,
-        private cookieService: CookieService,
+        // private cookieService: CookieService,
         private toastyService: ToastyService,
         private titleService: Title
     ) {
-        if (this.cookieService.get('waves_permission'))
-            this.router.navigate(['/']);
+        // if (this.cookieService.get('waves_permission'))
+        //     this.router.navigate(['/']);
         this.titleService.setTitle('验证浪潮账号');
     }
 

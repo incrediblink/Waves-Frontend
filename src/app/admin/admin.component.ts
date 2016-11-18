@@ -1,16 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { TagAdminComponent } from './tag';
 import { Title } from '@angular/platform-browser';
 import { GlobalService } from '../global';
-import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'my-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['admin.component.scss']
 })
 export class AdminComponent implements OnInit, OnDestroy {
     public tabs = [
@@ -54,12 +53,11 @@ export class AdminComponent implements OnInit, OnDestroy {
         private titleService: Title,
         private Global: GlobalService,
         private location: Location,
-        private cookieService: CookieService,
         private router: Router,
         private route: ActivatedRoute,
         private toastyService: ToastyService
     ) {
-        if (!(this.cookieService.get('waves_permission').includes('Admin'))) {
+        if (!(Cookie.get('waves_permission').includes('Admin'))) {
             this.toastyService.warning('您无法访问控制面板。');
             this.router.navigate(['/login']);
         }

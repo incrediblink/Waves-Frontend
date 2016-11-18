@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CookieService } from 'angular2-cookie/core';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Title } from '@angular/platform-browser';
 import { GlobalService } from '../global';
 import { Location } from '@angular/common';
@@ -9,7 +9,7 @@ import { ToastyService, ToastOptions } from 'ng2-toasty';
 @Component({
     selector: 'my-home',
     templateUrl: './my.component.html',
-    styleUrls: ['./my.component.scss']
+    styleUrls: ['my.component.scss']
 })
 export class MyComponent implements OnInit {
 
@@ -37,14 +37,13 @@ export class MyComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private cookieService: CookieService,
         private titleService: Title,
         private Global: GlobalService,
         private location: Location,
         private toastyService: ToastyService
     ) {
-        if (!(this.cookieService.get('waves_user') &&
-            this.cookieService.get('waves_permission'))) {
+        if (!(Cookie.get('waves_user') &&
+            Cookie.get('waves_permission'))) {
             let toastOptions: ToastOptions = {
                 title: '',
                 msg: "您需要先登录才能访问“我的”页面。",

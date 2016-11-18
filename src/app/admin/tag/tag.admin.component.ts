@@ -5,7 +5,7 @@ import { ValidationService } from '../../const/validation.service';
 @Component({
   selector: 'my-tag-admin',
   templateUrl: './tag.admin.component.html',
-  styleUrls: ['./tag.admin.component.scss'],
+  styleUrls: ['tag.admin.component.scss'],
   providers: [TagService]
 })
 export class TagAdminComponent implements OnInit {

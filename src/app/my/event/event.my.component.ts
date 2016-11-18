@@ -8,7 +8,7 @@ import { UserService } from '../../service/user';
 @Component({
     selector: 'my-event-home',
     templateUrl: './event.my.component.html',
-    styleUrls: ['./event.my.component.scss'],
+    styleUrls: ['event.my.component.scss'],
     providers: [UserService]
 })
 export class MyEventComponent {
