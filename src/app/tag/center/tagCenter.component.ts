@@ -6,7 +6,7 @@ import { GlobalService } from '../../global';
 
 @Component({
   selector: 'my-tag-center',
-  styleUrls: ['tagCenter.component.css'],
+  styleUrls: ['tagCenter.component.scss'],
   templateUrl: './tagCenter.component.html',
   providers: [TagService]
 })

@@ -232,6 +232,28 @@ export class EventComponent implements OnInit, OnDestroy {
         }, 200);
     };
 
+    private getTimeline = (isRefresh) => {
+        this.opacity = 0;
+        this.ref.detectChanges();
+        this.timelineService.get(this.id)
+            .subscribe(
+                result => {
+                    this.collections = result;
+                    // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
+                    this.ref.detectChanges();
+                    setTimeout(() => {
+                        this.opacity = 1;
+                        if (isRefresh) {
+                            this.toastyService.clearAll();
+                            this.toastyService.success('刷新成功');
+                        }
+                        this.ref.detectChanges();
+                    }, 500);
+                },
+                err => this.router.navigate(['/event'])
+          );
+    };
+
     private isFollowButtonShown = true;
     private isSubscribingInASimpleWay = true;
 
@@ -278,19 +300,7 @@ export class EventComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/event']);
                     }
                 );
-            this.timelineService.get(this.id)
-                .subscribe(
-                    result => {
-                        this.collections = result;
-                        // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
-                        this.ref.detectChanges();
-                        setTimeout(() => {
-                            this.opacity = 1;
-                            this.ref.detectChanges();
-                        }, 200);
-                    },
-                    err => this.router.navigate(['/event'])
-                );
+            this.getTimeline(0);
         });
     }
 

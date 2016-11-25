@@ -23,7 +23,10 @@
     </div>
     <div class="content-right font-content">
         <div class="timeline">
-            <h4 style="margin-bottom: 1rem; font-weight: bold">事件相关新闻</h4>
+            <div class="timeline-title">
+                <h4 style="margin-bottom: 0rem; margin-right: .25rem; font-weight: bold">事件相关新闻</h4>
+                <button type="button" class="btn btn-primary btn-sm" (click)="getTimeline(1)">刷新</button>
+            </div>
             <div class="card loading" [style.margin-bottom]="opacity ? 0 : ''" [style.padding]="opacity ? 0 : ''" [style.height]="opacity ? 0 : ''" [style.opacity]="1 - opacity">
                 <p style="margin: 0">正在查询事件相关新闻</p>
             </div>
