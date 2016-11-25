@@ -11,6 +11,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class EventCenterComponent {
     public eventCollection;
+    public opacity = 0;
 
     constructor(
         private eventCenterService: EventCenterService,
@@ -28,6 +29,10 @@ export class EventCenterComponent {
                             event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl + '!web';
                     }
                     this.ref.detectChanges();
+                    setTimeout(() => {
+                        this.opacity = 1;
+                        this.ref.detectChanges();
+                    }, 200);
                 },
                 err => console.log(err)
             );

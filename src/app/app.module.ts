@@ -7,6 +7,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { TooltipModule, AlertModule, TabsModule, ModalModule, DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ToastyModule } from 'ng2-toasty';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+// import { MetadataSettings, PageTitlePositioning, MetadataService, MetadataModule } from 'ng2-metadata';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -51,6 +52,24 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
+// const metaConfig: MetaConfig = {
+//     defaults: {
+//         title: '浪潮 - 渴望重回土地',
+//         description: '如果你想记住那些曾使你牵挂的事件，这里或许是个好地方。'
+//     }
+// };
+//
+// const metadataSettings: MetadataSettings = {
+//   pageTitlePositioning : PageTitlePositioning.PrependPageTitle,
+//   pageTitleSeparator : ' | ',
+//   applicationName : '浪潮 - 渴望重回土地',
+//   defaults : {
+//     title : '欢迎',
+//     description : '在这里，记住那些使你心动的事件。'
+//   }
+// };
+
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -91,6 +110,7 @@ type StoreType = {
         ModalModule,
         DropdownModule,
         ToastyModule.forRoot()
+        // MetadataModule.forRoot(metadataSettings)
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,

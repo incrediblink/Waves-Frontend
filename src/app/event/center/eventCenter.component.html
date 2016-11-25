@@ -13,7 +13,10 @@
     <div class="content-right">
         <div class="events-container font-content">
             <h4 style="margin-bottom: 1rem; font-weight: bold">最新事件</h4>
-            <div class="event card" *ngFor="let event of eventCollection">
+            <div class="card loading" [style.margin-bottom]="opacity ? 0 : ''" [style.padding]="opacity ? 0 : ''" [style.height]="opacity ? 0 : ''" [style.opacity]="1 - opacity">
+                <p style="margin: 0">正在查询最新事件</p>
+            </div>
+            <div class="event card" *ngFor="let event of eventCollection" [style.opacity]="opacity">
                 <a class="no-decoration" [routerLink]="['/event/' + event.Title]">
                     <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || (Global.cdn + 'default.png!web')) + ')'" ></div>
                     <div class="card-block event-title-block">

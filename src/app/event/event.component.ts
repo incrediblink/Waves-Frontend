@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap/components/modal/modal.component';
 import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+// import { MetadataService } from 'ng2-metadata';
 import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 
@@ -21,15 +22,7 @@ export class EventComponent implements OnInit, OnDestroy {
 
     @ViewChild('childModal') public childModal: ModalDirective;
 
-    public collections: any = [{
-      '_id': '',
-      'Url': '',
-      'Source': '',
-      'Title': '',
-      'Time': '',
-      'Content': '',
-      'Abstract': ''
-    }];
+    public collections: any = [];
 
     public event: any = {
         'Title': '',
@@ -161,7 +154,12 @@ export class EventComponent implements OnInit, OnDestroy {
                     this.toastyService.success('订阅成功！');
                     this.ref.detectChanges();
                 },
-                err => console.log(err)
+                err => {
+                    modal.hide();
+                    this.toastyService.clear(loadingID);
+                    this.toastyService.error(err);
+                    this.ref.detectChanges();
+                }
             );
     };
 
@@ -249,12 +247,13 @@ export class EventComponent implements OnInit, OnDestroy {
         private toastyService: ToastyService,
         private titleService: Title,
         private location: Location
+        // private metadataService: MetadataService
     ) {
         if (Cookie.get('waves_permission'))
             this.isAdmin = JSON.parse(Cookie.get('waves_permission')).includes('Admin') ? true : false;
     }
 
-    public sub; public id;
+    public sub; public id; public opacity = 0;
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -265,9 +264,10 @@ export class EventComponent implements OnInit, OnDestroy {
                         this.event = result;
                         if (this.event.HeaderImage) {
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl + '!web';
-                            // this.metaService.setTag('og:image',this.event.HeaderImage.ImageUrl);
+                            // this.metadataService.setTag('og:image',this.event.HeaderImage.ImageUrl);
                         }
                         this.titleService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
+                        // this.metadataService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.location.go('/event/' + this.event.Title);
                         this.id = this.event._id;
                         this.ref.detectChanges();
@@ -281,8 +281,12 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.collections = result;
-                        // this.metaService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
+                        // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
                         this.ref.detectChanges();
+                        setTimeout(() => {
+                            this.opacity = 1;
+                            this.ref.detectChanges();
+                        }, 200);
                     },
                     err => this.router.navigate(['/event'])
                 );

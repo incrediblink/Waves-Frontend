@@ -4,6 +4,7 @@ import { TagService } from '../service/tag';
 import { GlobalService } from '../global';
 import { Title } from '@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
+// import { MetadataService } from 'ng2-metadata';
 
 @Component({
   selector: 'my-tag',
@@ -15,12 +16,8 @@ export class TagComponent implements OnInit, OnDestroy {
 
     public tag = {
         Title: null,
-        Events: [{
-            ImageUrl: null,
-            Subscriber: [0],
-            News: []
-        }]
-    }
+        Events: []
+    };
 
     constructor(
         private tagService: TagService,
@@ -30,9 +27,10 @@ export class TagComponent implements OnInit, OnDestroy {
         private Global: GlobalService,
         private titleService: Title,
         private toastyService: ToastyService
+        // private metadataService: MetadataService
     ) { }
 
-    public sub; public id;
+    public sub; public id; public opacity = 0;
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -47,6 +45,11 @@ export class TagComponent implements OnInit, OnDestroy {
                         this.tag = tag;
                         this.ref.detectChanges();
                         this.titleService.setTitle('标签 - ' + this.tag.Title + ' | ' + this.Global.slogan);
+                        setTimeout(() => {
+                            this.opacity = 1;
+                            this.ref.detectChanges();
+                        }, 200);
+                        // this.metadataService.setTitle('标签 - ' + this.tag.Title);
                     },
                     err => {
                         this.toastyService.warning("你所查看的标签不存在或已被隐藏！");

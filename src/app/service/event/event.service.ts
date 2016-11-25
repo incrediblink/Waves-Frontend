@@ -36,7 +36,7 @@ export class EventService {
                             return { data: this.extractData(res), status: res.status }
                         })
                         .catch(this.handleError);
-    } 
+    }
 
     addNews (id: string, newsUrl: string): Observable<{}> {
         let info = JSON.stringify({
@@ -103,7 +103,7 @@ export class EventService {
                         .map((res: Response) => {
                             return { data: this.extractData(res), status: res.status }
                         })
-                        .catch(this.handleError);
+                        .catch((res: Response) => this.extractData(res));
     }
 
     getQueue (filter): Observable<any> {

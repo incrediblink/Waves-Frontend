@@ -13,7 +13,7 @@ import { UserService } from '../../service/user';
 })
 export class MyEventComponent {
 
-    public eventCollection;
+    public eventCollection; public opacity = 0;
 
     constructor(
         private ref: ChangeDetectorRef,
@@ -32,6 +32,10 @@ export class MyEventComponent {
                             event.ImageUrl = this.Global.cdn + event.HeaderImage.ImageUrl + '!web';
                     }
                     this.ref.detectChanges();
+                    setTimeout(() => {
+                        this.opacity = 1;
+                        this.ref.detectChanges();
+                    }, 200);
                 }
             );
     }

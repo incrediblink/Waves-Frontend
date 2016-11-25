@@ -99,7 +99,19 @@ tooltip-container {
 }
 
 .card, .dropdown-item {
-    transition: background-color .2s;
+    transition: background-color .2s, opacity 1s;
+}
+
+.opacity-transition {
+    transition: opacity 1s;
+}
+
+.loading {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    transition: height 1s, opacity .5s, padding 1s, margin-bottom 1s;
 }
 
 input {

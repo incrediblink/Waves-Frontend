@@ -21,7 +21,10 @@
     <div class="content-right font-content">
         <div class="timeline">
             <h4 style="margin-bottom: 1rem; font-weight: bold">事件相关新闻</h4>
-            <div class="card card-block news" *ngFor="let news of collections; let i = index">
+            <div class="card loading" [style.margin-bottom]="opacity ? 0 : ''" [style.padding]="opacity ? 0 : ''" [style.height]="opacity ? 0 : ''" [style.opacity]="1 - opacity">
+                <p style="margin: 0">正在查询事件相关新闻</p>
+            </div>
+            <div class="card card-block news" *ngFor="let news of collections; let i = index" [style.opacity]="opacity">
                 <small class="text-muted">{{news.Source}}</small>
                 <a href="{{news.Url}}" [name]="news._id" class="news-title no-decoration" target="_blank"><h4 class="card-title font-title">{{news.Title}}</h4></a>
                 <p *ngIf="news.Abstract" class="card-text font-content">{{news.Abstract}}</p>

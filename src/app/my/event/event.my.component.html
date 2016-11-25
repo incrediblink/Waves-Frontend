@@ -1,4 +1,4 @@
-<div class="event card" *ngFor="let event of eventCollection; let i = index">
+<div class="event card" *ngFor="let event of eventCollection; let i = index" [style.opacity]="opacity">
     <a class="no-decoration" [routerLink]="['/event/' + event.Title]">
         <div class="card-img-top event-image" [style.background-image]="'url(' + (event.ImageUrl || (Global.cdn + 'default.png!web')) + ')'" ></div>
         <div class="card-block event-title-block">

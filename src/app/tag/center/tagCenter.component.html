@@ -5,7 +5,10 @@
     <div class="content-right">
         <div class="tags-container">
             <h4 class="font-content" style="margin-bottom: 1rem; width: 100%; font-weight: bold">最新事件标签</h4>
-            <div class="tags card" *ngFor="let tag of tagCollection">
+            <div class="card loading" [style.margin-bottom]="opacity ? 0 : ''" [style.padding]="opacity ? 0 : ''" [style.height]="opacity ? 0 : ''" [style.opacity]="1 - opacity">
+                <p style="margin: 0">正在查询最新事件标签</p>
+            </div>
+            <div class="tags card" *ngFor="let tag of tagCollection" [style.opacity]="opacity">
                 <a class="no-decoration" [routerLink]="['/tag/' + tag.Title]">
                     <div class="card-block tag-title-block">
                         <h4 class="card-title tag-title font-title">{{tag.Title}}</h4>
