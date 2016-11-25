@@ -6,8 +6,11 @@
             <i class="fa fa-info-circle" aria-hidden="true"></i>
         </a>
         <div class="header-info">
-            <h1 class="font-content header-title">{{event.Title}}</h1>
-            <div class="tag-set">
+            <h1 class="font-content header-title content-left-title"
+                [style.line-height]="isTitleShown ? '3.5rem' : '0rem'" [style.opacity]="isTitleShown ? 1 : 0">
+                {{event.Title}}
+            </h1>
+            <div class="tag-set" [style.opacity]="isTitleShown ? 1 : 0">
                 <a class="tag font-content" *ngFor="let tag of event.Tag" [routerLink]="['/tag/' + tag.Title]">{{tag.Title}}</a>
             </div>
             <div class="header-share">

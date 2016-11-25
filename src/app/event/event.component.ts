@@ -253,7 +253,7 @@ export class EventComponent implements OnInit, OnDestroy {
             this.isAdmin = JSON.parse(Cookie.get('waves_permission')).includes('Admin') ? true : false;
     }
 
-    public sub; public id; public opacity = 0;
+    public sub; public id; public opacity = 0; public isTitleShown = 0;
 
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
@@ -270,6 +270,7 @@ export class EventComponent implements OnInit, OnDestroy {
                         // this.metadataService.setTitle(this.event.Title + ' | ' + this.Global.slogan);
                         this.location.go('/event/' + this.event.Title);
                         this.id = this.event._id;
+                        this.isTitleShown = this.event.Title;
                         this.ref.detectChanges();
                     },
                     err => {

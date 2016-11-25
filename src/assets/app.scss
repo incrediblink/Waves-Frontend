@@ -103,7 +103,7 @@ tooltip-container {
 }
 
 .opacity-transition {
-    transition: opacity 1s;
+    transition: opacity .5s;
 }
 
 .loading {
@@ -111,7 +111,11 @@ tooltip-container {
     padding: 1rem;
     display: flex;
     justify-content: center;
-    transition: height 1s, opacity .5s, padding 1s, margin-bottom 1s;
+    transition: height .5s, opacity .25s, padding .5s, margin-bottom .5s;
+}
+
+.content-left-title {
+    transition: line-height .5s, opacity .5s;
 }
 
 input {
@@ -142,6 +146,12 @@ input {
 
     tooltip-container {
         opacity: 1;
+    }
+
+    .content-left-title {
+        transition: opacity .5s;
+        font-size: 4rem !important;
+        line-height: 4.5rem !important;
     }
 }
 

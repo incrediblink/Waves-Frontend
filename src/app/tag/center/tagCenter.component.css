@@ -10,6 +10,9 @@
 .title {
     margin: 0;
     padding: 3rem 1rem 3rem 1rem;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    text-shadow: 0 0 1rem #555;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .75));
     width: 100%
 }

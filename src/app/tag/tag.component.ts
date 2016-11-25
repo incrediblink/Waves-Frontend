@@ -19,6 +19,8 @@ export class TagComponent implements OnInit, OnDestroy {
         Events: []
     };
 
+    public isTitleShown = this.tag.Title;
+
     constructor(
         private tagService: TagService,
         private router: Router,
@@ -47,6 +49,7 @@ export class TagComponent implements OnInit, OnDestroy {
                         this.titleService.setTitle('标签 - ' + this.tag.Title + ' | ' + this.Global.slogan);
                         setTimeout(() => {
                             this.opacity = 1;
+                            this.isTitleShown = this.tag.Title;
                             this.ref.detectChanges();
                         }, 200);
                         // this.metadataService.setTitle('标签 - ' + this.tag.Title);
