@@ -8,7 +8,7 @@
         </a>
         <a *ngFor="let tab of tabs"
             [routerLink]="tab.link"
-            class="tab"
+            class="tab hover-detect"
             routerLinkActive="tab-active"
             tooltipPlacement="right"
             [tooltip]="tab.title">
@@ -21,7 +21,7 @@
     <div class="navbar-bottom">
         <a *ngFor="let tab of tabsBottom"
             [routerLink]="tab.link"
-            class="tab-bottom"
+            class="tab-bottom hover-detect"
             routerLinkActive="tab-bottom-active"
             [routerLinkActiveOptions]="{ exact: true }"
             tooltipPlacement="right"

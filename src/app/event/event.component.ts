@@ -233,7 +233,7 @@ export class EventComponent implements OnInit, OnDestroy {
     };
 
     private isGettingTimeline = 0;
-    private getTimeline = (isRefresh) => {
+    private getTimeline = () => {
         if (!this.isGettingTimeline) {
             this.opacity = 0;
             this.ref.detectChanges();
@@ -243,16 +243,12 @@ export class EventComponent implements OnInit, OnDestroy {
                     result => {
                         // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
                         setTimeout(() => {
-                          this.collections = result;
-                          this.ref.detectChanges();
-                            if (isRefresh) {
-                                this.toastyService.clearAll();
-                                this.toastyService.success('刷新成功');
-                            }
+                            this.collections = result;
+                            this.ref.detectChanges();
                             setTimeout(() => {
                                 this.opacity = 1;
-                                this.ref.detectChanges();
                                 this.isGettingTimeline = 0;
+                                this.ref.detectChanges();
                             });
                         }, 500);
                     },
@@ -307,7 +303,7 @@ export class EventComponent implements OnInit, OnDestroy {
                         this.router.navigate(['/event']);
                     }
                 );
-            this.getTimeline(0);
+            this.getTimeline();
         });
     }
 
