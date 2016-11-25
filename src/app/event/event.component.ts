@@ -13,10 +13,10 @@ import { Title } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'my-event',
-  styleUrls: ['event.component.scss'],
-  templateUrl: './event.component.html',
-  providers: [EventService, NewsService, TimelineService]
+    selector: 'my-event',
+    styleUrls: ['event.component.scss'],
+    templateUrl: './event.component.html',
+    providers: [EventService, NewsService, TimelineService]
 })
 export class EventComponent implements OnInit, OnDestroy {
 
@@ -232,26 +232,33 @@ export class EventComponent implements OnInit, OnDestroy {
         }, 200);
     };
 
+    private isGettingTimeline = 0;
     private getTimeline = (isRefresh) => {
-        this.opacity = 0;
-        this.ref.detectChanges();
-        this.timelineService.get(this.id)
-            .subscribe(
-                result => {
-                    this.collections = result;
-                    // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
-                    this.ref.detectChanges();
-                    setTimeout(() => {
-                        this.opacity = 1;
-                        if (isRefresh) {
-                            this.toastyService.clearAll();
-                            this.toastyService.success('刷新成功');
-                        }
-                        this.ref.detectChanges();
-                    }, 500);
-                },
-                err => this.router.navigate(['/event'])
-          );
+        if (!this.isGettingTimeline) {
+            this.opacity = 0;
+            this.ref.detectChanges();
+            this.isGettingTimeline = 1;
+            this.timelineService.get(this.id)
+                .subscribe(
+                    result => {
+                        // this.metadataService.setTag('description', '最新新闻：' + this.collections[0].Source + '《' + this.collections[0].Title + '》' + (this.collections[0].Abstract || ''));
+                        setTimeout(() => {
+                          this.collections = result;
+                          this.ref.detectChanges();
+                            if (isRefresh) {
+                                this.toastyService.clearAll();
+                                this.toastyService.success('刷新成功');
+                            }
+                            setTimeout(() => {
+                                this.opacity = 1;
+                                this.ref.detectChanges();
+                                this.isGettingTimeline = 0;
+                            });
+                        }, 500);
+                    },
+                    err => this.router.navigate(['/event'])
+                );
+        }
     };
 
     private isFollowButtonShown = true;
