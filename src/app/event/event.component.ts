@@ -163,16 +163,14 @@ export class EventComponent implements OnInit, OnDestroy {
             );
     };
 
-    public addOrig = {
-        url: '',
-        time: '',
-        content: '',
-        source: '',
-        title: '',
-        abstract: ''
+    public add = {
+        url: null,
+        time: null,
+        content: null,
+        source: null,
+        title: null,
+        abstract: null
     };
-
-    public add = this.addOrig;
 
     public addNews = (modal) => {
         this.newsService.addWithoutCrawler(this.add)
@@ -182,9 +180,15 @@ export class EventComponent implements OnInit, OnDestroy {
                         .subscribe(
                             data => {
                                 modal.hide();
-                                this.add = this.addOrig;
+                                this.add = {
+                                    url: null,
+                                    time: null,
+                                    content: null,
+                                    source: null,
+                                    title: null,
+                                    abstract: null
+                                };
                                 this.toastyService.success('提交成功！');
-                                this.add = this.addOrig;
                                 this.ref.detectChanges();
                             },
                             err => this.toastyService.warning(err)

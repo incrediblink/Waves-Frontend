@@ -8,6 +8,7 @@
         </a>
         <a *ngFor="let tab of tabs"
             [routerLink]="tab.link"
+            (click)="router.navigate(tab.link)"
             class="tab hover-detect"
             routerLinkActive="tab-active"
             tooltipPlacement="right"

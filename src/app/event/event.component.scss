@@ -185,6 +185,7 @@ h4 {
 @media (min-width: 768px) {
     .event-header {
         padding: 1rem;
+        transition: opacity .5s;
     }
 
     .header-info {
