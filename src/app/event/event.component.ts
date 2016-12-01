@@ -73,7 +73,8 @@ export class EventComponent implements OnInit, OnDestroy {
             .subscribe(
                 success => {
                     this.toastyService.clear(loadingID);
-                    this.toastyService.success('修改成功，若要查看最新新闻内容请刷新页面。');
+                    this.toastyService.success('修改成功');
+                    this.getTimeline();
                     modal.hide();
                     this.newsToBeEdited = this.newsToBeEditedOrig;
                 },
@@ -291,6 +292,7 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.event = result;
+                        console.log(this.event);
                         if (this.event.HeaderImage) {
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl + '!web';
                             // this.metadataService.setTag('og:image',this.event.HeaderImage.ImageUrl);

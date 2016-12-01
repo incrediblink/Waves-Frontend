@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef } from '@angular/core';
+import  { Component, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, DoCheck, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { UserService } from './service/user';
@@ -82,7 +82,7 @@ export class AppComponent {
         this.ref.detectChanges();
 
         setInterval(() => {
-            if (this.location.isCurrentPathEqualTo('/my/setting') || this.location.isCurrentPathEqualTo('/event')) {
+            if (Cookie.get('waves_permission') && (this.location.isCurrentPathEqualTo('/my/setting') || this.location.isCurrentPathEqualTo('/event'))) {
                 this.userService.renew()
                     .subscribe(() => {});
             }
