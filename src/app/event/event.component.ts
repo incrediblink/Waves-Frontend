@@ -164,6 +164,8 @@ export class EventComponent implements OnInit, OnDestroy {
             );
     };
 
+    public submitNews = null;
+
     public add = {
         url: null,
         time: null,
@@ -173,29 +175,55 @@ export class EventComponent implements OnInit, OnDestroy {
         abstract: null
     };
 
-    public addNews = (modal) => {
+    public addNews = (modal, addNewsWithoutCrawlerModal) => {
+        let temp = this.submitNews;
+        this.submitNews = '正在分析你的链接……';
+        this.ref.detectChanges();
+        this.newsService.add(temp)
+            .subscribe(
+                data => {
+                    this.eventService.addNews(this.id, data)
+                        .subscribe(
+                            success => {
+                                modal.hide();
+                                this.toastyService.success('提交成功！');
+                                this.submitNews = null;
+                                this.ref.detectChanges();
+                            },
+                            err => this.toastyService.warning(err)
+                        );
+                },
+                error => {
+                    modal.hide();
+                    this.submitNews = null;
+                    addNewsWithoutCrawlerModal.show();
+                }
+            );
+    };
+
+    public addNewsWithoutCrawler = (modal) => {
         this.newsService.addWithoutCrawler(this.add)
             .subscribe(
                 data => {
                     this.eventService.addNews(this.id, data._id)
                         .subscribe(
                             data => {
-                                modal.hide();
-                                this.add = {
-                                    url: null,
-                                    time: null,
-                                    content: null,
-                                    source: null,
-                                    title: null,
-                                    abstract: null
-                                };
-                                this.toastyService.success('提交成功！');
-                                this.ref.detectChanges();
-                            },
-                            err => this.toastyService.warning(err)
+                                  modal.hide();
+                                  this.add = {
+                                      url: null,
+                                      time: null,
+                                      content: null,
+                                      source: null,
+                                      title: null,
+                                      abstract: null
+                                  };
+                                  this.toastyService.success('提交成功！');
+                                  this.ref.detectChanges();
+                              },
+                              err => this.toastyService.warning(err)
                         );
                 }
-            );
+          );
     };
 
     public weiboHref: any = function(newsTitle, eventID, eventTitle) {
@@ -292,7 +320,6 @@ export class EventComponent implements OnInit, OnDestroy {
                 .subscribe(
                     result => {
                         this.event = result;
-                        console.log(this.event);
                         if (this.event.HeaderImage) {
                             this.event.HeaderImage.ImageUrl = this.Global.cdn + this.event.HeaderImage.ImageUrl + '!web';
                             // this.metadataService.setTag('og:image',this.event.HeaderImage.ImageUrl);

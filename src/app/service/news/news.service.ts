@@ -22,7 +22,7 @@ export class NewsService {
         let headers = new Headers({ 'Content-Type': 'text/plain' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.http.post(this.Global.api + 'news', newsInfo, options)
+        return this.http.post(this.Global.api + 'news/add', newsInfo, options)
                         .map((res: Response) => {
                             return this.extractData(res);
                         })

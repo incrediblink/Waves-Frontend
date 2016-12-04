@@ -1,6 +1,6 @@
 export class GlobalService {
     root: string = 'https://' + document.domain + '/';
-    api: string = 'https://api.langchao.land:26462/';
+    api: string = 'https://api.langchao.land:36424/';
     cdn: string = 'https://static.v2land.net/';
     slogan: string = '浪潮 - 渴望重回土地';
     simpleSubscribeMode = [

@@ -167,7 +167,7 @@
                 </div>
             </div>
         </div>
-        <div bsModal #addNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
+        <div bsModal #addNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsWithoutCrawlerModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content font-content">
                     <div class="modal-header font-title">
@@ -175,6 +175,35 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="modal-title">添加新闻至该事件</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-xs-3 col-md-2 col-form-label">链接</label>
+                            <div class="col-xs-9 col-md-10">
+                                <input [(ngModel)]="submitNews" class="form-control"
+                                       [disabled]="submitNews == '正在分析你的链接……'"
+                                       [class.ng-invalid-control]="!(submitNews && Validation.Url.test(submitNews))"
+                                       type="text" placeholder="新闻链接" required>
+                            </div>
+                        </div>
+                        <div class="submit">
+                            <button (click)="addNews(addNewsModal, addNewsWithoutCrawlerModal)" type="button" class="btn btn-primary"
+                                    [disabled]="!(submitNews && Validation.Url.test(submitNews))">
+                              添加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div bsModal #addNewsWithoutCrawlerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsWithoutCrawlerModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content font-content">
+                    <div class="modal-header font-title">
+                        <button type="button" class="close" (click)="addNewsWithoutCrawlerModal.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">暂不支持该链接，请手动提交新闻信息</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
@@ -226,7 +255,7 @@
                             </div>
                         </div>
                         <div class="submit">
-                            <button (click)="addNews(addNewsModal)" type="button" class="btn btn-primary"
+                            <button (click)="addNewsWithoutCrawler(addNewsWithoutCrawlerModal)" type="button" class="btn btn-primary"
                                 [disabled]="!(add.url && Validation.Url.test(add.url) && add.source && add.title && add.content  && (add.abstract ? add.abstract.length < 150 : 1) && Validation.Time.test(add.time))">
                                 添加
                             </button>
