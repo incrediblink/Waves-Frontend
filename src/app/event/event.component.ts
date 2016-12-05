@@ -175,6 +175,11 @@ export class EventComponent implements OnInit, OnDestroy {
         abstract: null
     };
 
+    private showModal = (modal, id = '') => {
+        modal.show();
+        document.getElementById(id).focus();
+    };
+
     private isAddingNews = 0;
 
     public addNews = (modal, addNewsWithoutCrawlerModal) => {

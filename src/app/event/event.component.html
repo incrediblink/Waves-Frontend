@@ -61,7 +61,7 @@
                 <button type="button" (click)="subscribeModal.show()" class="btn btn-info btn-sm button-follow"
                     tooltipPlacement="bottom" [tooltip]="event.Subscriber != 0 ? '已有 ' + event.Subscriber + ' 人关注该事件' : '尚未有人关注该事件'">关注</button>
                 <span class="follow-or">或</span>
-                <button type="button" (click)="addNewsModal.show()" class="btn btn-primary btn-sm button-follow">为该事件添加新闻</button>
+                <button type="button" (click)="showModal(addNewsModal, 'addNewsInputBox')" class="btn btn-primary btn-sm button-follow">为该事件添加新闻</button>
             </div>
         </div>
         <div bsModal #subscribeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
@@ -181,7 +181,7 @@
                             <label class="col-xs-3 col-md-2 col-form-label">链接</label>
                             <div class="col-xs-9 col-md-10">
                                 <input [(ngModel)]="submitNews" class="form-control"
-                                       [disabled]="isAddingNews"
+                                       [disabled]="isAddingNews" id="addNewsInputBox"
                                        [class.ng-invalid-control]="!(submitNews && Validation.Url.test(submitNews))"
                                        (keyup.enter)="!(submitNews && Validation.Url.test(submitNews)) || addNews(addNewsModal, addNewsWithoutCrawlerModal)"
                                        type="text" placeholder="新闻链接" required>
@@ -189,12 +189,12 @@
                         </div>
                         <div class="submit addNews">
                             <div class="addNews" [style.opacity]="isAddingNews">
-                                <img [src]="Global.cdn + 'loading.svg'">
+                                <img [src]="Global.cdn + 'loading.gif'" style="width: 3rem">
                                 <p style="margin: 0">正在分析链接，请稍候……</p>
                             </div>
                             <button (click)="addNews(addNewsModal, addNewsWithoutCrawlerModal)" type="button" class="btn btn-primary"
                                     [disabled]="!(submitNews && Validation.Url.test(submitNews)) || isAddingNews">
-                              添加
+                                {{isAddingNews ? '加载中' : '添加'}}
                             </button>
                         </div>
                     </div>

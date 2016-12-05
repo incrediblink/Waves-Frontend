@@ -112,6 +112,7 @@ export class EventAdminComponent implements OnInit {
             .subscribe(
                 result => {
                     this.toastyService.success(result);
+                    this.getQueue();
                     this.queue.splice(i, 1);
                 }
             );
@@ -149,7 +150,8 @@ export class EventAdminComponent implements OnInit {
         this.newsService.edit(this.idOfNewsToBeEdited, this.newsToBeEdited)
             .subscribe(
                 success => {
-                    this.toastyService.success('修改成功，若要查看最新新闻内容请刷新页面。');
+                    this.toastyService.success('修改成功');
+                    this.getQueue();
                     modal.hide();
                     this.newsToBeEdited = this.newsToBeEditedOrig;
                 },
