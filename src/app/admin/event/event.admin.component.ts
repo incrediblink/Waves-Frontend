@@ -31,7 +31,7 @@ export class EventAdminComponent implements OnInit {
     public create = {
         title: null,
         news: null
-    }
+    };
 
     public createEvent = (title, news) => {
         this.eventService.create(title, news)
@@ -42,19 +42,19 @@ export class EventAdminComponent implements OnInit {
                 },
                 err => console.log(err)
             )
-    }
+    };
 
     public add = {
         id: null,
         url: null
-    }
+    };
 
     public uploadImageOrig = {
         id: null,
         image: null,
         url: null,
         source: null
-    }
+    };
 
     public uploadImage = this.uploadImageOrig;
 
@@ -65,15 +65,16 @@ export class EventAdminComponent implements OnInit {
                     data => {
                         this.add.id = null;
                         this.add.url = null;
+                        this.getQueue();
                         if (i)
                             this.queue.splice(i, 1);
                     },
                     err => this.toastyService.warning(err)
                 );
-    }
+    };
 
     public upload = (id: string, imageSource: string, sourceUrl: string) => {
-        let image: any = document.getElementById('image')
+        let image: any = document.getElementById('image');
         let file = image.files[0];
         this.uploadService.upload(file)
             .then(result => {
@@ -96,7 +97,7 @@ export class EventAdminComponent implements OnInit {
 
     public getQueue = () => {
         if (this.verify.id)
-            this.filter = { Event: this.verify.id }
+            this.filter = { Event: this.verify.id };
         this.eventService.getQueue(this.filter)
             .subscribe(
                 result => {

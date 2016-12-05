@@ -98,7 +98,10 @@
                 (select)="tab.verifyNews.active = true"
                 (deselect)="tab.verifyNews.active = false">
                 <div class="single-page admin-pages">
-                    <h2 class="font-title">审核新闻</h2>
+                    <div class="verify-title">
+                        <h2 class="font-title" style="margin: 0">审核新闻</h2>
+                        <button type="button" class="btn btn-primary btn-sm" (click)="getQueue()">刷新</button>
+                    </div>
                     <div class="form-group row">
                         <label class="col-xs-3 col-md-2 col-form-label">事件</label>
                         <div class="col-xs-9 col-md-10">
