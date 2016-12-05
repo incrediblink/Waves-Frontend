@@ -175,11 +175,12 @@ export class EventComponent implements OnInit, OnDestroy {
         abstract: null
     };
 
+    private isAddingNews = 0;
+
     public addNews = (modal, addNewsWithoutCrawlerModal) => {
-        let temp = this.submitNews;
-        this.submitNews = '正在分析你的链接……';
+        this.isAddingNews = 1;
         this.ref.detectChanges();
-        this.newsService.add(temp)
+        this.newsService.add(this.submitNews)
             .subscribe(
                 data => {
                     this.eventService.addNews(this.id, data)
@@ -188,6 +189,7 @@ export class EventComponent implements OnInit, OnDestroy {
                                 modal.hide();
                                 this.toastyService.success('提交成功！');
                                 this.submitNews = null;
+                                this.isAddingNews = 0;
                                 this.ref.detectChanges();
                             },
                             err => this.toastyService.warning(err)
@@ -196,6 +198,7 @@ export class EventComponent implements OnInit, OnDestroy {
                 error => {
                     modal.hide();
                     this.submitNews = null;
+                    this.isAddingNews = 0;
                     addNewsWithoutCrawlerModal.show();
                 }
             );

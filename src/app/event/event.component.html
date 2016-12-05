@@ -167,7 +167,7 @@
                 </div>
             </div>
         </div>
-        <div bsModal #addNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsWithoutCrawlerModalLabel" aria-hidden="true">
+        <div bsModal #addNewsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content font-content">
                     <div class="modal-header font-title">
@@ -181,14 +181,19 @@
                             <label class="col-xs-3 col-md-2 col-form-label">链接</label>
                             <div class="col-xs-9 col-md-10">
                                 <input [(ngModel)]="submitNews" class="form-control"
-                                       [disabled]="submitNews == '正在分析你的链接……'"
+                                       [disabled]="isAddingNews"
                                        [class.ng-invalid-control]="!(submitNews && Validation.Url.test(submitNews))"
+                                       (keyup.enter)="!(submitNews && Validation.Url.test(submitNews)) || addNews(addNewsModal, addNewsWithoutCrawlerModal)"
                                        type="text" placeholder="新闻链接" required>
                             </div>
                         </div>
-                        <div class="submit">
+                        <div class="submit addNews">
+                            <div class="addNews" [style.opacity]="isAddingNews">
+                                <img [src]="Global.cdn + 'loading.svg'">
+                                <p style="margin: 0">正在分析链接，请稍候……</p>
+                            </div>
                             <button (click)="addNews(addNewsModal, addNewsWithoutCrawlerModal)" type="button" class="btn btn-primary"
-                                    [disabled]="!(submitNews && Validation.Url.test(submitNews))">
+                                    [disabled]="!(submitNews && Validation.Url.test(submitNews)) || isAddingNews">
                               添加
                             </button>
                         </div>

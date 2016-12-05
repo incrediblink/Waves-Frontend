@@ -178,6 +178,13 @@
     margin: .1rem;
 }
 
+.addNews {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity .5s;
+}
+
 h4 {
     transition: color .2s;
 }
