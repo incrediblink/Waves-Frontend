@@ -47,6 +47,7 @@ module.exports = function (env) {
      *
      * See: http://webpack.github.io/docs/configuration.html#output
      */
+
     output: {
 
       /**
@@ -55,7 +56,7 @@ module.exports = function (env) {
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
       path: helpers.root('dist'),
-
+      publicPath: '//assets.v2land.net/',
       /**
        * Specifies the name of each output file on disk.
        * IMPORTANT: You must not specify an absolute path here!
